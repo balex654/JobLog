@@ -15,4 +15,4 @@ RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["gunicorn", "job_log.wsgi", "-b 0.0.0.0:8000"]
+CMD ["python manage.py migrate; gunicorn job_log.wsgi -b 0.0.0.0:8000"]
