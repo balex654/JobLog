@@ -1,8 +1,7 @@
 from django.urls import path
 
-from . import views
+from .api import user_controller
 
 urlpatterns = [
-    path('user', views.user)
-
+    path('user', user_controller.user)
 ]
