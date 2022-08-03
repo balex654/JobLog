@@ -78,17 +78,28 @@ WSGI_APPLICATION = 'job_log.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'job_log',
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': '5432'
-    }
-}
+def create_db_connection():
+    if env('ENV') == 'prod':
+        return {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'job_log',
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+        }
+    elif env('ENV') == 'dev':
+        return {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'job_log',
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': '5432'
+        }
 
+DATABASES = {
+    'default': create_db_connection()
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
