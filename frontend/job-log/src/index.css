@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Inter';
+}
+
+:root {
+  --light-grey: #D9D9D9;
+  --blue: #005BAE;
+  --white: white;
+  --yellow: #CC9F00;
+}
