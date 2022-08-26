@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['job-log-backend-gol2gz2rwq-uc.a.run.app', 'localhost']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://job-log-frontend-gol2gz2rwq-uc.a.run.app'
 ]
 
 # Application definition

@@ -1,7 +1,7 @@
-import { UserForm } from "../model/user/UserForm";
-import { UserResponse } from "../model/user/UserResponse";
+import { UserForm } from "../../model/user/UserForm";
+import { UserResponse } from "../../model/user/UserResponse";
 import axios from "axios";
-import { IStorageService } from "./IStorageService";
+import { IStorageService } from "../IStorageService";
 import { injectable } from "inversify";
 import "reflect-metadata";
 

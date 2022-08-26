@@ -1,4 +1,4 @@
 import React from "react";
-import { HttpStorageService } from "./HttpStorageService";
+import { HttpStorageService } from "./implementations/HttpStorageService";
 
 export const StorageContext = React.createContext(HttpStorageService);
