@@ -5,14 +5,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { FormField } from "../../common/FormField";
 import { Form } from "../../common/Form";
 import { useState } from "react";
-import { EmptyValidator, LengthValidator, MatchValidator } from "../../common/Validators";
+import { CapitalLettersValidator, EmptyValidator, LengthValidator, MatchValidator, MinLengthValidator, SpecialCharsValidator } from "../../common/Validators";
 
 interface CreateAccountProps {
     storageService: IStorageService;
 }
 
+let PasswordValue: string = '';
+
 const CreateAccount = ({storageService}: CreateAccountProps) => {
     const navigate = useNavigate();
+
+    const [firstNameErrors, setFirstNameErrors] = useState<string[]>([]);
+    const [lastNameErrors, setLastNameErrors] = useState<string[]>([]);
+    const [emailErrors, setEmailErrors] = useState<string[]>([]);
+    const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+    const [confirmPasswordErrors, setConfirmPasswordErrors] = useState<string[]>([]);
 
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
@@ -24,16 +32,8 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
     formMap.set(lastNameFieldId, new LastNameField());
     formMap.set(emailFieldId, new EmailField());
     formMap.set(passwordFieldId, new PasswordField());
-    formMap.set(
-        confirmPasswordFieldId, 
-        new ConfirmPasswordField(formMap.get(passwordFieldId)! as PasswordField));
+    formMap.set(confirmPasswordFieldId, new ConfirmPasswordField());
     let form = new Form(formMap);
-
-    const [firstNameErrors, setFirstNameErrors] = useState<string[]>([]);
-    const [lastNameErrors, setLastNameErrors] = useState<string[]>([]);
-    const [emailErrors, setEmailErrors] = useState<string[]>([]);
-    const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
-    const [confirmPasswordErrors, setConfirmPasswordErrors] = useState<string[]>([]);
 
     const firstNameInputHandler = (event: any) => {
         form.formFields.get(firstNameFieldId)!.value = event.target.value;
@@ -53,6 +53,7 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
     const passwordInputHandler = (event: any) => {
         form.formFields.get(passwordFieldId)!.value = event.target.value;
         setPasswordErrors(form.formFields.get(passwordFieldId)!.errors);
+        PasswordValue = event.target.value;
     }
 
     const confirmPasswordInputHandler = (event: any) => {
@@ -152,22 +153,24 @@ class EmailField extends FormField {
 
 class PasswordField extends FormField {
     private readonly emptyMessage: string = 'Password cannot be empty';
-    private readonly lengthMessage: string = 'Password cannot be more than 200 characters';
+    private readonly maxLengthMessage: string = 'Password cannot be more than 200 characters';
+    private readonly minLengthMessage: string = 'Password cannot be less than 8 characters';
+    private readonly specialCharsMessage: string = 'Password must contain at least one special character';
+    private readonly capitalLettersMessage: string = 'Password must contain at least one capital letter';
 
     public validate(): void {
         EmptyValidator(this.value, this.emptyMessage, this.errors);
-        LengthValidator(this.value, 200, this.lengthMessage, this.errors);
+        LengthValidator(this.value, 200, this.maxLengthMessage, this.errors);
+        MinLengthValidator(this.value, 8, this.minLengthMessage, this.errors);
+        SpecialCharsValidator(this.value, this.specialCharsMessage, this.errors);
+        CapitalLettersValidator(this.value, this.capitalLettersMessage, this.errors);
    }
 }
 
 class ConfirmPasswordField extends FormField {
     private readonly mismatchMessage: string = 'Confirm password does not match password';
 
-    constructor(private passwordField: PasswordField) {
-        super();
-    }
-
     public validate(): void {
-        MatchValidator(this.value, this.passwordField.value, this.mismatchMessage, this.errors);
+        MatchValidator(this.value, PasswordValue, this.mismatchMessage, this.errors);
     }
 }
