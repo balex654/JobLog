@@ -3,15 +3,13 @@
     flex-direction: column;
     align-items: center;
     padding-top: 10rem;
-    height: 25rem;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 15rem;
+    justify-content: flex-start;
 }
 
 .input {
@@ -20,6 +18,10 @@
     border-radius: 2rem;
     border-width: 0;
     padding-left: 1rem;
+}
+
+.input-container {
+    margin-top: 0.5rem;
 }
 
 .title {
@@ -41,4 +43,10 @@
     align-items: center;
     height: 5rem;
     justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.error {
+    height: 1rem;
+    color: var(--red);
 }
