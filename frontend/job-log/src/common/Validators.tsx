@@ -35,7 +35,7 @@ export function MinLengthValidator(value: string, length: number, message: strin
 }
 
 export function SpecialCharsValidator(value: string, message: string, errors: string[]): void {
-    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
     if (specialChars.test(value)) {
         RemoveFromList(message, errors);
     }

@@ -1,4 +1,5 @@
 export abstract class FormField {
+
     private _value: string = '';
 
     public set value(value: string) {

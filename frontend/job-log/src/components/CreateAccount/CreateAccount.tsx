@@ -22,6 +22,10 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
     const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
     const [confirmPasswordErrors, setConfirmPasswordErrors] = useState<string[]>([]);
 
+    const [firstNameValue, setFirstName] = useState<string>('');
+    const [lastNameValue, setLastName] = useState<string>('');
+    const [emailValue, setEmail] = useState<string>('');
+
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
     const emailFieldId = 'email';
@@ -38,16 +42,19 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
     const firstNameInputHandler = (event: any) => {
         form.formFields.get(firstNameFieldId)!.value = event.target.value;
         setFirstNameErrors(form.formFields.get(firstNameFieldId)!.errors);
+        setFirstName(event.target.value);
     }
 
     const lastNameInputHandler = (event: any) => {
         form.formFields.get(lastNameFieldId)!.value = event.target.value;
         setLastNameErrors(form.formFields.get(lastNameFieldId)!.errors);
+        setLastName(event.target.value);
     }
 
     const emailInputHandler = (event: any) => {
         form.formFields.get(emailFieldId)!.value = event.target.value;
         setEmailErrors(form.formFields.get(emailFieldId)!.errors);
+        setEmail(event.target.value);
     }
 
     const passwordInputHandler = (event: any) => {
@@ -63,16 +70,27 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
 
     const handleCreate = async (e: any) => {
         e.preventDefault();
+        
         if (form.valid) {
             const user: UserForm = {
-                first_name: form.formFields.get(firstNameFieldId)!.value,
-                last_name: form.formFields.get(lastNameFieldId)!.value,
-                email: form.formFields.get(emailFieldId)!.value,
-                password: form.formFields.get(passwordFieldId)!.value,
+                first_name: firstNameValue,
+                last_name: lastNameValue,
+                email: emailValue,
+                password: PasswordValue,
             }
-            const response = await storageService.createUser(user);
-            localStorage.setItem('user', JSON.stringify(response));
-            navigate('/dashboard');
+            try {
+                const response = await storageService.createUser(user);
+                localStorage.setItem('user', JSON.stringify(response));
+                navigate('/dashboard');
+            }
+            catch (error: any) {
+                const errorMap = Object.entries(JSON.parse(error.request.response));
+                let errorStr = '';
+                errorMap.forEach(e => {
+                    errorStr += `${e[0]}: ${e[1]}\n`;
+                });
+                alert(errorStr);
+            }
         }
     }
 
@@ -95,11 +113,11 @@ const CreateAccount = ({storageService}: CreateAccountProps) => {
                 </div>
                 {emailErrors.map(e => <div className="error">{e}</div>)}
                 <div className="input-container">
-                    <input onChange={passwordInputHandler} className='input' placeholder='Password'/>
+                    <input onChange={passwordInputHandler} className='input' placeholder='Password' type='password'/>
                 </div>
                 {passwordErrors.map(e => <div className="error">{e}</div>)}
                 <div className="input-container">
-                    <input onChange={confirmPasswordInputHandler} className='input' placeholder='Confirm Password'/>
+                    <input onChange={confirmPasswordInputHandler} className='input' placeholder='Confirm Password' type='password'/>
                 </div>
                 {confirmPasswordErrors.map(e => <div className="error">{e}</div>)}
             </form>
