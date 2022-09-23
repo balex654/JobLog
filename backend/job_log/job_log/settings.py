@@ -31,10 +31,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['job-log-backend-gol2gz2rwq-uc.a.run.app', 'localhost']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'https://job-log-frontend-gol2gz2rwq-uc.a.run.app'
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'job_log_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
