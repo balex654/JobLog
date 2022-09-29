@@ -15,7 +15,6 @@ export class FileStorageService implements IStorageService {
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
-            password: user.password,
             id: maxId + 1
         };
         users.push(domainUser);
@@ -29,5 +28,13 @@ export class FileStorageService implements IStorageService {
             };
             resolve(userResponse);
         });
+    }
+
+    public callApi(accessToken: string): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+
+    public getUserByEmail(): Promise<UserResponse> {
+        throw new Error("Method not implemented.");
     }
 }

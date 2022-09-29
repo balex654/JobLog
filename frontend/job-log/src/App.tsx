@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import CreateAccount from "./components/CreateAccount/CreateAccount";
+import ConfigureAccount from "./components/ConfigureAccount/ConfigureAccount";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Login from "./components/Login/Login";
+import Title from "./components/Title/Title";
 import { IStorageService } from "./services/IStorageService"
 import { container } from "./services/InversifyConfig";
 import { TYPES } from "./services/Types";
@@ -12,10 +12,10 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>}/>
+          <Route path="/" element={<Title/>}/>
           <Route 
-            path="/create-account" 
-            element={<CreateAccount storageService={container.get<IStorageService>(TYPES.IStorageService)}/>}
+            path="/configure-account" 
+            element={<ConfigureAccount storageService={container.get<IStorageService>(TYPES.IStorageService)}/>}
           />
           <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
