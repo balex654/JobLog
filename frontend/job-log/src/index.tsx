@@ -11,7 +11,7 @@ root.render(
     <Auth0Provider
       domain="dev-2uer6jn7.us.auth0.com"
       clientId="AHsTOUfAHVTFnlwFLHGf7Y0kzeIHmLKF"
-      redirectUri={"http://localhost:3000/configure-account"}
+      redirectUri={"http://localhost:3000/#/configure-account"}
       audience="https://job-log-backend-gol2gz2rwq-uc.a.run.app"
       scope="read write"
     >

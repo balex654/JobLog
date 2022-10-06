@@ -29,31 +29,38 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     formMap.set(lastNameFieldId, new LastNameField());
     let form = new Form(formMap);
 
+    const [loading, setLoading] = useState<boolean>(true);
+
     useEffect(() => {
-        getAccessToken();
-        checkUserExists();
-    }, []);
+        const getAccessToken = async () => {
+            try {
+                const accessToken = await getAccessTokenSilently({
+                    audience: "https://job-log-backend-gol2gz2rwq-uc.a.run.app",
+                    scope: "read write"
+                });
+                localStorage.setItem('accessToken', accessToken);
+            }
+            catch (e) {
+                console.log(e);
+            }
+        }
+    
+        const checkUserExists = async () => {
+            try {
+                await storageService.getUserByEmail();
+                navigate('/dashboard');
+            }
+            catch (e) {
+                setLoading(false)
+            }
+        }
 
-    const getAccessToken = async () => {
-        try {
-            const accessToken = await getAccessTokenSilently({
-                audience: "https://job-log-backend-gol2gz2rwq-uc.a.run.app",
-                scope: "read write"
-            });
-            localStorage.setItem('accessToken', accessToken);
+        const init = async () => {
+            await getAccessToken();
+            await checkUserExists();
         }
-        catch (e) {
-            console.log(e);
-        }
-    }
-
-    const checkUserExists = async () => {
-        try {
-            await storageService.getUserByEmail();
-            navigate('/dashboard');
-        }
-        catch (e) {}
-    }
+        init()
+    }, [getAccessTokenSilently, navigate, storageService]);
 
     const firstNameInputHandler = (event: any) => {
         form.formFields.get(firstNameFieldId)!.value = event.target.value;
@@ -80,29 +87,36 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
         }
     }
 
-    return (
-        <div className='configure-account'>
-            <p className='title'>
-                Configure Account
-            </p>
-            <form className='form'>
-                <div className="input-container">
-                    <input onChange={firstNameInputHandler} className='input' placeholder='First Name'/>
+    if (loading) {
+        return (
+            <div>Loading...</div>
+        );
+    }
+    else {
+        return (
+            <div className='configure-account'>
+                <p className='title'>
+                    Configure Account
+                </p>
+                <form className='form'>
+                    <div className="input-container">
+                        <input onChange={firstNameInputHandler} className='input' placeholder='First Name'/>
+                    </div>
+                    {firstNameErrors.map(e => <div className="error">{e}</div>)}
+                    <div className="input-container">
+                        <input onChange={lastNameInputHandler} className='input' placeholder='Last Name'/>
+                    </div>
+                    {lastNameErrors.map(e => <div className="error">{e}</div>)}
+                </form>
+                <div className='button-container'>
+                    <button onClick={handleCreate} className='create-button'>
+                        Configure
+                    </button>
                 </div>
-                {firstNameErrors.map(e => <div className="error">{e}</div>)}
-                <div className="input-container">
-                    <input onChange={lastNameInputHandler} className='input' placeholder='Last Name'/>
-                </div>
-                {lastNameErrors.map(e => <div className="error">{e}</div>)}
-            </form>
-            <div className='button-container'>
-                <button onClick={handleCreate} className='create-button'>
-                    Configure
-                </button>
+                
             </div>
-            
-        </div>
-    );
+        );
+    }
 }
 
 export default ConfigureAccount;

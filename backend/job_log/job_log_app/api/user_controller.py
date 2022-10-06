@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from authlib.integrations.django_oauth2 import ResourceProtector
 from django.http import JsonResponse
 
-from job_log_app.application.user import add_user, get_users, get_user_by_email
+from job_log_app.application.user import add_user, get_user_by_email
 from job_log_app.auth import validator
 
 require_auth = ResourceProtector()
