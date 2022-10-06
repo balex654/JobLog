@@ -1,6 +1,17 @@
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Dashboard = () => {
+    const { logout } = useAuth0();
+
+    const handleLogout = (event: any) => {
+        event.preventDefault();
+        logout();
+    }
+
     return (
-        <div>Dashboard</div>
+        <div>Dashboard
+            <button onClick={handleLogout}>Logout</button>
+        </div>
     );
 }
 

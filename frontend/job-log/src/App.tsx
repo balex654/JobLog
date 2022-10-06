@@ -1,25 +1,40 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import CreateAccount from "./components/CreateAccount/CreateAccount";
+import ConfigureAccount from "./components/ConfigureAccount/ConfigureAccount";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Login from "./components/Login/Login";
+import Title from "./components/Title/Title";
 import { IStorageService } from "./services/IStorageService"
 import { container } from "./services/InversifyConfig";
 import { TYPES } from "./services/Types";
+import GuardedRoute, { GuardedRouteProps } from "./common/GuardedRoute";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+
+  const defaultGuardedRouteProps: Omit<GuardedRouteProps, 'outlet'> = {
+    isAuthenticated: isAuthenticated,
+    path: '/'
+  };
+
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
-          <Route path="/" element={<Login/>}/>
+          <Route path="/" element={<Title/>}/>
           <Route 
-            path="/create-account" 
-            element={<CreateAccount storageService={container.get<IStorageService>(TYPES.IStorageService)}/>}
+            path="/configure-account" 
+            element={<ConfigureAccount storageService={container.get<IStorageService>(TYPES.IStorageService)}/>}
           />
-          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route 
+            path="/dashboard" 
+            element={<GuardedRoute 
+              {...defaultGuardedRouteProps} 
+              outlet={<Dashboard/>} 
+            />} 
+          />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
