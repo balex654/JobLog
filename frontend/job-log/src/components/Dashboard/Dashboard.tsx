@@ -5,7 +5,7 @@ const Dashboard = () => {
 
     const handleLogout = (event: any) => {
         event.preventDefault();
-        logout();
+        logout({ returnTo: process.env.REACT_APP_RETURN_TO_URI });
     }
 
     return (

@@ -12,7 +12,6 @@ root.render(
       domain="dev-2uer6jn7.us.auth0.com"
       clientId="AHsTOUfAHVTFnlwFLHGf7Y0kzeIHmLKF"
       redirectUri={process.env.REACT_APP_REDIRECT_URI}
-      returnTo={process.env.REACT_APP_RETURN_TO_URI}
       audience="https://job-log-backend-gol2gz2rwq-uc.a.run.app"
       scope="read write"
     >
