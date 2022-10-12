@@ -35,7 +35,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
         const getAccessToken = async () => {
             try {
                 const accessToken = await getAccessTokenSilently({
-                    audience: "https://job-log-backend-gol2gz2rwq-uc.a.run.app",
+                    audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
                     scope: "read write"
                 });
                 localStorage.setItem('accessToken', accessToken);

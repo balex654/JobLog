@@ -2,8 +2,8 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
-from job_log_app.application.user.form import UserForm
-from job_log_app.domain.user.serializer import UserSerializer
+from ride_track_app.application.user.form import UserForm
+from ride_track_app.domain.user.serializer import UserSerializer
 from .response import UserResponse
 
 def add(request):

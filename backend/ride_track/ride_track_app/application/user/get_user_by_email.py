@@ -1,8 +1,8 @@
 from django.http.response import JsonResponse
 from rest_framework import status
 
-from job_log_app.domain.user.model import User
-from job_log_app.domain.user.serializer import UserSerializer
+from ride_track_app.domain.user.model import User
+from ride_track_app.domain.user.serializer import UserSerializer
 from .response import UserResponse
 
 def get_user_by_email(email):
