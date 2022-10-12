@@ -29,19 +29,19 @@ SECRET_KEY = 'django-insecure-u)%+_&j_q_mzq9adv52ynz+f68)2!k*6)ydh0-#lx&-)(t)53p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['job-log-backend-gol2gz2rwq-uc.a.run.app', 'localhost']
+ALLOWED_HOSTS = ['ride-track-backend-gol2gz2rwq-uc.a.run.app', 'localhost']
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://job-log-frontend-gol2gz2rwq-uc.a.run.app'
+    'https://ride-track-frontend-gol2gz2rwq-uc.a.run.app'
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
-    'job_log_app',
+    'ride_track_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'job_log.urls'
+ROOT_URLCONF = 'ride_track.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'job_log.wsgi.application'
+WSGI_APPLICATION = 'ride_track.wsgi.application'
 
 
 # Database
@@ -89,7 +89,7 @@ def create_db_connection():
     if env('ENV') == 'prod':
         return {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'job_log',
+            'NAME': 'ride_track',
             'USER': env('DB_USER'),
             'PASSWORD': env('DB_PASSWORD'),
             'HOST': env('DB_HOST'),
@@ -97,7 +97,7 @@ def create_db_connection():
     elif env('ENV') == 'dev':
         return {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'job_log',
+            'NAME': 'ride_track',
             'USER': env('DB_USER'),
             'PASSWORD': env('DB_PASSWORD'),
             'HOST': env('DB_HOST'),

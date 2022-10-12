@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('job_log_app', '0001_initial'),
+        ('ride_track_app', '0001_initial'),
     ]
 
     operations = [

@@ -1,4 +1,4 @@
-"""job_log URL Configuration
+"""ride_track URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('job_log_app.urls')),
+    path('', include('ride_track_app.urls')),
     path('admin/', admin.site.urls),
 ]
