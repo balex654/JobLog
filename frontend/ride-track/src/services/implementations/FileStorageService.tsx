@@ -30,7 +30,7 @@ export class FileStorageService implements IStorageService {
         });
     }
 
-    public getUserByEmail(): Promise<UserResponse> {
+    public getUserById(): Promise<UserResponse> {
         throw new Error("Method not implemented.");
     }
 }

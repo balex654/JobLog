@@ -4,5 +4,5 @@ import { UserResponse } from "../model/user/UserResponse";
 
 export interface IStorageService {
     createUser(user: UserForm): Promise<UserResponse>;
-    getUserByEmail(): Promise<UserResponse>;
+    getUserById(): Promise<UserResponse>;
 }
