@@ -8,6 +8,8 @@
 import UIKit
 import Auth0
 import JWTDecode
+import SwiftyJSON
+import KeychainSwift
 
 class TitleViewController: UIViewController {
     
@@ -27,42 +29,26 @@ class TitleViewController: UIViewController {
      */
     
     @IBAction func LoginOrCreateAction(_ sender: Any) {
-        Auth0.webAuth().audience("https://ride-track-backend-gol2gz2rwq-uc.a.run.app").start {
-            result in switch result {
-                case .success(let credentials):
-                    self.keychain.set(credentials.accessToken, forKey: "accessToken")
-                    let request = self.prepareHTTPRequest(urlPath: "/user", httpMethod: "GET")
-                    let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                        DispatchQueue.main.async {
-                            let result = JSON(data!).dictionaryValue
-                            if result["error"] != nil {
-                                let configAccountVC = self.storyboard!.instantiateViewController(withIdentifier: "configureAccountViewController")
-                                self.present(configAccountVC, animated: true)
-                            }
-                            else {
-                                let dashboardVC = self.storyboard!.instantiateViewController(withIdentifier: "dashboardViewController")
-                                self.present(dashboardVC, animated: true)
-                            }
-                        }
-                        
-                    }
-                    task.resume()
-                case .failure(let error):
-                    print("Failed with: \(error)")
+        Task {
+            do {
+                let credentials = try await Auth0.webAuth().audience("https://ride-track-backend-gol2gz2rwq-uc.a.run.app").start()
+                let keychain = KeychainSwift()
+                self.keychain.set(credentials.accessToken, forKey: "accessToken")
+                let user = await HttpService.getUserById()
+                if user.id == "" {
+                    let configAccountVC = self.storyboard!.instantiateViewController(withIdentifier: "configureAccountViewController")
+                    self.present(configAccountVC, animated: true)
+                }
+                else {
+                    Variables.user = user
+                    let dashboardVC = self.storyboard!.instantiateViewController(withIdentifier: "dashboardViewController")
+                    self.present(dashboardVC, animated: true)
+                }
+            }
+            catch {
+                print("Error logging in")
             }
         }
     }
     
-}
-
-extension UIViewController {
-    func prepareHTTPRequest(urlPath: String, httpMethod: String) -> URLRequest {
-        let urlStr = Variables.baseUrl + urlPath
-        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        let keychain = KeychainSwift()
-        request.setValue("Bearer " + keychain.get("accessToken")!, forHTTPHeaderField: "Authorization")
-        return request
-    }
 }

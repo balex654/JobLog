@@ -8,22 +8,20 @@
 import UIKit
 
 class ConfigureAccountViewController: UIViewController {
-
+    
+    @IBOutlet weak var FirstNameInput: UITextField!
+    @IBOutlet weak var LastNameInput: UITextField!
+    @IBOutlet weak var RegisterButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        FirstNameInput.layer.cornerRadius = 17
+        FirstNameInput.layer.borderWidth = 1
+        FirstNameInput.borderStyle = .none
+        LastNameInput.layer.cornerRadius = 17
+        LastNameInput.layer.borderWidth = 1
+        LastNameInput.borderStyle = .none
+        RegisterButton.layer.cornerRadius = 17
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

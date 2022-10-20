@@ -9,5 +9,5 @@ import Foundation
 
 struct Variables {
     static var baseUrl: String = "http://192.168.0.2:8000"
-    //static var baseUrl: String = "https://..."
+    static var user: User = User()
 }

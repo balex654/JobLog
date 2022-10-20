@@ -17,9 +17,11 @@
 		3DA6288A28FEFE1E0017B815 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288928FEFE1D0017B815 /* TitleViewController.swift */; };
 		3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288D28FF025D0017B815 /* ConfigureAccountViewController.swift */; };
 		3DA6289028FF026E0017B815 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288F28FF026E0017B815 /* DashboardViewController.swift */; };
-		3DA6289328FF71540017B815 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6289228FF71540017B815 /* KeychainSwiftDistrib.swift */; };
 		3DA6289528FF74B00017B815 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6289428FF74B00017B815 /* Variables.swift */; };
-		3DAA41FD2900D113001AB663 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA41FC2900D113001AB663 /* SwiftyJSON.swift */; };
+		3DC4CCD62901BA730033B278 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC4CCD52901BA730033B278 /* SwiftyJSON */; };
+		3DC4CCDB2901C9F40033B278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC4CCDA2901C9F40033B278 /* KeychainSwift */; };
+		3DC4CCDE2901F3AC0033B278 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4CCDD2901F3AC0033B278 /* HttpService.swift */; };
+		3DC4CCE12901F5B80033B278 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4CCE02901F5B80033B278 /* User.swift */; };
 		3DECAD6C28FB4F240063339C /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 3DECAD6B28FB4F240063339C /* Auth0 */; };
 		3DECAD6E28FB4FF30063339C /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD6D28FB4FF30063339C /* Auth0.plist */; };
 /* End PBXBuildFile section */
@@ -37,9 +39,9 @@
 		3DA6288928FEFE1D0017B815 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		3DA6288D28FF025D0017B815 /* ConfigureAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccountViewController.swift; sourceTree = "<group>"; };
 		3DA6288F28FF026E0017B815 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		3DA6289228FF71540017B815 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		3DA6289428FF74B00017B815 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
-		3DAA41FC2900D113001AB663 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		3DC4CCDD2901F3AC0033B278 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		3DC4CCE02901F5B80033B278 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3DECAD6D28FB4FF30063339C /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Auth0.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC4CCDB2901C9F40033B278 /* KeychainSwift in Frameworks */,
+				3DC4CCD62901BA730033B278 /* SwiftyJSON in Frameworks */,
 				3DECAD6C28FB4F240063339C /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,7 +78,8 @@
 		3D06DEA028F7662B007C77FD /* Ride Track */ = {
 			isa = PBXGroup;
 			children = (
-				3DA6289128FF71240017B815 /* DataPersistence */,
+				3DC4CCDF2901F5A90033B278 /* Model */,
+				3DC4CCDC2901EEC60033B278 /* Service */,
 				3DA6288728FEFA990017B815 /* ViewControllers */,
 				3DECAD6D28FB4FF30063339C /* Auth0.plist */,
 				3D06DEA128F7662B007C77FD /* AppDelegate.swift */,
@@ -85,7 +90,6 @@
 				3D06DEB228F76631007C77FD /* Info.plist */,
 				3D06DEAA28F7662B007C77FD /* Ride_Track.xcdatamodeld */,
 				3DA6289428FF74B00017B815 /* Variables.swift */,
-				3DAA41FC2900D113001AB663 /* SwiftyJSON.swift */,
 			);
 			path = "Ride Track";
 			sourceTree = "<group>";
@@ -125,12 +129,20 @@
 			path = DashboardViewController;
 			sourceTree = "<group>";
 		};
-		3DA6289128FF71240017B815 /* DataPersistence */ = {
+		3DC4CCDC2901EEC60033B278 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				3DA6289228FF71540017B815 /* KeychainSwiftDistrib.swift */,
+				3DC4CCDD2901F3AC0033B278 /* HttpService.swift */,
 			);
-			path = DataPersistence;
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3DC4CCDF2901F5A90033B278 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DC4CCE02901F5B80033B278 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +163,8 @@
 			name = "Ride Track";
 			packageProductDependencies = (
 				3DECAD6B28FB4F240063339C /* Auth0 */,
+				3DC4CCD52901BA730033B278 /* SwiftyJSON */,
+				3DC4CCDA2901C9F40033B278 /* KeychainSwift */,
 			);
 			productName = "Ride Track";
 			productReference = 3D06DE9E28F7662B007C77FD /* Ride Track.app */;
@@ -183,6 +197,8 @@
 			mainGroup = 3D06DE9528F7662B007C77FD;
 			packageReferences = (
 				3DECAD6A28FB4F240063339C /* XCRemoteSwiftPackageReference "Auth0" */,
+				3DC4CCD42901BA730033B278 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				3DC4CCD92901C9F40033B278 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 3D06DE9F28F7662B007C77FD /* Products */;
 			projectDirPath = "";
@@ -215,13 +231,13 @@
 				3D06DEA628F7662B007C77FD /* ViewController.swift in Sources */,
 				3DA6289028FF026E0017B815 /* DashboardViewController.swift in Sources */,
 				3D06DEA228F7662B007C77FD /* AppDelegate.swift in Sources */,
-				3DAA41FD2900D113001AB663 /* SwiftyJSON.swift in Sources */,
 				3DA6289528FF74B00017B815 /* Variables.swift in Sources */,
 				3D06DEA428F7662B007C77FD /* SceneDelegate.swift in Sources */,
+				3DC4CCDE2901F3AC0033B278 /* HttpService.swift in Sources */,
 				3D06DEAC28F7662B007C77FD /* Ride_Track.xcdatamodeld in Sources */,
 				3DA6288A28FEFE1E0017B815 /* TitleViewController.swift in Sources */,
+				3DC4CCE12901F5B80033B278 /* User.swift in Sources */,
 				3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */,
-				3DA6289328FF71540017B815 /* KeychainSwiftDistrib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,8 +391,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -406,8 +422,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -446,6 +462,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3DC4CCD42901BA730033B278 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		3DC4CCD92901C9F40033B278 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		3DECAD6A28FB4F240063339C /* XCRemoteSwiftPackageReference "Auth0" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/Auth0.swift";
@@ -457,6 +489,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3DC4CCD52901BA730033B278 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DC4CCD42901BA730033B278 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		3DC4CCDA2901C9F40033B278 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DC4CCD92901C9F40033B278 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		3DECAD6B28FB4F240063339C /* Auth0 */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3DECAD6A28FB4F240063339C /* XCRemoteSwiftPackageReference "Auth0" */;
