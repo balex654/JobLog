@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D00BD302903462C0052BE82 /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00BD2C2903462C0052BE82 /* Activity+CoreDataClass.swift */; };
+		3D00BD312903462C0052BE82 /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00BD2D2903462C0052BE82 /* Activity+CoreDataProperties.swift */; };
+		3D00BD322903462C0052BE82 /* GpsPoint+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00BD2E2903462C0052BE82 /* GpsPoint+CoreDataClass.swift */; };
+		3D00BD332903462C0052BE82 /* GpsPoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00BD2F2903462C0052BE82 /* GpsPoint+CoreDataProperties.swift */; };
 		3D06DEA228F7662B007C77FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DEA128F7662B007C77FD /* AppDelegate.swift */; };
 		3D06DEA428F7662B007C77FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DEA328F7662B007C77FD /* SceneDelegate.swift */; };
 		3D06DEA928F7662B007C77FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D06DEA728F7662B007C77FD /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D00BD2C2903462C0052BE82 /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3D00BD2D2903462C0052BE82 /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3D00BD2E2903462C0052BE82 /* GpsPoint+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GpsPoint+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3D00BD2F2903462C0052BE82 /* GpsPoint+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GpsPoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3D06DE9E28F7662B007C77FD /* Ride Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ride Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D06DEA128F7662B007C77FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D06DEA328F7662B007C77FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D00BD19290334C80052BE82 /* DataPersistence */ = {
+			isa = PBXGroup;
+			children = (
+				3D06DEAA28F7662B007C77FD /* Ride_Track.xcdatamodeld */,
+			);
+			path = DataPersistence;
+			sourceTree = "<group>";
+		};
 		3D06DE9528F7662B007C77FD = {
 			isa = PBXGroup;
 			children = (
+				3D00BD2C2903462C0052BE82 /* Activity+CoreDataClass.swift */,
+				3D00BD2D2903462C0052BE82 /* Activity+CoreDataProperties.swift */,
+				3D00BD2E2903462C0052BE82 /* GpsPoint+CoreDataClass.swift */,
+				3D00BD2F2903462C0052BE82 /* GpsPoint+CoreDataProperties.swift */,
 				3D06DEA028F7662B007C77FD /* Ride Track */,
 				3D06DE9F28F7662B007C77FD /* Products */,
 			);
@@ -76,6 +96,7 @@
 		3D06DEA028F7662B007C77FD /* Ride Track */ = {
 			isa = PBXGroup;
 			children = (
+				3D00BD19290334C80052BE82 /* DataPersistence */,
 				3DC4CCDF2901F5A90033B278 /* Model */,
 				3DC4CCDC2901EEC60033B278 /* Service */,
 				3DA6288728FEFA990017B815 /* ViewControllers */,
@@ -86,7 +107,6 @@
 				3D06DEAD28F76631007C77FD /* Assets.xcassets */,
 				3D06DEAF28F76631007C77FD /* LaunchScreen.storyboard */,
 				3D06DEB228F76631007C77FD /* Info.plist */,
-				3D06DEAA28F7662B007C77FD /* Ride_Track.xcdatamodeld */,
 				3DA6289428FF74B00017B815 /* Variables.swift */,
 			);
 			path = "Ride Track";
@@ -228,10 +248,14 @@
 				3DA6289028FF026E0017B815 /* DashboardViewController.swift in Sources */,
 				3D06DEA228F7662B007C77FD /* AppDelegate.swift in Sources */,
 				3DA6289528FF74B00017B815 /* Variables.swift in Sources */,
+				3D00BD322903462C0052BE82 /* GpsPoint+CoreDataClass.swift in Sources */,
+				3D00BD302903462C0052BE82 /* Activity+CoreDataClass.swift in Sources */,
 				3D06DEA428F7662B007C77FD /* SceneDelegate.swift in Sources */,
 				3DC4CCDE2901F3AC0033B278 /* HttpService.swift in Sources */,
 				3D06DEAC28F7662B007C77FD /* Ride_Track.xcdatamodeld in Sources */,
 				3DA6288A28FEFE1E0017B815 /* TitleViewController.swift in Sources */,
+				3D00BD332903462C0052BE82 /* GpsPoint+CoreDataProperties.swift in Sources */,
+				3D00BD312903462C0052BE82 /* Activity+CoreDataProperties.swift in Sources */,
 				3DC4CCE12901F5B80033B278 /* User.swift in Sources */,
 				3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */,
 			);
@@ -389,6 +413,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,6 +445,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
