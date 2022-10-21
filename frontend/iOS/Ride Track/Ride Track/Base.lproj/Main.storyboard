@@ -94,6 +94,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="LoginOrCreateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pCH-yf-sGD"/>
+                                    <action selector="RegisterAction:" destination="Kmr-nX-ceS" eventType="touchUpInside" id="ey5-Ro-2ks"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,7 +128,7 @@
         <!--Dashboard View Controller-->
         <scene sceneID="SCF-QO-u5N">
             <objects>
-                <viewController storyboardIdentifier="dashboardViewController" id="dHy-Ba-mCs" customClass="DashboardViewController" customModule="Ride_Track" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dashboardViewController" modalPresentationStyle="fullScreen" id="dHy-Ba-mCs" customClass="DashboardViewController" customModule="Ride_Track" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OxD-cf-dCL">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,6 +140,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axx-Bb-Zi7">
+                                <rect key="frame" x="157" y="441" width="78" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="LogoutAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="2RJ-d6-QiE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9xb-To-Vht"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

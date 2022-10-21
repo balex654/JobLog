@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import JWTDecode
+import KeychainSwift
 
 class ConfigureAccountViewController: UIViewController {
     
@@ -24,4 +26,42 @@ class ConfigureAccountViewController: UIViewController {
         RegisterButton.layer.cornerRadius = 17
     }
 
+    @IBAction func RegisterAction(_ sender: Any) {
+        if isFormValid() {
+            let keychain = KeychainSwift()
+            guard let jwt = try? decode(jwt: keychain.get("accessToken")!),
+                  let id = jwt["sub"].string,
+                  let email = jwt["email"].string else { return }
+            let user = User(
+                id: id,
+                firstName: FirstNameInput.text!,
+                lastName: LastNameInput.text!,
+                email: email)
+            Task {
+                let _ = await HttpService.createUser(user: user)
+                Variables.user = user
+                self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("createdAccount"), object: nil)
+            }
+        }
+    }
+    
+    func isFormValid() -> Bool {
+        if FirstNameInput.text == "" || LastNameInput.text == "" {
+            makeAlert(message: "A field is empty")
+            return false
+        }
+        if FirstNameInput.text!.count > 200 || LastNameInput.text!.count > 200 {
+            makeAlert(message: "Input can't be greater than 200 characters")
+            return false
+        }
+        
+        return true
+    }
+    
+    func makeAlert(message: String) {
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
