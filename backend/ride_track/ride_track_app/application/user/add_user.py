@@ -15,7 +15,8 @@ def add(request):
     user_model_data = {
         'first_name': form.data.get('first_name'),
         'last_name': form.data.get('last_name'),
-        'email': form.data.get('email')
+        'email': form.data.get('email'),
+        'id': form.data.get('id')
     }
     user_serializer = UserSerializer(data=user_model_data)
     if user_serializer.is_valid():

@@ -21,7 +21,7 @@ export class HttpStorageService implements IStorageService {
         return await axios.post(`${this.baseUrl}/user`, user, this.config);
     }
 
-    public async getUserByEmail(): Promise<UserResponse> {
+    public async getUserById(): Promise<UserResponse> {
         return await axios.get(`${this.baseUrl}/user`, this.config);
     }
 }

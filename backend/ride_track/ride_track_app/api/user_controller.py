@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from authlib.integrations.django_oauth2 import ResourceProtector
 from django.http import JsonResponse
 
-from ride_track_app.application.user import add_user, get_user_by_email
+from ride_track_app.application.user import add_user, get_user_by_id
 from ride_track_app.auth import validator
 
 require_auth = ResourceProtector()
@@ -19,4 +19,4 @@ def user(request):
         return add_user.add(request)
     elif request.method == 'GET':
         token = request.oauth_token
-        return get_user_by_email.get_user_by_email(token['email'])
+        return get_user_by_id.get_user_by_id(token['sub'])

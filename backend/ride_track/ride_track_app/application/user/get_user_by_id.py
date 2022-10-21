@@ -5,8 +5,8 @@ from ride_track_app.domain.user.model import User
 from ride_track_app.domain.user.serializer import UserSerializer
 from .response import UserResponse
 
-def get_user_by_email(email):
-    user_query = User.objects.filter(email=email)
+def get_user_by_id(id):
+    user_query = User.objects.filter(id=id)
     if user_query.count() == 0:
         error = {
             'error': 'user not found'

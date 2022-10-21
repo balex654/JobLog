@@ -38,6 +38,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                     audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
                     scope: "read write"
                 });
+                
                 localStorage.setItem('accessToken', accessToken);
             }
             catch (e) {
@@ -47,7 +48,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     
         const checkUserExists = async () => {
             try {
-                await storageService.getUserByEmail();
+                await storageService.getUserById();
                 navigate('/dashboard');
             }
             catch (e) {
@@ -80,7 +81,8 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
-                email: user!.email!
+                email: user!.email!,
+                id: user!.sub!
             }
             await storageService.createUser(userForm);
             navigate('/dashboard');
