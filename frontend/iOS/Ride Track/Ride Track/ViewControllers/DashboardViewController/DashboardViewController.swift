@@ -11,9 +11,15 @@ import KeychainSwift
 
 class DashboardViewController: UIViewController {
 
+    @IBOutlet weak var StartStopButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        StartStopButton.layer.cornerRadius = 17
+    }
+    
+    @IBAction func StartStopAction(_ sender: Any) {
+        
     }
     
     @IBAction func LogoutAction(_ sender: Any) {

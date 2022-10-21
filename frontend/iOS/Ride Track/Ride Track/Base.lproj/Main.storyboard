@@ -133,26 +133,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8A-M6-zGx">
-                                <rect key="frame" x="153" y="412" width="84" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axx-Bb-Zi7">
-                                <rect key="frame" x="157" y="441" width="78" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axx-Bb-Zi7">
+                                <rect key="frame" x="156" y="454.66666666666669" width="78" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
                                     <action selector="LogoutAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="2RJ-d6-QiE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxe-ax-LhI">
+                                <rect key="frame" x="134" y="354.66666666666669" width="122" height="35"/>
+                                <color key="backgroundColor" red="0.0024570567711350699" green="0.7932930377998737" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="122" id="K79-Jw-f7G"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Activity">
+                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="StartStopAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="Ds9-lV-cpr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asR-ld-A0c">
+                                <rect key="frame" x="127.66666666666669" y="404.66666666666669" width="135" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="View Activities"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9xb-To-Vht"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="asR-ld-A0c" firstAttribute="centerX" secondItem="OxD-cf-dCL" secondAttribute="centerX" id="D8i-zv-4m9"/>
+                            <constraint firstItem="axx-Bb-Zi7" firstAttribute="centerY" secondItem="OxD-cf-dCL" secondAttribute="centerY" constant="50" id="I7Y-ZV-rlZ"/>
+                            <constraint firstItem="Pxe-ax-LhI" firstAttribute="centerX" secondItem="OxD-cf-dCL" secondAttribute="centerX" id="IqX-wt-hGg"/>
+                            <constraint firstItem="asR-ld-A0c" firstAttribute="centerY" secondItem="OxD-cf-dCL" secondAttribute="centerY" id="fvB-6I-cYG"/>
+                            <constraint firstItem="Pxe-ax-LhI" firstAttribute="centerY" secondItem="OxD-cf-dCL" secondAttribute="centerY" constant="-50" id="fyV-KS-5LO"/>
+                            <constraint firstItem="axx-Bb-Zi7" firstAttribute="centerX" secondItem="OxD-cf-dCL" secondAttribute="centerX" id="y77-oe-hf0"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="StartStopButton" destination="Pxe-ax-LhI" id="aSe-Ru-3P3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMA-Io-ccd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
