@@ -156,6 +156,9 @@
                                 <rect key="frame" x="127.66666666666669" y="404.66666666666669" width="135" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="View Activities"/>
+                                <connections>
+                                    <segue destination="TUQ-G2-E4c" kind="show" id="Tgb-sZ-HWE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9xb-To-Vht"/>
@@ -171,13 +174,75 @@
                     </view>
                     <connections>
                         <outlet property="LogoutButton" destination="axx-Bb-Zi7" id="Plv-bX-NTB"/>
-                        <outlet property="StartStopButton" destination="asR-ld-A0c" id="yBV-fU-WgX"/>
+                        <outlet property="StartStopButton" destination="Pxe-ax-LhI" id="FOc-zL-SfM"/>
                         <outlet property="ViewActivitiesButton" destination="asR-ld-A0c" id="V2N-Hc-GMr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMA-Io-ccd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1578" y="-2"/>
+        </scene>
+        <!--View Activities View Controller-->
+        <scene sceneID="Ir3-FH-EhS">
+            <objects>
+                <viewController id="TUQ-G2-E4c" customClass="ViewActivitiesViewController" customModule="Ride_Track" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xIZ-HL-lHT">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zuw-Az-SBW">
+                                <rect key="frame" x="0.0" y="47" width="390" height="740"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="viewActivitiesTableViewCell" id="Ivh-Ze-6Wb" customClass="ViewActivitesTableViewCell" customModule="Ride_Track" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ivh-Ze-6Wb" id="g4n-kN-WSx">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-zt-6rW">
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="350" height="21.666666666666671"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mb7-zt-6rW" firstAttribute="top" secondItem="g4n-kN-WSx" secondAttribute="topMargin" id="7Ws-aN-hIE"/>
+                                                <constraint firstItem="Mb7-zt-6rW" firstAttribute="leading" secondItem="g4n-kN-WSx" secondAttribute="leadingMargin" id="TR4-BJ-wtY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Mb7-zt-6rW" secondAttribute="bottom" id="VuI-Yd-wPL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mb7-zt-6rW" secondAttribute="trailing" id="oHo-PY-Znm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ActivityLabel" destination="Mb7-zt-6rW" id="0V9-5Y-h04"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TUQ-G2-E4c" id="dHG-EA-DB6"/>
+                                    <outlet property="delegate" destination="TUQ-G2-E4c" id="vAu-9p-GCp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aVY-Wa-yHu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zuw-Az-SBW" firstAttribute="top" secondItem="aVY-Wa-yHu" secondAttribute="top" id="3mh-kz-DCV"/>
+                            <constraint firstItem="zuw-Az-SBW" firstAttribute="leading" secondItem="aVY-Wa-yHu" secondAttribute="leading" id="4jY-DA-G0r"/>
+                            <constraint firstItem="aVY-Wa-yHu" firstAttribute="bottom" secondItem="zuw-Az-SBW" secondAttribute="bottom" id="Sd3-6d-wcy"/>
+                            <constraint firstItem="aVY-Wa-yHu" firstAttribute="trailing" secondItem="zuw-Az-SBW" secondAttribute="trailing" id="bNE-UD-VBM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BSM-m4-OtM"/>
+                    <connections>
+                        <outlet property="tableView" destination="zuw-Az-SBW" id="qm5-ff-ozz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T5A-QE-JkG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2352" y="-2"/>
         </scene>
     </scenes>
     <resources>

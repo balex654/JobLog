@@ -100,23 +100,6 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
         gpsPoint.gpsPointRelation = currentActivity
     }
     
-    func TestGetData(_ sender: Any) {
-        let request = NSFetchRequest<Activity>(entityName: "Activity")
-        
-        do {
-            let activities = try context!.fetch(request)
-            for a in activities {
-                for p in a.activityRelation!.array {
-                    let point = p as! GpsPoint
-                    print(point.date)
-                }
-            }
-        }
-        catch let error as NSError {
-            print(error)
-        }
-    }
-    
     @IBAction func LogoutAction(_ sender: Any) {
         Task {
             do {
