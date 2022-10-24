@@ -21,6 +21,7 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     var activityStarted = false
     var context: NSManagedObjectContext?
     var currentActivity: Activity?
+    let stopwatch = Stopwatch()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +59,11 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
         ViewActivitiesButton.isUserInteractionEnabled = false
         LogoutButton.isUserInteractionEnabled = false
         location.startUpdatingLocation()
+        stopwatch.start()
     }
     
     func stopActivity() {
+        stopwatch.stop()
         let alert = UIAlertController(title: "Enter Activity Name", message: nil, preferredStyle: .alert)
         alert.addTextField { (UITextField) in
             UITextField.text = "Activity"
@@ -69,6 +72,7 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
             let name = alert.textFields![0] as UITextField
             self.currentActivity!.endDate = Date()
             self.currentActivity!.name = name.text!
+            self.currentActivity!.movingTime = self.stopwatch.elapsedTime()
             do {
                 try self.context!.save()
                 self.resetTracking()
@@ -91,13 +95,19 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        let gpsPoint = GpsPoint(context: context!)
-        gpsPoint.date = manager.location!.timestamp
-        gpsPoint.speed = manager.location!.speed
-        gpsPoint.altitude = manager.location!.altitude
-        gpsPoint.latitude = locValue.latitude
-        gpsPoint.longitude = locValue.latitude
-        gpsPoint.gpsPointRelation = currentActivity
+        if manager.location!.speed > 0.5 {
+            stopwatch.start()
+            let gpsPoint = GpsPoint(context: context!)
+            gpsPoint.date = manager.location!.timestamp
+            gpsPoint.speed = manager.location!.speed
+            gpsPoint.altitude = manager.location!.altitude
+            gpsPoint.latitude = locValue.latitude
+            gpsPoint.longitude = locValue.latitude
+            gpsPoint.gpsPointRelation = currentActivity
+        }
+        else {
+            stopwatch.stop()
+        }
     }
     
     @IBAction func LogoutAction(_ sender: Any) {

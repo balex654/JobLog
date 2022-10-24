@@ -42,7 +42,50 @@ class ViewActivitiesViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "viewActivitiesTableViewCell", for: indexPath) as! ViewActivitesTableViewCell
         let currentActivity = activities[indexPath.row]
-        cell.ActivityLabel.text = currentActivity.name
+        cell.ActivityLabel.text = "\(currentActivity.name!) \(Date().dateToString(date: currentActivity.startDate!, format: "MM-dd-yyyy"))"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let activity = activities[indexPath.row]
+        alertToUpload(activity: activity)
+    }
+    
+    func alertToUpload(activity: Activity) {
+        let alert = UIAlertController(title: "Upload \(activity.name!)?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Upload", style: .default, handler: { action in
+            Task {
+                await HttpService.createActivity(activity: activity)
+                self.deleteActivity(activity: activity)
+                self.getActivities()
+                self.tableView.reloadData()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert,animated: true)
+    }
+    
+    func deleteActivity(activity: Activity) {
+        context!.delete(activity)
+        do {
+            try context!.save()
+        }
+        catch let error as NSError {
+            print(error)
+        }
+    }
+}
+
+extension Date {
+    public func dateToString(date: Date, format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+    
+    public func stringToDate(dateStr: String, format: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.date(from: dateStr)!
     }
 }

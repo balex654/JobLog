@@ -2,7 +2,7 @@
 //  Activity+CoreDataProperties.swift
 //  Ride Track
 //
-//  Created by Ben Alexander on 10/21/22.
+//  Created by Ben Alexander on 10/24/22.
 //
 //
 
@@ -16,10 +16,11 @@ extension Activity {
         return NSFetchRequest<Activity>(entityName: "Activity")
     }
 
-    @NSManaged public var userId: String?
+    @NSManaged public var endDate: Date?
     @NSManaged public var name: String?
     @NSManaged public var startDate: Date?
-    @NSManaged public var endDate: Date?
+    @NSManaged public var userId: String?
+    @NSManaged public var movingTime: Double
     @NSManaged public var activityRelation: NSOrderedSet?
 
 }
