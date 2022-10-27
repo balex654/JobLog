@@ -23,7 +23,8 @@ class HttpService {
                     id: jsonData["id"]!.stringValue,
                     firstName: jsonData["first_name"]!.stringValue,
                     lastName: jsonData["last_name"]!.stringValue,
-                    email: jsonData["email"]!.stringValue)
+                    email: jsonData["email"]!.stringValue,
+                    weight: jsonData["weight"]!.doubleValue)
             }
         }
         catch {
@@ -35,11 +36,12 @@ class HttpService {
     static func createUser(user: User) async -> User {
         do {
             var request = prepareHTTPRequest(urlPath: "/user", httpMethod: "POST")
-            let userDict: [String: String] = [
+            let userDict: [String: Any] = [
                 "id": user.id,
                 "first_name": user.firstName,
                 "last_name": user.lastName,
-                "email": user.email
+                "email": user.email,
+                "weight": user.weight
             ]
             let userData = try JSONSerialization.data(withJSONObject: userDict)
             request.httpBody = userData

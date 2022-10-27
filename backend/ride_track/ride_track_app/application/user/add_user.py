@@ -16,7 +16,8 @@ def add(request):
         'first_name': form.data.get('first_name'),
         'last_name': form.data.get('last_name'),
         'email': form.data.get('email'),
-        'id': form.data.get('id')
+        'id': form.data.get('id'),
+        'weight': form.data.get('weight')
     }
     user_serializer = UserSerializer(data=user_model_data)
     if user_serializer.is_valid():
@@ -25,7 +26,8 @@ def add(request):
             user_serializer.data.get('first_name'),
             user_serializer.data.get('last_name'),
             user_serializer.data.get('email'),
-            user_serializer.data.get('id'))
+            user_serializer.data.get('id'),
+            user_serializer.data.get('weight'))
         return JsonResponse(user_response.__dict__, status=status.HTTP_201_CREATED, safe=False)
 
     return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

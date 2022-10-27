@@ -3,4 +3,5 @@ export interface UserResponse {
     last_name: string;
     email: string;
     id: number;
+    weight: number
 }

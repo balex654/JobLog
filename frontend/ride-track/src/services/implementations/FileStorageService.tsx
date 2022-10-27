@@ -15,7 +15,8 @@ export class FileStorageService implements IStorageService {
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
-            id: maxId + 1
+            id: maxId + 1,
+            weight: user.weight
         };
         users.push(domainUser);
 
@@ -24,7 +25,8 @@ export class FileStorageService implements IStorageService {
                 first_name: domainUser.first_name,
                 last_name: domainUser.last_name,
                 email: domainUser.email,
-                id: domainUser.id
+                id: domainUser.id,
+                weight: domainUser.weight
             };
             resolve(userResponse);
         });

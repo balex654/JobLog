@@ -83,7 +83,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ab-eV-cFh">
-                                <rect key="frame" x="151.66666666666666" y="246" width="87" height="35"/>
+                                <rect key="frame" x="151.66666666666666" y="291" width="87" height="35"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.62352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="Dbo-d8-4Dl"/>
@@ -97,6 +97,14 @@
                                     <action selector="RegisterAction:" destination="Kmr-nX-ceS" eventType="touchUpInside" id="ey5-Ro-2ks"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight (kg)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rml-p9-PAI">
+                                <rect key="frame" x="20" y="246" width="350" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="uUh-hw-wqI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iQU-X8-WKG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -104,20 +112,24 @@
                             <constraint firstItem="HIY-Ol-WOg" firstAttribute="top" secondItem="Xvx-ah-oEb" secondAttribute="bottom" constant="10" id="0PW-7L-Tdl"/>
                             <constraint firstItem="Xvx-ah-oEb" firstAttribute="top" secondItem="gcU-gP-NGU" secondAttribute="bottom" constant="20" id="5uw-DK-44R"/>
                             <constraint firstItem="Xvx-ah-oEb" firstAttribute="leading" secondItem="iQU-X8-WKG" secondAttribute="leading" constant="20" id="Bbi-06-lKI"/>
-                            <constraint firstItem="2ab-eV-cFh" firstAttribute="top" secondItem="HIY-Ol-WOg" secondAttribute="bottom" constant="10" id="BcI-LR-Igj"/>
+                            <constraint firstItem="HIY-Ol-WOg" firstAttribute="leading" secondItem="iQU-X8-WKG" secondAttribute="leading" constant="20" id="Dcc-U0-XcT"/>
                             <constraint firstItem="gcU-gP-NGU" firstAttribute="leading" secondItem="iQU-X8-WKG" secondAttribute="leading" id="EL0-wt-p9t"/>
+                            <constraint firstItem="rml-p9-PAI" firstAttribute="leading" secondItem="iQU-X8-WKG" secondAttribute="leading" constant="20" id="FSK-Vh-EoI"/>
                             <constraint firstItem="gcU-gP-NGU" firstAttribute="top" secondItem="iQU-X8-WKG" secondAttribute="top" constant="50" id="HJU-Tj-uPQ"/>
                             <constraint firstItem="iQU-X8-WKG" firstAttribute="trailing" secondItem="gcU-gP-NGU" secondAttribute="trailing" id="LJh-Fa-VeM"/>
                             <constraint firstItem="2ab-eV-cFh" firstAttribute="centerX" secondItem="A1j-Kh-6n5" secondAttribute="centerX" id="Oyb-ne-Iq6"/>
-                            <constraint firstItem="HIY-Ol-WOg" firstAttribute="leading" secondItem="iQU-X8-WKG" secondAttribute="leading" constant="20" id="fen-rY-AkF"/>
+                            <constraint firstItem="iQU-X8-WKG" firstAttribute="trailing" secondItem="rml-p9-PAI" secondAttribute="trailing" constant="20" id="Xbj-zr-VkQ"/>
+                            <constraint firstItem="rml-p9-PAI" firstAttribute="top" secondItem="HIY-Ol-WOg" secondAttribute="bottom" constant="10" id="hor-I2-jAF"/>
+                            <constraint firstItem="iQU-X8-WKG" firstAttribute="trailing" secondItem="HIY-Ol-WOg" secondAttribute="trailing" constant="20" id="nqA-gj-c7U"/>
+                            <constraint firstItem="2ab-eV-cFh" firstAttribute="top" secondItem="rml-p9-PAI" secondAttribute="bottom" constant="10" id="sLB-MH-vqp"/>
                             <constraint firstItem="iQU-X8-WKG" firstAttribute="trailing" secondItem="Xvx-ah-oEb" secondAttribute="trailing" constant="20" id="svZ-KF-ViQ"/>
-                            <constraint firstItem="iQU-X8-WKG" firstAttribute="trailing" secondItem="HIY-Ol-WOg" secondAttribute="trailing" constant="20" id="xji-5P-ESj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="FirstNameInput" destination="Xvx-ah-oEb" id="l6G-0y-gJf"/>
                         <outlet property="LastNameInput" destination="HIY-Ol-WOg" id="GbW-dg-nqH"/>
                         <outlet property="RegisterButton" destination="2ab-eV-cFh" id="9Fe-Vy-5Gh"/>
+                        <outlet property="WeightInput" destination="rml-p9-PAI" id="ic2-EN-EPt"/>
                         <outlet property="firstNameInput" destination="Xvx-ah-oEb" id="wwC-2c-kx7"/>
                     </connections>
                 </viewController>
@@ -195,14 +207,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="viewActivitiesTableViewCell" id="Ivh-Ze-6Wb" customClass="ViewActivitesTableViewCell" customModule="Ride_Track" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="42.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ivh-Ze-6Wb" id="g4n-kN-WSx">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="42.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-zt-6rW">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="350" height="21.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="350" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
