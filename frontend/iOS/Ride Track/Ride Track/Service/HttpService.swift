@@ -52,6 +52,37 @@ class HttpService {
         }
     }
     
+    static func createActivity(activity: Activity) async {
+        do {
+            var request = prepareHTTPRequest(urlPath: "/activity", httpMethod: "POST")
+            var gpsPointArray: [[String: Any]] = []
+            for gps in activity.activityRelation!.array {
+                let gpsPoint = gps as! GpsPoint
+                let gpsPointDict: [String: Any] = [
+                    "date": Date().dateToString(date: gpsPoint.date!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
+                    "latitude": gpsPoint.latitude,
+                    "longitude": gpsPoint.longitude,
+                    "altitude": gpsPoint.altitude,
+                    "speed": gpsPoint.speed
+                ]
+                gpsPointArray.append(gpsPointDict)
+            }
+            let activityDict: [String: Any] = [
+                "name": activity.name!,
+                "start_date": Date().dateToString(date: activity.startDate!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
+                "end_date": Date().dateToString(date: activity.endDate!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
+                "moving_time": activity.movingTime,
+                "gps_points": gpsPointArray
+            ]
+            let activityData = try JSONSerialization.data(withJSONObject: activityDict)
+            request.httpBody = activityData
+            let (_, _) = try await URLSession.shared.data(for: request)
+        }
+        catch {
+            print("createActivity error")
+        }
+    }
+    
     private static func prepareHTTPRequest(urlPath: String, httpMethod: String) -> URLRequest {
         let urlStr = Variables.baseUrl + urlPath
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
