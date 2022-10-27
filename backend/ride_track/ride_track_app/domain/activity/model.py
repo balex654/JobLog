@@ -6,3 +6,4 @@ class Activity(models.Model):
     end_date = models.DateTimeField()
     moving_time = models.FloatField()
     user = models.ForeignKey('User', on_delete=models.CASCADE)
+    bike = models.ForeignKey('Bike', on_delete=models.CASCADE)

@@ -17,6 +17,7 @@ def add(request):
         'start_date': form.data.get('start_date'),
         'end_date': form.data.get('end_date'),
         'moving_time': form.data.get('moving_time'),
+        'bike': form.data.get('bike_id'),
         'user': request.oauth_token.sub
     }
     activity_serializer = ActivitySerializer(data=activity_model_data)

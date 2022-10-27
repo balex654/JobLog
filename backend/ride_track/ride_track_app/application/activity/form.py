@@ -5,4 +5,5 @@ class ActivityForm(forms.Form):
     start_date = forms.DateTimeField(required=True)
     end_date = forms.DateTimeField(required=True)
     moving_time = forms.FloatField(required=True)
+    bike_id = forms.IntegerField(required=True)
     gps_points = forms.JSONField()
