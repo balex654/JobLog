@@ -15,8 +15,4 @@ class Migration(migrations.Migration):
             name='weight',
             field=models.FloatField(default=80.0),
         ),
-        migrations.RunSQL('alter table ride_track_app_activity drop constraint ride_track_app_activ_user_id_c2969566_fk_ride_trac'),
-        migrations.RunSQL('alter table ride_track_app_activity add constraint ride_track_app_activ_user_id_c2969566_fk_ride_trac foreign key (user_id) references ride_track_app_user(id) on delete cascade'),
-        migrations.RunSQL('alter table ride_track_app_gpspoint drop constraint ride_track_app_gpspo_activity_id_540f0973_fk_ride_trac'),
-        migrations.RunSQL('alter table ride_track_app_gpspoint add constraint ride_track_app_gpspo_activity_id_540f0973_fk_ride_trac foreign key (activity_id) references ride_track_app_activity(id) on delete cascade')
     ]
