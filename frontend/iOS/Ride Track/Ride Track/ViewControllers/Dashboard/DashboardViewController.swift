@@ -29,6 +29,7 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
         setupLocation()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         context = appDelegate.persistentContainer.viewContext
+        NotificationCenter.default.addObserver(self, selector: #selector(startActivity), name: Notification.Name("startActivity"), object: nil)
     }
     
     func setupLocation() {
@@ -45,14 +46,21 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
             stopActivity()
         }
         else {
-            startActivity()
+            selectBike()
         }
     }
     
-    func startActivity() {
+    func selectBike() {
+        let bikeVC = self.storyboard!.instantiateViewController(withIdentifier: "bikesViewController") as! BikesViewController
+        bikeVC.fromStartActivity = true
+        self.present(bikeVC, animated: true)
+    }
+    
+    @objc func startActivity() {
         currentActivity = Activity(context: context!)
         currentActivity!.startDate = Date()
         currentActivity!.userId = Variables.user.id
+        currentActivity!.bikeId = Int32(Variables.selectedBike.id)
         activityStarted = true
         StartStopButton.backgroundColor = UIColor.red
         StartStopButton.setTitle("Stop Activity", for: .normal)

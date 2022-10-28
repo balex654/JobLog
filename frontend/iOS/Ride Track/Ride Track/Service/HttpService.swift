@@ -74,7 +74,8 @@ class HttpService {
                 "start_date": Date().dateToString(date: activity.startDate!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
                 "end_date": Date().dateToString(date: activity.endDate!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
                 "moving_time": activity.movingTime,
-                "gps_points": gpsPointArray
+                "gps_points": gpsPointArray,
+                "bike_id": activity.bikeId
             ]
             let activityData = try JSONSerialization.data(withJSONObject: activityDict)
             request.httpBody = activityData

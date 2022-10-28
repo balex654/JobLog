@@ -9,12 +9,18 @@ import UIKit
 
 class BikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var bikesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var bikes: [Bike] = []
+    var fromStartActivity = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if fromStartActivity {
+            bikesLabel.text = "Select Bike for Activity"
+        }
+        
         getBikes()
     }
     
@@ -34,6 +40,15 @@ class BikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let currentBike = bikes[indexPath.row]
         cell.BikeLabel.text = currentBike.name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bike = bikes[indexPath.row]
+        if fromStartActivity {
+            Variables.selectedBike = bike
+            NotificationCenter.default.post(name: Notification.Name("startActivity"), object: nil)
+            self.dismiss(animated: true)
+        }
     }
     
     @IBAction func AddBikeAction(_ sender: Any) {

@@ -207,7 +207,7 @@
         <!--Bikes View Controller-->
         <scene sceneID="d29-8L-t3V">
             <objects>
-                <viewController id="fEr-R1-hqY" customClass="BikesViewController" customModule="Ride_Track" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bikesViewController" id="fEr-R1-hqY" customClass="BikesViewController" customModule="Ride_Track" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HCx-85-kCh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,6 +281,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sRK-Tb-zrL"/>
                     <connections>
+                        <outlet property="bikesLabel" destination="Gxj-KL-yTn" id="XyP-GL-7Ug"/>
                         <outlet property="tableView" destination="o3z-tg-smq" id="3TF-jQ-jNU"/>
                     </connections>
                 </viewController>
@@ -301,14 +302,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="viewActivitiesTableViewCell" id="Ivh-Ze-6Wb" customClass="ViewActivitesTableViewCell" customModule="Ride_Track" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="42.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ivh-Ze-6Wb" id="g4n-kN-WSx">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="42.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-zt-6rW">
-                                                    <rect key="frame" x="20" y="11" width="350" height="21"/>
+                                                    <rect key="frame" x="20" y="11.000000000000002" width="350" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
