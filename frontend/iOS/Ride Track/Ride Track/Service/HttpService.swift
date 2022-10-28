@@ -85,6 +85,43 @@ class HttpService {
         }
     }
     
+    static func getBikes() async -> [Bike] {
+        do {
+            let request = prepareHTTPRequest(urlPath: "/bike", httpMethod: "GET")
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let jsonData = JSON(data).dictionaryValue
+            var bikes: [Bike] = []
+            for bikeJsonData in jsonData["bikes"]!.arrayValue {
+                bikes.append(Bike(
+                    id: bikeJsonData["id"].intValue,
+                    weight: bikeJsonData["weight"].doubleValue,
+                    name: bikeJsonData["name"].stringValue,
+                    user_id: bikeJsonData["user_id"].stringValue))
+            }
+            return bikes
+        }
+        catch {
+            print("getBikes error")
+            return []
+        }
+    }
+    
+    static func createBike(bike: Bike) async {
+        do {
+            var request = prepareHTTPRequest(urlPath: "/bike", httpMethod: "POST")
+            let bikeDict: [String: Any] = [
+                "name": bike.name,
+                "weight": bike.weight,
+            ]
+            let bikeData = try JSONSerialization.data(withJSONObject: bikeDict)
+            request.httpBody = bikeData
+            let (_, _) = try await URLSession.shared.data(for: request)
+        }
+        catch {
+            print("createBike error")
+        }
+    }
+    
     private static func prepareHTTPRequest(urlPath: String, httpMethod: String) -> URLRequest {
         let urlStr = Variables.baseUrl + urlPath
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
