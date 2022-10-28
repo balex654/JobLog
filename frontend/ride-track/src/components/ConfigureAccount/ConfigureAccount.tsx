@@ -4,7 +4,7 @@ import { IStorageService } from "../../services/IStorageService";
 import { FormField } from "../../common/FormField";
 import { Form } from "../../common/Form";
 import { useEffect, useState } from "react";
-import { EmptyValidator, LengthValidator } from "../../common/Validators";
+import { EmptyValidator, LengthValidator, NonFloatValueValidator } from "../../common/Validators";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,15 +18,19 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
     const [firstNameErrors, setFirstNameErrors] = useState<string[]>([]);
     const [lastNameErrors, setLastNameErrors] = useState<string[]>([]);
+    const [weightErrors, setWeightErrors] = useState<string[]>([]);
 
     const [firstNameValue, setFirstName] = useState<string>('');
     const [lastNameValue, setLastName] = useState<string>('');
+    const [weightValue, setWeight] = useState<string>('');
 
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
+    const weightFieldId = 'weight';
     const formMap = new Map<string, FormField>();
     formMap.set(firstNameFieldId, new FirstNameField());
     formMap.set(lastNameFieldId, new LastNameField());
+    formMap.set(weightFieldId, new WeightField());
     let form = new Form(formMap);
 
     const [loading, setLoading] = useState<boolean>(true);
@@ -75,6 +79,12 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
         setLastName(event.target.value);
     }
 
+    const weightInputHandler = (event: any) => {
+        form.formFields.get(weightFieldId)!.value = event.target.value;
+        setWeightErrors(form.formFields.get(weightFieldId)!.errors);
+        setWeight(event.target.value);
+    }
+
     const handleCreate = async (e: any) => {
         e.preventDefault();
         if (form.valid) {
@@ -82,7 +92,8 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
                 email: user!.email!,
-                id: user!.sub!
+                id: user!.sub!,
+                weight: parseFloat(weightValue)
             }
             await storageService.createUser(userForm);
             navigate('/dashboard');
@@ -109,6 +120,10 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                         <input onChange={lastNameInputHandler} className='input' placeholder='Last Name'/>
                     </div>
                     {lastNameErrors.map(e => <div className="error">{e}</div>)}
+                    <div className="input-container">
+                        <input onChange={weightInputHandler} className='input' placeholder='Weight (kg)'/>
+                    </div>
+                    {weightErrors.map(e => <div className="error">{e}</div>)}
                 </form>
                 <div className='button-container'>
                     <button onClick={handleCreate} className='create-button'>
@@ -141,4 +156,14 @@ class LastNameField extends FormField {
         EmptyValidator(this.value, this.emptyMessage, this.errors);
         LengthValidator(this.value, 200, this.lengthMessage, this.errors);
    }
+}
+
+class WeightField extends FormField {
+    private readonly emptyMessage: string = 'Weight cannot be empty';
+    private readonly nonNumberMessage: string = 'Weight can only be a number';
+
+    public validate(): void {
+        EmptyValidator(this.value, this.emptyMessage, this.errors);
+        NonFloatValueValidator(this.value, this.nonNumberMessage, this.errors);
+    }
 }

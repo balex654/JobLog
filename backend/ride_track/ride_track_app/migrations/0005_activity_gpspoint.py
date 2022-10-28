@@ -33,5 +33,5 @@ class Migration(migrations.Migration):
                 ('altitude', models.FloatField()),
                 ('activity', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ride_track_app.activity')),
             ],
-        ),
+        )
     ]

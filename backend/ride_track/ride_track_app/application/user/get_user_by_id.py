@@ -18,6 +18,7 @@ def get_user_by_id(id):
             user_serializer.data.get('first_name'),
             user_serializer.data.get('last_name'),
             user_serializer.data.get('email'),
-            user_serializer.data.get('id'))
+            user_serializer.data.get('id'),
+            user_serializer.data.get('weight'))
     return JsonResponse(user_response.__dict__, status=status.HTTP_200_OK)
 

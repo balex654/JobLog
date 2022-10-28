@@ -13,6 +13,7 @@ class ConfigureAccountViewController: UIViewController {
     
     @IBOutlet weak var FirstNameInput: UITextField!
     @IBOutlet weak var LastNameInput: UITextField!
+    @IBOutlet weak var WeightInput: UITextField!
     @IBOutlet weak var RegisterButton: UIButton!
     
     override func viewDidLoad() {
@@ -23,6 +24,9 @@ class ConfigureAccountViewController: UIViewController {
         LastNameInput.layer.cornerRadius = 17
         LastNameInput.layer.borderWidth = 1
         LastNameInput.borderStyle = .none
+        WeightInput.layer.cornerRadius = 17
+        WeightInput.layer.borderWidth = 1
+        WeightInput.borderStyle = .none
         RegisterButton.layer.cornerRadius = 17
     }
 
@@ -36,7 +40,8 @@ class ConfigureAccountViewController: UIViewController {
                 id: id,
                 firstName: FirstNameInput.text!,
                 lastName: LastNameInput.text!,
-                email: email)
+                email: email,
+                weight: Double(WeightInput.text!)!)
             Task {
                 let _ = await HttpService.createUser(user: user)
                 Variables.user = user
@@ -47,7 +52,7 @@ class ConfigureAccountViewController: UIViewController {
     }
     
     func isFormValid() -> Bool {
-        if FirstNameInput.text == "" || LastNameInput.text == "" {
+        if FirstNameInput.text == "" || LastNameInput.text == "" || WeightInput.text == "" {
             makeAlert(message: "A field is empty")
             return false
         }

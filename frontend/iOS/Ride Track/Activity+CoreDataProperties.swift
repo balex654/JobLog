@@ -2,7 +2,7 @@
 //  Activity+CoreDataProperties.swift
 //  Ride Track
 //
-//  Created by Ben Alexander on 10/24/22.
+//  Created by Ben Alexander on 10/28/22.
 //
 //
 
@@ -17,10 +17,11 @@ extension Activity {
     }
 
     @NSManaged public var endDate: Date?
+    @NSManaged public var movingTime: Double
     @NSManaged public var name: String?
     @NSManaged public var startDate: Date?
     @NSManaged public var userId: String?
-    @NSManaged public var movingTime: Double
+    @NSManaged public var bikeId: Int32
     @NSManaged public var activityRelation: NSOrderedSet?
 
 }

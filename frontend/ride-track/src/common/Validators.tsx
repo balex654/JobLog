@@ -54,6 +54,16 @@ export function CapitalLettersValidator(value: string, message: string, errors: 
     }
 }
 
+export function NonFloatValueValidator(value: string, message: string, errors: string[]): void {
+    const floatValue = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
+    if (floatValue.test(value)) {
+        RemoveFromList(message, errors);
+    }
+    else {
+        AddToList(message, errors);
+    }
+}
+
 function AddToList(message: string, list: string[]): void {
     if (!list.includes(message)) {
         list.push(message);

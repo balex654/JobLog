@@ -3,4 +3,5 @@ export interface UserForm {
     last_name: string;
     email: string;
     id: string;
+    weight: number;
 }
