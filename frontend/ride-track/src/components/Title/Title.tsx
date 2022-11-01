@@ -1,3 +1,4 @@
+import "./Title.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Title = () => {
@@ -9,9 +10,15 @@ const Title = () => {
     }
 
     return (
-        <div>
-            Title page
-            <button onClick={handleLogin}>Login</button>
+        <div className="title-page">
+            <p className="title">
+                Ride Track
+            </p>
+            <div className="button-container">
+                <button 
+                    className="login-button" 
+                    onClick={handleLogin}>Login or Create Account</button>
+            </div>
         </div>
     );
 }

@@ -31,6 +31,7 @@
 		3DC4CCDB2901C9F40033B278 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC4CCDA2901C9F40033B278 /* KeychainSwift */; };
 		3DC4CCDE2901F3AC0033B278 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4CCDD2901F3AC0033B278 /* HttpService.swift */; };
 		3DC4CCE12901F5B80033B278 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4CCE02901F5B80033B278 /* User.swift */; };
+		3DD430E72911AE21006424C9 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD430E62911AE21006424C9 /* Errors.swift */; };
 		3DECAD6C28FB4F240063339C /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 3DECAD6B28FB4F240063339C /* Auth0 */; };
 		3DECAD6E28FB4FF30063339C /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAD6D28FB4FF30063339C /* Auth0.plist */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		3DA6289428FF74B00017B815 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		3DC4CCDD2901F3AC0033B278 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		3DC4CCE02901F5B80033B278 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3DD430E62911AE21006424C9 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		3DECAD6D28FB4FF30063339C /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Auth0.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4D73F429072D5700953417 /* Stopwatch.swift */,
+				3DD430E62911AE21006424C9 /* Errors.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				3D00BD332903462C0052BE82 /* GpsPoint+CoreDataProperties.swift in Sources */,
 				3D00BD312903462C0052BE82 /* Activity+CoreDataProperties.swift in Sources */,
 				3DC4CCE12901F5B80033B278 /* User.swift in Sources */,
+				3DD430E72911AE21006424C9 /* Errors.swift in Sources */,
 				3D00BD3629034FA40052BE82 /* ViewActivitiesViewController.swift in Sources */,
 				3DA52A9B290C506A00E19486 /* BikesTableViewCell.swift in Sources */,
 				3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */,

@@ -54,7 +54,7 @@ class HttpService {
         }
     }
     
-    static func createActivity(activity: Activity) async {
+    static func createActivity(activity: Activity) async throws {
         do {
             var request = prepareHTTPRequest(urlPath: "/activity", httpMethod: "POST")
             var gpsPointArray: [[String: Any]] = []
@@ -82,7 +82,7 @@ class HttpService {
             let (_, _) = try await URLSession.shared.data(for: request)
         }
         catch {
-            print("createActivity error")
+            throw UploadActivityError.uploadError
         }
     }
     
