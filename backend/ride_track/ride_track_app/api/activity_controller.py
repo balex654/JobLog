@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from authlib.integrations.django_oauth2 import ResourceProtector
 
-from ride_track_app.application.activity import add_activity
+from ride_track_app.application.activity import add_activity, get_activities
 from ride_track_app.auth import validator
 
 require_auth = ResourceProtector()
@@ -16,3 +16,5 @@ require_auth.register_token_validator(validator)
 def activity(request):
     if request.method == 'POST':
         return add_activity.add(request)
+    elif request.method == 'GET':
+        return get_activities.get_activities(request)

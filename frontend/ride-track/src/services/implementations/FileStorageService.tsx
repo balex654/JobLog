@@ -4,9 +4,13 @@ import { UserResponse } from "../../model/user/UserResponse";
 import { IStorageService } from "../IStorageService";
 import "reflect-metadata";
 import { Users } from "./FileStorage";
+import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    getActivities(): Promise<ActivitiesResponse> {
+        throw new Error("Method not implemented.");
+    }
     public async createUser(user: UserForm): Promise<UserResponse> {
         const users: any[] = Users;
         let maxId = users.length > 0 ? users[users.length - 1].id : 0;

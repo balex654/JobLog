@@ -52,8 +52,9 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     
         const checkUserExists = async () => {
             try {
-                await storageService.getUserById();
-                navigate('/dashboard');
+                const response = await storageService.getUserById();
+                localStorage.setItem('user', JSON.stringify(response));
+                navigate('/dashboard/profile');
             }
             catch (e) {
                 setLoading(false)
@@ -95,8 +96,9 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                 id: user!.sub!,
                 weight: parseFloat(weightValue)
             }
-            await storageService.createUser(userForm);
-            navigate('/dashboard');
+            const response = await storageService.createUser(userForm);
+            localStorage.setItem('user', JSON.stringify(response));
+            navigate('/dashboard/profile');
         }
     }
 

@@ -8,6 +8,8 @@ import { container } from "./services/InversifyConfig";
 import { TYPES } from "./services/Types";
 import GuardedRoute, { GuardedRouteProps } from "./common/GuardedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
+import Profile from "./components/Profile/Profile";
+import Activity from "./components/Activity/Activity";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -31,8 +33,11 @@ function App() {
             element={<GuardedRoute 
               {...defaultGuardedRouteProps} 
               outlet={<Dashboard/>} 
-            />} 
-          />
+            />}
+          >
+            <Route path="activity" element={<Activity/>}/>
+            <Route path="profile" element={<Profile/>}/>
+          </Route>
         </Routes>
       </HashRouter>
     </div>

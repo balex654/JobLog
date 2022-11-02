@@ -1,0 +1,43 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 100%;
+    border-right-width: .1rem;
+    border-right-color: var(--dark-grey);
+    border-right-style: solid;
+}
+
+.profile-link {
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    height: 2rem;
+    background-color: var(--orange);
+    justify-content: center;
+    border-bottom-color: var(--dark-grey);
+    border-bottom-width: .1rem;
+    border-bottom-style: solid;
+}
+
+.activities-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: calc(100% - 4rem);
+}
+
+.activity-list-item {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    min-height: 2rem;
+}
