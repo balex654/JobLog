@@ -1,0 +1,15 @@
+.title-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10rem;
+    justify-content: flex-start;
+}
+
+.profile-button-container {
+    padding-top: 2rem;
+}
+
+.login-button {
+    width: 10rem;
+}

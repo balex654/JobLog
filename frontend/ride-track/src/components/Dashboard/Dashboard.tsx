@@ -1,16 +1,16 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import "./Dashboard.css";
+import Sidebar from "../Sidebar/Sidebar";
+import { Outlet } from "react-router-dom";
+import { container } from "../../services/InversifyConfig";
+import { IStorageService } from "../../services/IStorageService";
+import { TYPES } from "../../services/Types";
 
 const Dashboard = () => {
-    const { logout } = useAuth0();
-
-    const handleLogout = (event: any) => {
-        event.preventDefault();
-        logout({ returnTo: process.env.REACT_APP_RETURN_TO_URI });
-    }
 
     return (
-        <div>Dashboard
-            <button onClick={handleLogout}>Logout</button>
+        <div className="dashboard-container">
+            <Sidebar storageService={container.get<IStorageService>(TYPES.IStorageService)}></Sidebar>
+            <Outlet/>
         </div>
     );
 }

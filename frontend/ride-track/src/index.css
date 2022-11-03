@@ -38,10 +38,20 @@ p {
   font-family: 'Inter';
 }
 
+button {
+  height: 2rem;
+  border-radius: 2rem;
+  border-width: 0;
+  background-color: var(--orange);
+  color: var(--white);
+}
+
 :root {
   --light-grey: #D9D9D9;
+  --dark-grey: #343434;
   --blue: #005BAE;
   --white: white;
   --yellow: #CC9F00;
-  --red: #c60000;
+  --red: #ff4400;
+  --orange: #ff7b00;
 }

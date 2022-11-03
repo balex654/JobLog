@@ -35,7 +35,7 @@ def add(request):
     }, form.data.get('gps_points')))
     gps_point_serializer = GpsPointSerializer(data=gps_point_model_data, many=True)
     if gps_point_serializer.is_valid() is False:
-        return JsonResponse(gps_point_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(gps_point_serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
     gps_point_serializer.save()
 
     return JsonResponse(None, status=status.HTTP_204_NO_CONTENT, safe=False)
