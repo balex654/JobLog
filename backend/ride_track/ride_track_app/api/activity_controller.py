@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from authlib.integrations.django_oauth2 import ResourceProtector
 
-from ride_track_app.application.activity import add_activity, get_activities
+from ride_track_app.application.activity import add_activity, get_activities, get_activity_by_id
 from ride_track_app.auth import validator
 
 require_auth = ResourceProtector()
@@ -18,3 +18,8 @@ def activity(request):
         return add_activity.add(request)
     elif request.method == 'GET':
         return get_activities.get_activities(request)
+
+@api_view(['GET'])
+@require_auth()
+def activity_id(request, id):
+    return get_activity_by_id.get_activity_by_id(request, id)

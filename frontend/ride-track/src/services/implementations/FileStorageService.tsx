@@ -5,9 +5,13 @@ import { IStorageService } from "../IStorageService";
 import "reflect-metadata";
 import { Users } from "./FileStorage";
 import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
+import { ActivityResponse } from "../../model/activity/ActivityResponse";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    getActivityById(activityId: string): Promise<ActivityResponse> {
+        throw new Error("Method not implemented.");
+    }
     getActivities(): Promise<ActivitiesResponse> {
         throw new Error("Method not implemented.");
     }

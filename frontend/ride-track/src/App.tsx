@@ -35,7 +35,7 @@ function App() {
               outlet={<Dashboard/>} 
             />}
           >
-            <Route path="activity" element={<Activity/>}/>
+            <Route path="activity/:id" element={<Activity storageService={container.get<IStorageService>(TYPES.IStorageService)}/>}/>
             <Route path="profile" element={<Profile/>}/>
           </Route>
         </Routes>

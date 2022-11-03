@@ -5,6 +5,7 @@ import { IStorageService } from "../IStorageService";
 import { injectable } from "inversify";
 import "reflect-metadata";
 import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
+import { ActivityResponse } from "../../model/activity/ActivityResponse";
 
 @injectable()
 export class HttpStorageService implements IStorageService {
@@ -30,6 +31,11 @@ export class HttpStorageService implements IStorageService {
 
     public async getActivities(): Promise<ActivitiesResponse> {
         const { data } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`, this.config);
+        return data;
+    }
+
+    public async getActivityById(activityId: string): Promise<ActivityResponse> {
+        const { data } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`, this.config)
         return data;
     }
 }

@@ -4,5 +4,6 @@ export interface ActivityResponse {
     end_date: Date,
     moving_time: number,
     user_id: string,
-    bike_id: number
+    bike_id: number,
+    id: number
 }
