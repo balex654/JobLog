@@ -1,0 +1,27 @@
+.activity-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.data-fields {
+    display: flex;
+    flex-direction: row;
+}
+
+.data-field-group {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+}
+
+.data-field {
+    display: flex;
+    flex-direction: row;
+}
+
+.data {
+    color: var(--blue);
+    font-weight: bold;
+    padding-left: .5rem;
+}
