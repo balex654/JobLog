@@ -10,6 +10,8 @@ import { StartDateField } from "./DataFields/StartDateField";
 import { EndDateField } from "./DataFields/EndDateField";
 import { MovingTimeField } from "./DataFields/MovingTimeField";
 import { BikeUsedField } from "./DataFields/BikeUsedField";
+import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
+import { AveragePowerField } from "./DataFields/AveragePowerField";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -23,16 +25,19 @@ const Activity = ({storageService}: ActivityProps) => {
     const [endDateValue, setEndDateValue] = useState<string>('');
     const [movingTimeValue, setMovingTimeValue] = useState<string>('');
     const [bikeUsedValue, setBikeUsedValue] = useState<string>('');
+    const [averagePowerValue, setAveragePowerValue] = useState<string>('');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
 
     useEffect(() => {
         let activity: ActivityResponse;
         let bike: BikeResponse;
+        let gpsPoints: GpsPointsResponse;
         const init = async () => {
             activity = await storageService.getActivityById(id!);
             const bikeId = activity!.bike_id.toString();
             bike = await storageService.getBikeById(bikeId);
+            gpsPoints = await storageService.getGpsPoints(activity.id);
             setDataFields();
         }
 
@@ -42,6 +47,7 @@ const Activity = ({storageService}: ActivityProps) => {
             dataFields.push(new EndDateField(activity, setEndDateValue));
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
+            dataFields.push(new AveragePowerField(gpsPoints, setAveragePowerValue));
             dataFields.forEach(f => f.generateValue());
         }
         
@@ -77,7 +83,7 @@ const Activity = ({storageService}: ActivityProps) => {
                 <div className="data-field-group">
                     <div className="data-field">
                         <p>Average power:</p>
-                        <p className="data">0000</p>
+                        <p className="data">{averagePowerValue}</p>
                     </div>
                 </div>
             </div>

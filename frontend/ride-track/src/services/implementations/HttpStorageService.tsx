@@ -7,6 +7,7 @@ import "reflect-metadata";
 import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
 import { ActivityResponse } from "../../model/activity/ActivityResponse";
 import { BikeResponse } from "../../model/bike/BikeResponse";
+import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 
 @injectable()
 export class HttpStorageService implements IStorageService {
@@ -42,6 +43,11 @@ export class HttpStorageService implements IStorageService {
 
     public async getBikeById(bikeId: string): Promise<BikeResponse> {
         const { data } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, this.config);
+        return data;
+    }
+
+    public async getGpsPoints(activityId: number): Promise<GpsPointsResponse> {
+        const { data } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`, this.config);
         return data;
     }
 }

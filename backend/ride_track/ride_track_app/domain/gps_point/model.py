@@ -1,4 +1,5 @@
 from django.db import models
+from ..activity.model import Activity
 
 class GpsPoint(models.Model):
     date = models.DateTimeField()
@@ -6,4 +7,4 @@ class GpsPoint(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     altitude = models.FloatField()
-    activity = models.ForeignKey('Activity', on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
