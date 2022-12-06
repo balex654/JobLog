@@ -47,7 +47,12 @@ const Activity = ({storageService}: ActivityProps) => {
             dataFields.push(new EndDateField(activity, setEndDateValue));
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
-            dataFields.push(new AveragePowerField(gpsPoints, setAveragePowerValue));
+            const userMass = JSON.parse(localStorage.getItem('user')!).weight as number;
+            const avgPowerFieldData = {
+                gpsPoints: gpsPoints.gps_points,
+                totalMass: (userMass + bike.weight)
+            }
+            dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
             dataFields.forEach(f => f.generateValue());
         }
         
