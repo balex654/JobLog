@@ -35,7 +35,7 @@ export class AveragePowerField implements DataField<AveragePowerFieldData> {
         }
 
         const averagePower = totalPower / this.data.gpsPoints.length;
-        this.setValueFunction(averagePower);
+        this.setValueFunction(`${Math.round(averagePower)} W`);
     }
 
     private getForceDueToIncline(gpsCur: GpsPointResponse, gpsNext: GpsPointResponse): number {
