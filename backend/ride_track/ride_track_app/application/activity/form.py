@@ -7,3 +7,4 @@ class ActivityForm(forms.Form):
     moving_time = forms.FloatField(required=True)
     bike_id = forms.IntegerField(required=True)
     gps_points = forms.JSONField()
+    total_mass = forms.FloatField(required=True)

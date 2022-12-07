@@ -94,7 +94,7 @@ export class AveragePowerField implements DataField<AveragePowerFieldData> {
         date2 = new Date(date2);
         const MS_PER_SECOND = 1000;
         const seconds = (date2.getTime() - date1.getTime()) / MS_PER_SECOND;
-        if (seconds == 0) {
+        if (seconds === 0) {
             return 0.5;
         }
         return seconds;
