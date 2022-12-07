@@ -5,9 +5,21 @@ import { IStorageService } from "../IStorageService";
 import "reflect-metadata";
 import { Users } from "./FileStorage";
 import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
+import { ActivityResponse } from "../../model/activity/ActivityResponse";
+import { BikeResponse } from "../../model/bike/BikeResponse";
+import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    getGpsPoints(activityId: number): Promise<GpsPointsResponse> {
+        throw new Error("Method not implemented.");
+    }
+    getBikeById(bikeId: string): Promise<BikeResponse> {
+        throw new Error("Method not implemented.");
+    }
+    getActivityById(activityId: string): Promise<ActivityResponse> {
+        throw new Error("Method not implemented.");
+    }
     getActivities(): Promise<ActivitiesResponse> {
         throw new Error("Method not implemented.");
     }

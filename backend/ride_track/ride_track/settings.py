@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-u)%+_&j_q_mzq9adv52ynz+f68)2!k*6)ydh0-#lx&-)(t)53p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ride-track-backend-gol2gz2rwq-uc.a.run.app', 'localhost', '192.168.0.2', '192.168.4.56']
+ALLOWED_HOSTS = ['ride-track-backend-gol2gz2rwq-uc.a.run.app', 'localhost', '192.168.0.2', '192.168.4.56', '172.20.10.4']
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [

@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from authlib.integrations.django_oauth2 import ResourceProtector
 
-from ride_track_app.application.activity import add_activity, get_activities, get_activity_by_id
 from ride_track_app.auth import validator
+from ..application.gps_point import get_gps_points
 
 require_auth = ResourceProtector()
 validator = validator.Auth0JWTBearerTokenValidator(
@@ -11,15 +11,7 @@ validator = validator.Auth0JWTBearerTokenValidator(
 )
 require_auth.register_token_validator(validator)
 
-@api_view(['POST', 'GET'])
-@require_auth()
-def activity(request):
-    if request.method == 'POST':
-        return add_activity.add(request)
-    elif request.method == 'GET':
-        return get_activities.get_activities(request)
-
 @api_view(['GET'])
 @require_auth()
-def activity_id(request, id):
-    return get_activity_by_id.get_activity_by_id(request, id)
+def gps_points_by_activity(request, activity_id):
+    return get_gps_points.get_gps_points(request, activity_id)
