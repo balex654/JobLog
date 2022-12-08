@@ -8,6 +8,7 @@ import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
 import { ActivityResponse } from "../../model/activity/ActivityResponse";
 import { BikeResponse } from "../../model/bike/BikeResponse";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
+import { BikesResponse } from "../../model/bike/BikesResponse";
 
 @injectable()
 export class HttpStorageService implements IStorageService {
@@ -43,6 +44,11 @@ export class HttpStorageService implements IStorageService {
 
     public async getBikeById(bikeId: string): Promise<BikeResponse> {
         const { data } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, this.config);
+        return data;
+    }
+
+    public async getBikes(): Promise<BikesResponse> {
+        const { data } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`, this.config);
         return data;
     }
 

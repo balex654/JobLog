@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { BikeResponse } from "../../model/bike/BikeResponse";
 import { IStorageService } from "../../services/IStorageService";
 import "./Bikes.css";
 
@@ -8,10 +10,24 @@ interface BikesProps {
 }
 
 const Bikes = ({visible, storageService, onClose}: BikesProps) => {
+    const [bikes, setBikes] = useState<BikeResponse[]>([]);
+
+    useEffect(() => {
+        const getBikes = async () => {
+            const response = await storageService.getBikes();
+            setBikes(response.bikes);
+        }
+
+        getBikes();
+    }, [storageService]);
 
     const handleClose = (event: any) => {
         event.preventDefault();
         onClose();
+    }
+
+    const handleEditBike = (bike: BikeResponse) => {
+        console.log(bike)
     }
 
     if (!visible) {
@@ -26,17 +42,19 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
                     <p className="text label">Weight</p>
                 </div>
                 <div className="bike-list">
-                    <div className="bike">
-                        <div className="bike-data">
-                            <p className="text name">
-                                Road bike
-                            </p>
-                            <p className="text">
-                                10kg
-                            </p>
+                    {bikes.map(b => 
+                        <div className="bike">
+                            <div className="bike-data">
+                                <p className="text name">
+                                    {b.name}
+                                </p>
+                                <p className="text">
+                                    {`${b.weight}kg`}
+                                </p>
+                            </div>
+                            <button onClick={() => handleEditBike(b)}>Edit</button>
                         </div>
-                        <button>Edit</button>
-                    </div>
+                    )}
                 </div>
             </div>
             
