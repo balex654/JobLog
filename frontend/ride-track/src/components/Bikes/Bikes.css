@@ -64,3 +64,19 @@
 .name {
     width: 13rem;
 }
+
+.delete {
+    background-color: var(--red);
+}
+
+.bike-input {
+    border-width: .2rem;
+    border-radius: 1rem;
+    border-color: var(--dark-grey);
+    border-style: solid;
+}
+
+.weight-input {
+    width: 3rem;
+    margin-left: 3.5rem;
+}
