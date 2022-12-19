@@ -12,6 +12,9 @@ import { BikesResponse } from "../../model/bike/BikesResponse";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    deleteBike(bikeId: number): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
     editBike(bikeId: number): Promise<BikeResponse> {
         throw new Error("Method not implemented.");
     }

@@ -97,6 +97,15 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
         }
     }
 
+    const handleDeleteBike = async (bike: BikeListItem) => {
+        await storageService.deleteBike(bike.bike.id);
+        const bikeList = bikes.filter(b => b.index !== bike.index);
+        bikeList.forEach((b, i) => b.index = i);
+        setBikes(bikeList);
+        const formList = forms.filter((f, i) => i !== bike.index);
+        setForms(formList);
+    }
+
     if (!visible) {
         return null;
     }
@@ -124,7 +133,7 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
                                             value={b.bike.weight} 
                                             onChange={(event) => weightInputHandler(event, b)}/>
                                     </div>
-                                    <button className="delete">Delete</button>
+                                    <button className="delete" onClick={() => handleDeleteBike(b)}>Delete</button>
                                     <button onClick={() => handleSaveBike(b)}>Save</button>
                                 </div>
                             )

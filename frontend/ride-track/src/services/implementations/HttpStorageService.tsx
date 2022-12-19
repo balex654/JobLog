@@ -58,6 +58,10 @@ export class HttpStorageService implements IStorageService {
         return data;
     }
 
+    public async deleteBike(bikeId: number): Promise<void> {
+        await axios.delete(`${this.baseUrl}/bike/${bikeId}`, this.config);
+    }
+
     public async getGpsPoints(activityId: number): Promise<GpsPointsResponse> {
         const { data } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`, this.config);
         return data;
