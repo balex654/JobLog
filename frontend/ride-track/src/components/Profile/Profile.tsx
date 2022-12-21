@@ -39,11 +39,13 @@ const Profile = () => {
                 </button>
                 
             </div>
-            <Bikes 
-                visible={isBikesVisible}
-                storageService={container.get<IStorageService>(TYPES.IStorageService)}
-                onClose={onViewBikesClose}
-            />
+            {
+                isBikesVisible &&
+                <Bikes 
+                    storageService={container.get<IStorageService>(TYPES.IStorageService)}
+                    onClose={onViewBikesClose}
+                />
+            }
         </div>
     );
 }

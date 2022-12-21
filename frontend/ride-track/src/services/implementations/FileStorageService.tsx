@@ -9,9 +9,13 @@ import { ActivityResponse } from "../../model/activity/ActivityResponse";
 import { BikeResponse } from "../../model/bike/BikeResponse";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { BikesResponse } from "../../model/bike/BikesResponse";
+import { BikeForm } from "../../model/bike/BikeForm";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    addBike(bike: BikeForm): Promise<BikeResponse> {
+        throw new Error("Method not implemented.");
+    }
     deleteBike(bikeId: number): Promise<void> {
         throw new Error("Method not implemented.");
     }

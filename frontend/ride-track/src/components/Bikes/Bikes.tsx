@@ -3,19 +3,22 @@ import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { EmptyValidator, LengthValidator, NonFloatValueValidator, NonNegativeValidator } from "../../common/Validators";
 import { BikeForm } from "../../model/bike/BikeForm";
+import { container } from "../../services/InversifyConfig";
 import { IStorageService } from "../../services/IStorageService";
+import { TYPES } from "../../services/Types";
+import AddBike from "./AddBike/AddBike";
 import { BikeListItem } from "./BikeListItem";
 import "./Bikes.css";
 
 interface BikesProps {
-    visible: boolean;
     storageService: IStorageService;
     onClose: Function;
 }
 
-const Bikes = ({visible, storageService, onClose}: BikesProps) => {
+const Bikes = ({storageService, onClose}: BikesProps) => {
     const [bikes, setBikes] = useState<BikeListItem[]>([]);
     const [forms, setForms] = useState<Form[]>([]);
+    const [addBikeVisible, setAddBikeVisible] = useState<boolean>(false);
 
     const bikeNameFieldId = 'name';
     const bikeWeightFieldId = 'weight';
@@ -37,15 +40,8 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
 
         const createForms = (bikeList: BikeListItem[]) => {
             let forms: Form[] = [];
-            bikeList.forEach(b => {
-                const formMap = new Map<string, FormField>();
-                const bikeNameField = new BikeNameField();
-                bikeNameField.value = b.bike.name;
-                const bikeWeightField = new BikeWeightField();
-                bikeWeightField.value = b.bike.weight.toString();
-                formMap.set(bikeNameFieldId, bikeNameField);
-                formMap.set(bikeWeightFieldId, bikeWeightField);
-                forms.push(new Form(formMap));
+            bikeList.forEach(b => { 
+                forms.push(createForm(b));
             });
             setForms(forms);
         }
@@ -106,12 +102,45 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
         setForms(formList);
     }
 
-    if (!visible) {
-        return null;
+    const handleAddBike = () => {
+        setAddBikeVisible(true);
+    }
+
+    const addBikeCancel = () => {
+        setAddBikeVisible(false);
+    }
+
+    const addedBikeAction = (bike: BikeListItem) => {
+        bike.index = bikes.length;
+        let bikeList = bikes.map(b => b);
+        bikeList.push(bike);
+        setBikes(bikeList);
+        let formList = forms.map(f => f);
+        formList.push(createForm(bike));
+        setForms(formList);
+        setAddBikeVisible(false);
+    }
+
+    const createForm = (bikeListItem: BikeListItem): Form => {
+        const formMap = new Map<string, FormField>();
+        const bikeNameField = new BikeNameField();
+        bikeNameField.value = bikeListItem.bike.name;
+        const bikeWeightField = new BikeWeightField();
+        bikeWeightField.value = bikeListItem.bike.weight.toString();
+        formMap.set(bikeNameFieldId, bikeNameField);
+        formMap.set(bikeWeightFieldId, bikeWeightField);
+        return new Form(formMap);
     }
 
     return (
         <div className="bikes-container">
+            {
+                addBikeVisible &&
+                <AddBike 
+                    addedBikeAction={addedBikeAction}
+                    cancelAction={addBikeCancel}
+                    storageService={container.get<IStorageService>(TYPES.IStorageService)}/>
+            }
             <div className="list-container">
                 <div className="label-container">
                     <p className="text label">Name</p>
@@ -154,14 +183,17 @@ const Bikes = ({visible, storageService, onClose}: BikesProps) => {
                     })}
                 </div>
             </div>
-            <button onClick={handleClose}>Close</button>
+            <div className="bikes-button-container">
+                <button onClick={handleClose}>Close</button>
+                <button onClick={handleAddBike}>Add Bike</button>
+            </div>
         </div>
     )
 }
 
 export default Bikes;
 
-class BikeNameField extends FormField {
+export class BikeNameField extends FormField {
     private readonly emptyMessage: string = 'Bike name cannot be empty';
     private readonly lengthMessage: string = 'Bike name cannot be more than 200 characters';
 
@@ -171,7 +203,7 @@ class BikeNameField extends FormField {
     }
 }
 
-class BikeWeightField extends FormField {
+export class BikeWeightField extends FormField {
     private readonly emptyMessage: string = 'Bike weight cannot be empty';
     private readonly nonNumberMessage: string = 'Bike weight can only be a number';
     private readonly nonNegativeMessage: string = 'Bike weight cannot be negative';

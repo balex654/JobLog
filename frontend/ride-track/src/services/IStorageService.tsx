@@ -16,5 +16,6 @@ export interface IStorageService {
     getBikes(): Promise<BikesResponse>;
     deleteBike(bikeId: number): Promise<void>;
     editBike(bikeId: number, bike: BikeForm): Promise<BikeResponse>;
+    addBike(bike: BikeForm): Promise<BikeResponse>;
     getGpsPoints(activityId: number): Promise<GpsPointsResponse>;
 }
