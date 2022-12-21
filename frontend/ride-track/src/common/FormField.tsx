@@ -14,6 +14,7 @@ export abstract class FormField {
     public errors: string[] = [];
     
     public get valid(): boolean {
+        this.validate();
         if (this.errors.length === 0) {
             return true;
         }

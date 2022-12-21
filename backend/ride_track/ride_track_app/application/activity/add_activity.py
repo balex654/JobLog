@@ -18,7 +18,8 @@ def add(request):
         'end_date': form.data.get('end_date'),
         'moving_time': form.data.get('moving_time'),
         'bike': form.data.get('bike_id'),
-        'user': request.oauth_token.sub
+        'user': request.oauth_token.sub,
+        'total_mass': form.data.get('total_mass')
     }
     activity_serializer = ActivitySerializer(data=activity_model_data)
     if activity_serializer.is_valid() is False:

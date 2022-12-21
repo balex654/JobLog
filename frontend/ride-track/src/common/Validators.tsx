@@ -16,6 +16,16 @@ export function LengthValidator(value: string, length: number, message: string, 
     }
 }
 
+export function NonNegativeValidator(value: string, message: string, errors: string[]): void {
+    const numValue = Number.isNaN(parseInt(value)) ? 0 : parseInt(value);
+    if (numValue < 0) {
+        AddToList(message, errors);
+    }
+    else {
+        RemoveFromList(message, errors);
+    }
+}
+
 export function MatchValidator(value1: string, value2: string, message: string, errors: string[]) {
     if (value1 !== value2) {
         AddToList(message, errors);

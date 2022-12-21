@@ -75,11 +75,16 @@ class HttpService {
                 "end_date": Date().dateToString(date: activity.endDate!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
                 "moving_time": activity.movingTime,
                 "gps_points": gpsPointArray,
-                "bike_id": activity.bikeId
+                "bike_id": activity.bikeId,
+                "total_mass": activity.totalMass
             ]
             let activityData = try JSONSerialization.data(withJSONObject: activityDict)
             request.httpBody = activityData
-            let (_, _) = try await URLSession.shared.data(for: request)
+            let (_, urlResponse) = try await URLSession.shared.data(for: request)
+            let httpResponse = urlResponse as! HTTPURLResponse
+            if httpResponse.statusCode != 204 {
+                throw UploadActivityError.uploadError
+            }
         }
         catch {
             throw UploadActivityError.uploadError

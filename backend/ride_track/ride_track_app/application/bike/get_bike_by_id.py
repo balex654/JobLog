@@ -8,7 +8,8 @@ from ride_track_app.domain.bike.serializer import BikeSerializer
 def get_bike_by_id(request, id):
     bike_query = Bike.objects.filter(
         user_id=request.oauth_token.sub,
-        id=id)
+        id=id,
+        is_deleted=False)
     if bike_query.count() == 0:
         error = {
             'error': 'bike not found'

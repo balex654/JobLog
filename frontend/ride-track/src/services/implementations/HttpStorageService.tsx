@@ -8,6 +8,8 @@ import { ActivitiesResponse } from "../../model/activity/ActivitiesResponse";
 import { ActivityResponse } from "../../model/activity/ActivityResponse";
 import { BikeResponse } from "../../model/bike/BikeResponse";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
+import { BikesResponse } from "../../model/bike/BikesResponse";
+import { BikeForm } from "../../model/bike/BikeForm";
 
 @injectable()
 export class HttpStorageService implements IStorageService {
@@ -43,6 +45,25 @@ export class HttpStorageService implements IStorageService {
 
     public async getBikeById(bikeId: string): Promise<BikeResponse> {
         const { data } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, this.config);
+        return data;
+    }
+
+    public async getBikes(): Promise<BikesResponse> {
+        const { data } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`, this.config);
+        return data;
+    }
+
+    public async editBike(bikeId: number, bike: BikeForm): Promise<BikeResponse> {
+        const { data } = await axios.put<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, bike, this.config);
+        return data;
+    }
+
+    public async deleteBike(bikeId: number): Promise<void> {
+        await axios.delete(`${this.baseUrl}/bike/${bikeId}`, this.config);
+    }
+
+    public async addBike(bike: BikeForm): Promise<BikeResponse> {
+        const { data } = await axios.post(`${this.baseUrl}/bike`, bike, this.config);
         return data;
     }
 

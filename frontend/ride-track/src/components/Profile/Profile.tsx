@@ -1,12 +1,28 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import "./Profile.css"
+import { useState } from "react";
+import { container } from "../../services/InversifyConfig";
+import { IStorageService } from "../../services/IStorageService";
+import { TYPES } from "../../services/Types";
+import Bikes from "../Bikes/Bikes";
+import "./Profile.css";
 
 const Profile = () => {
     const { logout } = useAuth0();
 
+    const [isBikesVisible, setIsBikesVisible] = useState<boolean>(false);
+
     const handleLogout = (event: any) => {
         event.preventDefault();
         logout({ returnTo: process.env.REACT_APP_RETURN_TO_URI });
+    }
+
+    const handleViewBikes = (event: any) => {
+        event.preventDefault();
+        setIsBikesVisible(!isBikesVisible);
+    }
+
+    const onViewBikesClose = () => {
+        setIsBikesVisible(false);
     }
 
     return (
@@ -15,14 +31,21 @@ const Profile = () => {
                 {`${JSON.parse(localStorage.getItem('user')!).first_name}'s Profile`}
             </p>
             <div className="button-container">
-                <button>
+                <button onClick={handleViewBikes}>
                     View bikes
                 </button>
                 <button onClick={handleLogout}>
                     Logout
                 </button>
+                
             </div>
-            
+            {
+                isBikesVisible &&
+                <Bikes 
+                    storageService={container.get<IStorageService>(TYPES.IStorageService)}
+                    onClose={onViewBikesClose}
+                />
+            }
         </div>
     );
 }

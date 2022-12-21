@@ -4,9 +4,8 @@ export class Form {
     public formFields = new Map<string, FormField>();
 
     public get valid(): boolean {
-        
-        for (const key in this.formFields.keys) {
-            if (!this.formFields.get(key)!.valid) {
+        for (let item of this.formFields) {
+            if (!item[1].valid) {
                 return false;
             }
         }

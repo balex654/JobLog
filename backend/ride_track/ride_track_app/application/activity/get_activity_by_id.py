@@ -23,6 +23,7 @@ def get_activity_by_id(request, id):
         moving_time=activity_serializer.data.get('moving_time'),
         user_id=activity_serializer.data.get('user'),
         bike_id=activity_serializer.data.get('bike'),
-        id=activity_serializer.data.get('id')
+        id=activity_serializer.data.get('id'),
+        total_mass=activity_serializer.data.get('total_mass')
     )
     return JsonResponse(activity_response.__dict__, status=status.HTTP_200_OK)

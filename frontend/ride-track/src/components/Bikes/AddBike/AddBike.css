@@ -1,0 +1,14 @@
+.add-bike-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 12rem;
+    height: 8rem;
+    position: fixed;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--grey3);
+    background-color: var(--white);
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}

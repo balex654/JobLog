@@ -61,6 +61,7 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
         currentActivity!.startDate = Date()
         currentActivity!.userId = Variables.user.id
         currentActivity!.bikeId = Int32(Variables.selectedBike.id)
+        currentActivity!.totalMass = Variables.selectedBike.weight + Variables.user.weight
         activityStarted = true
         StartStopButton.backgroundColor = UIColor.red
         StartStopButton.setTitle("Stop Activity", for: .normal)
@@ -103,7 +104,7 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        if manager.location!.speed > 0.5 {
+        if manager.location!.speed > 0.0 {
             stopwatch.start()
             let gpsPoint = GpsPoint(context: context!)
             gpsPoint.date = manager.location!.timestamp

@@ -8,4 +8,5 @@ export class ActivityResponse implements FieldInput {
     user_id: string = '';
     bike_id: number = 0;
     id: number = 0;
+    total_mass: number = 0;
 }

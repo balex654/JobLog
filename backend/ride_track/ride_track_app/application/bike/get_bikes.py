@@ -7,7 +7,9 @@ from ride_track_app.domain.bike.serializer import BikeSerializer
 from .response import BikesResponse, BikeResponse
 
 def get_bikes(request):
-    bike_query = Bike.objects.filter(user_id=request.oauth_token.sub)
+    bike_query = Bike.objects.filter(
+        user_id=request.oauth_token.sub,
+        is_deleted=False)
     bike_serializer = BikeSerializer(bike_query, many=True)
     bikes_response = BikesResponse(list(map(lambda bike_data: BikeResponse(
         name = bike_data.get('name'),
