@@ -13,7 +13,8 @@ root.render(
       clientId="AHsTOUfAHVTFnlwFLHGf7Y0kzeIHmLKF"
       redirectUri={process.env.REACT_APP_REDIRECT_URI}
       audience="https://ride-track-backend-gol2gz2rwq-uc.a.run.app"
-      scope="read write"
+      scope="read write offline_access"
+      useRefreshTokens={true}
     >
       <App/>
     </Auth0Provider>
