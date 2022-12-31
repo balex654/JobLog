@@ -2,7 +2,7 @@
 //  GpsPoint+CoreDataClass.swift
 //  Ride Track
 //
-//  Created by Ben Alexander on 10/21/22.
+//  Created by Ben Alexander on 12/31/22.
 //
 //
 

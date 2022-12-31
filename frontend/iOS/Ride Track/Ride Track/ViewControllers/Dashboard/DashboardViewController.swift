@@ -7,7 +7,6 @@
 
 import UIKit
 import Auth0
-import KeychainSwift
 import CoreLocation
 import CoreData
 
@@ -104,10 +103,10 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        if manager.location!.speed > 0.0 {
+        if manager.location!.speed > 0.2 {
             stopwatch.start()
             let gpsPoint = GpsPoint(context: context!)
-            gpsPoint.date = manager.location!.timestamp
+            gpsPoint.date = Date().dateToString(date: manager.location!.timestamp, format: "yyyy-MM-dd'T'HH:mm:ss.SSS")
             gpsPoint.speed = manager.location!.speed
             gpsPoint.altitude = manager.location!.altitude
             gpsPoint.latitude = locValue.latitude
@@ -122,8 +121,8 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func LogoutAction(_ sender: Any) {
         Task {
             do {
-                let keychain = KeychainSwift()
-                keychain.delete("accessToken")
+                let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
+                let _ = credentialsManager.clear()
                 Variables.user = User()
                 self.dismiss(animated: true)
                 try await Auth0.webAuth().clearSession()

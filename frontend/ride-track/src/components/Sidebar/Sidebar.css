@@ -4,7 +4,7 @@
     width: 12rem;
     height: 100%;
     border-right-width: .1rem;
-    border-right-color: var(--dark-grey);
+    border-right-color: var(--grey3);
     border-right-style: solid;
 }
 
@@ -15,11 +15,10 @@
     font-family: 'Inter';
     font-size: 1.5rem;
     height: 2rem;
+    margin: .5rem;
     background-color: var(--orange);
     justify-content: center;
-    border-bottom-color: var(--dark-grey);
-    border-bottom-width: .1rem;
-    border-bottom-style: solid;
+    border-radius: .5rem;
 }
 
 .activities-label {
