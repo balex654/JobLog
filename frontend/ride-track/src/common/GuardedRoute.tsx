@@ -1,13 +1,13 @@
 import { Navigate } from "react-router-dom";
 
 export type GuardedRouteProps = {
-    isAuthenticated: boolean;
+    canAccess: Function;
     path: string;
     outlet: JSX.Element;
 }
 
-export default function GuardedRoute ({isAuthenticated, path, outlet}: GuardedRouteProps) {
-    if (isAuthenticated) {
+export default function GuardedRoute ({canAccess, path, outlet}: GuardedRouteProps) {
+    if (canAccess) {
         return outlet;
     }
     else {

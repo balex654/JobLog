@@ -14,7 +14,7 @@ interface ConfigureAccountProps {
 
 const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     const navigate = useNavigate();
-    const { user, getAccessTokenSilently } = useAuth0();
+    const { user } = useAuth0();
 
     const [firstNameErrors, setFirstNameErrors] = useState<string[]>([]);
     const [lastNameErrors, setLastNameErrors] = useState<string[]>([]);
@@ -36,7 +36,6 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-    
         const checkUserExists = async () => {
             try {
                 const response = await storageService.getUserById();
@@ -52,7 +51,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
             await checkUserExists();
         }
         init()
-    }, [getAccessTokenSilently, navigate, storageService]);
+    }, [navigate, storageService]);
 
     const firstNameInputHandler = (event: any) => {
         form.formFields.get(firstNameFieldId)!.value = event.target.value;

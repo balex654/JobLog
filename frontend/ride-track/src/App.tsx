@@ -42,7 +42,9 @@ function App() {
     });
 
   const defaultGuardedRouteProps: Omit<GuardedRouteProps, 'outlet'> = {
-    isAuthenticated: isAuthenticated,
+    canAccess: () => {
+      return isAuthenticated
+    },
     path: '/'
   };
 
