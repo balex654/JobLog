@@ -82,7 +82,7 @@ class HttpService {
             request.httpBody = activityData
             let (_, urlResponse) = try await URLSession.shared.data(for: request)
             let httpResponse = urlResponse as! HTTPURLResponse
-            if httpResponse.statusCode != 204 {
+            if httpResponse.statusCode != 201 {
                 throw UploadActivityError.uploadError
             }
         }
