@@ -10,9 +10,36 @@ import GuardedRoute, { GuardedRouteProps } from "./common/GuardedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./components/Profile/Profile";
 import Activity from "./components/Activity/Activity";
+import axios from "axios";
+import jwtDecode, { JwtPayload } from "jwt-decode";
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  axios.interceptors.request.use(
+    async (config) => {
+      const url = config === undefined ? '' : config.url!;
+      if (url.includes(process.env.REACT_APP_API_URL!)) {
+        let accessToken = localStorage.getItem('accessToken');
+        if (accessToken === undefined || accessToken === null || jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
+          const newAccessToken = await getAccessTokenSilently({
+            audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
+            scope: "read write offline_access"
+          });
+          localStorage.setItem('accessToken', newAccessToken);
+          config.headers!['Authorization'] = `Bearer ${newAccessToken}`;
+          return config;
+        }
+
+        config.headers!['Authorization'] = `Bearer ${accessToken}`;
+        return config;
+      }
+
+      return config;
+    },
+    error => {
+      Promise.reject(error)
+    });
 
   const defaultGuardedRouteProps: Omit<GuardedRouteProps, 'outlet'> = {
     isAuthenticated: isAuthenticated,

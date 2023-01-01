@@ -36,19 +36,6 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const getAccessToken = async () => {
-            try {
-                const accessToken = await getAccessTokenSilently({
-                    audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
-                    scope: "read write"
-                });
-                
-                localStorage.setItem('accessToken', accessToken);
-            }
-            catch (e) {
-                console.log(e);
-            }
-        }
     
         const checkUserExists = async () => {
             try {
@@ -62,7 +49,6 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
         }
 
         const init = async () => {
-            await getAccessToken();
             await checkUserExists();
         }
         init()

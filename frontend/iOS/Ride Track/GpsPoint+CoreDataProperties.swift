@@ -2,7 +2,7 @@
 //  GpsPoint+CoreDataProperties.swift
 //  Ride Track
 //
-//  Created by Ben Alexander on 10/21/22.
+//  Created by Ben Alexander on 12/31/22.
 //
 //
 
@@ -16,10 +16,10 @@ extension GpsPoint {
         return NSFetchRequest<GpsPoint>(entityName: "GpsPoint")
     }
 
-    @NSManaged public var date: Date?
+    @NSManaged public var altitude: Double
+    @NSManaged public var date: String?
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
-    @NSManaged public var altitude: Double
     @NSManaged public var speed: Double
     @NSManaged public var gpsPointRelation: Activity?
 

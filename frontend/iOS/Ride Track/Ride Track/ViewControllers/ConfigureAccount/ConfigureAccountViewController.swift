@@ -7,7 +7,7 @@
 
 import UIKit
 import JWTDecode
-import KeychainSwift
+import Auth0
 
 class ConfigureAccountViewController: UIViewController {
     
@@ -31,22 +31,29 @@ class ConfigureAccountViewController: UIViewController {
     }
 
     @IBAction func RegisterAction(_ sender: Any) {
-        if isFormValid() {
-            let keychain = KeychainSwift()
-            guard let jwt = try? decode(jwt: keychain.get("accessToken")!),
-                  let id = jwt["sub"].string,
-                  let email = jwt["email"].string else { return }
-            let user = User(
-                id: id,
-                firstName: FirstNameInput.text!,
-                lastName: LastNameInput.text!,
-                email: email,
-                weight: Double(WeightInput.text!)!)
-            Task {
-                let _ = await HttpService.createUser(user: user)
-                Variables.user = user
-                self.dismiss(animated: true)
-                NotificationCenter.default.post(name: Notification.Name("createdAccount"), object: nil)
+        Task {
+            if isFormValid() {
+                do {
+                    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
+                    let credentials = try await credentialsManager.credentials(withScope: "offline_access")
+                    guard let jwt = try? decode(jwt: credentials.accessToken),
+                          let id = jwt["sub"].string,
+                          let email = jwt["email"].string else { return }
+                    let user = User(
+                        id: id,
+                        firstName: FirstNameInput.text!,
+                        lastName: LastNameInput.text!,
+                        email: email,
+                        weight: Double(WeightInput.text!)!)
+                    
+                    let _ = await HttpService.createUser(user: user)
+                    Variables.user = user
+                    self.dismiss(animated: true)
+                    NotificationCenter.default.post(name: Notification.Name("createdAccount"), object: nil)
+                }
+                catch {
+                    print("Failed getting credentials: \(error)")
+                }
             }
         }
     }

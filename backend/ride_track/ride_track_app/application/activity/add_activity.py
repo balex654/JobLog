@@ -1,5 +1,6 @@
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from django.http.response import HttpResponse
 from rest_framework import status
 
 from ride_track_app.application.activity.form import ActivityForm
@@ -39,4 +40,4 @@ def add(request):
         return JsonResponse(gps_point_serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
     gps_point_serializer.save()
 
-    return JsonResponse(None, status=status.HTTP_204_NO_CONTENT, safe=False)
+    return HttpResponse(status=status.HTTP_201_CREATED)

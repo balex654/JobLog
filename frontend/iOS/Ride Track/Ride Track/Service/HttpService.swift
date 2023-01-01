@@ -7,12 +7,12 @@
 
 import Foundation
 import SwiftyJSON
-import KeychainSwift
+import Auth0
 
 class HttpService {
     static func getUserById() async -> User {
         do {
-            let request = prepareHTTPRequest(urlPath: "/user", httpMethod: "GET")
+            let request = await prepareHTTPRequest(urlPath: "/user", httpMethod: "GET")
             let (data, _) = try await URLSession.shared.data(for: request)
             let jsonData = JSON(data).dictionaryValue
             if jsonData["error"] != nil {
@@ -35,7 +35,7 @@ class HttpService {
     
     static func createUser(user: User) async -> User {
         do {
-            var request = prepareHTTPRequest(urlPath: "/user", httpMethod: "POST")
+            var request = await prepareHTTPRequest(urlPath: "/user", httpMethod: "POST")
             let userDict: [String: Any] = [
                 "id": user.id,
                 "first_name": user.firstName,
@@ -56,12 +56,12 @@ class HttpService {
     
     static func createActivity(activity: Activity) async throws {
         do {
-            var request = prepareHTTPRequest(urlPath: "/activity", httpMethod: "POST")
+            var request = await prepareHTTPRequest(urlPath: "/activity", httpMethod: "POST")
             var gpsPointArray: [[String: Any]] = []
             for gps in activity.activityRelation!.array {
                 let gpsPoint = gps as! GpsPoint
                 let gpsPointDict: [String: Any] = [
-                    "date": Date().dateToString(date: gpsPoint.date!, format: "yyyy-MM-dd'T'HH:mm:ssZ"),
+                    "date": gpsPoint.date!,
                     "latitude": gpsPoint.latitude,
                     "longitude": gpsPoint.longitude,
                     "altitude": gpsPoint.altitude,
@@ -82,7 +82,7 @@ class HttpService {
             request.httpBody = activityData
             let (_, urlResponse) = try await URLSession.shared.data(for: request)
             let httpResponse = urlResponse as! HTTPURLResponse
-            if httpResponse.statusCode != 204 {
+            if httpResponse.statusCode != 201 {
                 throw UploadActivityError.uploadError
             }
         }
@@ -93,7 +93,7 @@ class HttpService {
     
     static func getBikes() async -> [Bike] {
         do {
-            let request = prepareHTTPRequest(urlPath: "/bike", httpMethod: "GET")
+            let request = await prepareHTTPRequest(urlPath: "/bike", httpMethod: "GET")
             let (data, _) = try await URLSession.shared.data(for: request)
             let jsonData = JSON(data).dictionaryValue
             var bikes: [Bike] = []
@@ -114,7 +114,7 @@ class HttpService {
     
     static func createBike(bike: Bike) async {
         do {
-            var request = prepareHTTPRequest(urlPath: "/bike", httpMethod: "POST")
+            var request = await prepareHTTPRequest(urlPath: "/bike", httpMethod: "POST")
             let bikeDict: [String: Any] = [
                 "name": bike.name,
                 "weight": bike.weight,
@@ -128,13 +128,20 @@ class HttpService {
         }
     }
     
-    private static func prepareHTTPRequest(urlPath: String, httpMethod: String) -> URLRequest {
+    private static func prepareHTTPRequest(urlPath: String, httpMethod: String) async ->  URLRequest {
         let urlStr = Variables.baseUrl + urlPath
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
-        let keychain = KeychainSwift()
-        request.setValue("Bearer " + keychain.get("accessToken")!, forHTTPHeaderField: "Authorization")
-        return request
+        do {
+            let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
+            let credentials = try await credentialsManager.credentials(withScope: "offline_access")
+            request.setValue("Bearer " + credentials.accessToken, forHTTPHeaderField: "Authorization")
+            return request
+        }
+        catch {
+            print("Failed getting credentials: \(error)")
+            return request
+        }
     }
 }
