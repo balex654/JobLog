@@ -12,6 +12,7 @@ import { MovingTimeField } from "./DataFields/MovingTimeField";
 import { BikeUsedField } from "./DataFields/BikeUsedField";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { AveragePowerField } from "./DataFields/AveragePowerField";
+import Chart, { ChartProps } from "./Chart/Chart";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -28,6 +29,10 @@ const Activity = ({storageService}: ActivityProps) => {
     const [averagePowerValue, setAveragePowerValue] = useState<string>('');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
+    const [chartData, setChartData] = useState<ChartProps>({
+        gpsPoints: [],
+        totalMass: 0
+    });
 
     useEffect(() => {
         let activity: ActivityResponse;
@@ -53,6 +58,10 @@ const Activity = ({storageService}: ActivityProps) => {
             }
             dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
             dataFields.forEach(f => f.generateValue());
+            setChartData({
+                gpsPoints: gpsPoints.gps_points,
+                totalMass: activity.total_mass
+            });
         }
         
         init();
@@ -91,6 +100,10 @@ const Activity = ({storageService}: ActivityProps) => {
                     </div>
                 </div>
             </div>
+            <Chart 
+                gpsPoints={chartData.gpsPoints} 
+                totalMass={chartData.totalMass}
+            />
         </div>
     );
 }
