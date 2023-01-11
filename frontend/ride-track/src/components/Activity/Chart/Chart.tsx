@@ -2,7 +2,7 @@ import "./Chart.css";
 import { GpsPointResponse } from "../../../model/gps-point/GpsPointResponse"
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, YAxis } from 'recharts';
 import { useEffect, useState } from "react";
-import { GetPowerForTwoPoints } from "../../../common/Calculations";
+import { ConvertMetersToFeet, ConvertMStoMilesPerHour, GetInclineAngle, GetPowerForTwoPoints } from "../../../common/Calculations";
 
 export interface ChartProps {
     gpsPoints: GpsPointResponse[];
@@ -14,6 +14,7 @@ interface ChartDataPoint {
     power: number;
     speed: number;
     altitude: number;
+    inclineAngle: number;
 }
 
 const Chart = ({gpsPoints, totalMass}: ChartProps) => {
@@ -25,20 +26,27 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
         for (i = 0; i < gpsPoints.length - 2; i++) {
             const cur = gpsPoints[i];
             const next = gpsPoints[i + 1];
+            const milesPerHour = ConvertMStoMilesPerHour(cur.speed);
+            const altitudeFeet = ConvertMetersToFeet(cur.altitude);
+            let inclineAngle = GetInclineAngle(cur, next);
             let power: number = GetPowerForTwoPoints(cur, next, totalMass);            
-            if (power > 300 || power < -300) {
+            if (power > 500 || power < -500) {
                 continue;
             }
             
+            const date = new Date(cur.date);
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes().toString();
+            const seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds().toString();
             data.push({
-                time: (new Date(cur.date)).toLocaleTimeString(),
+                time: `${date.getHours()}:${minutes}:${seconds}`,
                 power: power,
-                speed: cur.speed,
-                altitude: cur.altitude
+                speed: milesPerHour,
+                altitude: altitudeFeet,
+                inclineAngle: inclineAngle
             });
         }
 
-        const calculatePowerAverages = (bufferSize: number) => {
+        const calculateMovingAverages = (bufferSize: number, dataName: string) => {
             let newData = data.map(d => d);
             let i = 0;
             for (i = 0; i < data.length - 1; i++) {
@@ -53,22 +61,18 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                 }
 
                 const buffer = data.slice(lowerSlice, upperSlice);
-                const average = buffer.reduce((average, current, index) => {
-                    const averageValue = (average.power! + current.power!) / index + 1;
-                    return {
-                        time: '',
-                        speed: 0,
-                        power: averageValue,
-                        altitude: 0
-                    }
-                });
-                newData[i].power = average.power;
+                const sum = buffer.map(d => (d as any)[dataName]).reduce((partial, current) => {
+                    return partial + current;
+                }, 0);
+                const average = sum / (bufferSize * 2 + 1);
+                (newData[i] as any)[dataName] = average;
             }
 
             data = newData;
         }
 
-        calculatePowerAverages(1);
+        calculateMovingAverages(2, "power");
+        calculateMovingAverages(5, "inclineAngle")
         setChartData(data);
     }, [gpsPoints, totalMass]);
 
@@ -81,7 +85,7 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="speed" stroke="#831E1A" activeDot={{ r: 5 }} dot={false}/>
+                    <Line type="monotone" dataKey="speed" stroke="#831E1A" activeDot={{ r: 5 }} dot={false} name="Speed (mi/hr)"/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -91,7 +95,7 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="altitude" stroke="#F91A1B" activeDot={{ r: 5 }} dot={false}/>
+                    <Line type="monotone" dataKey="inclineAngle" stroke="#121CA4" activeDot={{ r: 5 }} dot={false} name="Incline Angle (degrees)"/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -101,7 +105,17 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="power" stroke="#A17F1C" activeDot={{ r: 5 }} dot={false}/>
+                    <Line type="monotone" dataKey="altitude" stroke="#F91A1B" activeDot={{ r: 5 }} dot={false} name="Altitude (ft)"/>
+                </LineChart>
+            </ResponsiveContainer>
+            <ResponsiveContainer>
+                <LineChart data={chartData}>
+                    <CartesianGrid strokeDasharray="20 20" />
+                    <YAxis/>
+                    <XAxis dataKey="time" />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="power" stroke="#A17F1C" activeDot={{ r: 5 }} dot={false} name="Power (watts)"/>
                 </LineChart>
             </ResponsiveContainer>
         </div>

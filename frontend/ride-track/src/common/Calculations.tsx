@@ -73,3 +73,23 @@ function GetTimeDifference(date1: Date, date2: Date): number {
     }
     return seconds;
 }
+
+export function ConvertMStoMilesPerHour(ms: number): number {
+    // m/s * s/hr * mi/m
+    const metersPerHour = ms * 3600;
+    const milesPerHour = metersPerHour * 0.000621371;
+    return milesPerHour;
+}
+
+export function GetInclineAngle(cur: GpsPointResponse, next: GpsPointResponse): number {
+    const altitudeChange = next.altitude - cur.altitude;
+    const distanceChange = GetHorizontalDistance(cur, next);
+    const thetaRadians = Math.atan(altitudeChange / distanceChange);
+    const thetaDegrees = thetaRadians * (180 / Math.PI);
+    return thetaDegrees;
+}
+
+export function ConvertMetersToFeet(meters: number): number {
+    const feet = meters * 3.28;
+    return feet;
+}

@@ -13,6 +13,7 @@ import { BikeUsedField } from "./DataFields/BikeUsedField";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { AveragePowerField } from "./DataFields/AveragePowerField";
 import Chart, { ChartProps } from "./Chart/Chart";
+import { MaxSpeedField } from "./DataFields/MaxSpeedField";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -27,6 +28,7 @@ const Activity = ({storageService}: ActivityProps) => {
     const [movingTimeValue, setMovingTimeValue] = useState<string>('');
     const [bikeUsedValue, setBikeUsedValue] = useState<string>('');
     const [averagePowerValue, setAveragePowerValue] = useState<string>('');
+    const [maxSpeedValue, setMaxSpeedValue] = useState<string>('');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
     const [chartData, setChartData] = useState<ChartProps>({
@@ -52,6 +54,7 @@ const Activity = ({storageService}: ActivityProps) => {
             dataFields.push(new EndDateField(activity, setEndDateValue));
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
+            dataFields.push(new MaxSpeedField(gpsPoints.gps_points, setMaxSpeedValue));
             const avgPowerFieldData = {
                 gpsPoints: gpsPoints.gps_points,
                 totalMass: activity.total_mass
@@ -97,6 +100,10 @@ const Activity = ({storageService}: ActivityProps) => {
                     <div className="data-field">
                         <p>Average power:</p>
                         <p className="data">{averagePowerValue}</p>
+                    </div>
+                    <div className="data-field">
+                        <p>Max speed:</p>
+                        <p className="data">{maxSpeedValue}</p>
                     </div>
                 </div>
             </div>
