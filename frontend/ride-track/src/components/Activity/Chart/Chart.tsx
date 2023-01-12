@@ -83,9 +83,15 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <CartesianGrid strokeDasharray="20 20" />
                     <YAxis/>
                     <XAxis dataKey="time" />
-                    <Tooltip />
+                    <Tooltip/>
                     <Legend />
-                    <Line type="monotone" dataKey="speed" stroke="#831E1A" activeDot={{ r: 5 }} dot={false} name="Speed (mi/hr)"/>
+                    <Line 
+                        type="monotone" 
+                        dataKey="speed" 
+                        stroke="#9e1919" 
+                        activeDot={{ r: 5 }} 
+                        dot={false} 
+                        name="Speed (mi/hr)"/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -95,7 +101,13 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="inclineAngle" stroke="#121CA4" activeDot={{ r: 5 }} dot={false} name="Incline Angle (degrees)"/>
+                    <Line  
+                        type="monotone" 
+                        dataKey="inclineAngle" 
+                        stroke="#19299e" 
+                        activeDot={{ r: 5 }} 
+                        dot={false} 
+                        name="Incline Angle (degrees)"/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -105,7 +117,13 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="altitude" stroke="#F91A1B" activeDot={{ r: 5 }} dot={false} name="Altitude (ft)"/>
+                    <Line 
+                        type="monotone" 
+                        dataKey="altitude" 
+                        stroke="#199e29" 
+                        activeDot={{ r: 5 }} 
+                        dot={false} 
+                        name="Altitude (ft)"/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -115,7 +133,13 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                     <XAxis dataKey="time" />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="power" stroke="#A17F1C" activeDot={{ r: 5 }} dot={false} name="Power (watts)"/>
+                    <Line 
+                        type="monotone" 
+                        dataKey="power" 
+                        stroke="#9e7019" 
+                        activeDot={{ r: 5 }} 
+                        dot={false} 
+                        name="Power (watts)"/>
                 </LineChart>
             </ResponsiveContainer>
         </div>

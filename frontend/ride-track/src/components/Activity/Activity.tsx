@@ -22,13 +22,13 @@ interface ActivityProps {
 const Activity = ({storageService}: ActivityProps) => {
     const { id } = useParams();
 
-    const [activityName, setActivityName] = useState<string>('');
-    const [startDateValue, setStartDateValue] = useState<string>('');
-    const [endDateValue, setEndDateValue] = useState<string>('');
-    const [movingTimeValue, setMovingTimeValue] = useState<string>('');
-    const [bikeUsedValue, setBikeUsedValue] = useState<string>('');
-    const [averagePowerValue, setAveragePowerValue] = useState<string>('');
-    const [maxSpeedValue, setMaxSpeedValue] = useState<string>('');
+    const [activityName, setActivityName] = useState<string>('loading...');
+    const [startDateValue, setStartDateValue] = useState<string>('loading...');
+    const [endDateValue, setEndDateValue] = useState<string>('loading...');
+    const [movingTimeValue, setMovingTimeValue] = useState<string>('loading...');
+    const [bikeUsedValue, setBikeUsedValue] = useState<string>('loading...');
+    const [averagePowerValue, setAveragePowerValue] = useState<string>('loading...');
+    const [maxSpeedValue, setMaxSpeedValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
     const [chartData, setChartData] = useState<ChartProps>({
