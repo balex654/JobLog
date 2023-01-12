@@ -12,6 +12,8 @@ import { MovingTimeField } from "./DataFields/MovingTimeField";
 import { BikeUsedField } from "./DataFields/BikeUsedField";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { AveragePowerField } from "./DataFields/AveragePowerField";
+import Chart, { ChartProps } from "./Chart/Chart";
+import { MaxSpeedField } from "./DataFields/MaxSpeedField";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -20,14 +22,19 @@ interface ActivityProps {
 const Activity = ({storageService}: ActivityProps) => {
     const { id } = useParams();
 
-    const [activityName, setActivityName] = useState<string>('');
-    const [startDateValue, setStartDateValue] = useState<string>('');
-    const [endDateValue, setEndDateValue] = useState<string>('');
-    const [movingTimeValue, setMovingTimeValue] = useState<string>('');
-    const [bikeUsedValue, setBikeUsedValue] = useState<string>('');
-    const [averagePowerValue, setAveragePowerValue] = useState<string>('');
+    const [activityName, setActivityName] = useState<string>('loading...');
+    const [startDateValue, setStartDateValue] = useState<string>('loading...');
+    const [endDateValue, setEndDateValue] = useState<string>('loading...');
+    const [movingTimeValue, setMovingTimeValue] = useState<string>('loading...');
+    const [bikeUsedValue, setBikeUsedValue] = useState<string>('loading...');
+    const [averagePowerValue, setAveragePowerValue] = useState<string>('loading...');
+    const [maxSpeedValue, setMaxSpeedValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
+    const [chartData, setChartData] = useState<ChartProps>({
+        gpsPoints: [],
+        totalMass: 0
+    });
 
     useEffect(() => {
         let activity: ActivityResponse;
@@ -47,12 +54,17 @@ const Activity = ({storageService}: ActivityProps) => {
             dataFields.push(new EndDateField(activity, setEndDateValue));
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
+            dataFields.push(new MaxSpeedField(gpsPoints.gps_points, setMaxSpeedValue));
             const avgPowerFieldData = {
                 gpsPoints: gpsPoints.gps_points,
                 totalMass: activity.total_mass
             }
             dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
             dataFields.forEach(f => f.generateValue());
+            setChartData({
+                gpsPoints: gpsPoints.gps_points,
+                totalMass: activity.total_mass
+            });
         }
         
         init();
@@ -89,8 +101,16 @@ const Activity = ({storageService}: ActivityProps) => {
                         <p>Average power:</p>
                         <p className="data">{averagePowerValue}</p>
                     </div>
+                    <div className="data-field">
+                        <p>Max speed:</p>
+                        <p className="data">{maxSpeedValue}</p>
+                    </div>
                 </div>
             </div>
+            <Chart 
+                gpsPoints={chartData.gpsPoints} 
+                totalMass={chartData.totalMass}
+            />
         </div>
     );
 }
