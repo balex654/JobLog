@@ -14,6 +14,7 @@ import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { AveragePowerField } from "./DataFields/AveragePowerField";
 import Chart, { ChartProps } from "./Chart/Chart";
 import { MaxSpeedField } from "./DataFields/MaxSpeedField";
+import { TotalDistanceField } from "./DataFields/TotalDistanceField";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -29,6 +30,7 @@ const Activity = ({storageService}: ActivityProps) => {
     const [bikeUsedValue, setBikeUsedValue] = useState<string>('loading...');
     const [averagePowerValue, setAveragePowerValue] = useState<string>('loading...');
     const [maxSpeedValue, setMaxSpeedValue] = useState<string>('loading...');
+    const [totalDistanceValue, setTotalDistanceValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
     const [chartData, setChartData] = useState<ChartProps>({
@@ -55,6 +57,7 @@ const Activity = ({storageService}: ActivityProps) => {
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
             dataFields.push(new MaxSpeedField(gpsPoints.gps_points, setMaxSpeedValue));
+            dataFields.push(new TotalDistanceField(gpsPoints.gps_points, setTotalDistanceValue))
             const avgPowerFieldData = {
                 gpsPoints: gpsPoints.gps_points,
                 totalMass: activity.total_mass
@@ -104,6 +107,12 @@ const Activity = ({storageService}: ActivityProps) => {
                     <div className="data-field">
                         <p>Max speed:</p>
                         <p className="data">{maxSpeedValue}</p>
+                    </div>
+                </div>
+                <div className="data-field-group">
+                    <div className="data-field">
+                        <p>Total distance:</p>
+                        <p className="data">{totalDistanceValue}</p>
                     </div>
                 </div>
             </div>

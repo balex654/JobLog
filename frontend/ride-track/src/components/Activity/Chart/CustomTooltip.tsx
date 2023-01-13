@@ -2,7 +2,7 @@ import { ChartDataPoint } from "./Chart";
 import "./CustomTooltip.css";
 
 const CustomTooltip = ({...props}: any) => {
-    if (props.payload[0] === undefined) {
+    if (props.payload === null || props.payload[0] === undefined) {
         return <div></div>
     }
     
@@ -10,8 +10,11 @@ const CustomTooltip = ({...props}: any) => {
     const data = payload.payload as ChartDataPoint;
     return (
         <div className="tooltip-container">
-            <div>{`${payload.name}: ${payload.value}`}</div>
             <div>{`Distance (mi): ${data.distance}`}</div>
+            <div>{`Speed (mi/hr): ${data.speed}`}</div>
+            <div>{`Incline Angle (degrees): ${data.inclineAngle}`}</div>
+            <div>{`Altitude (ft): ${data.altitude}`}</div>
+            <div>{`Power (watts): ${data.power}`}</div>
             <div>{`Time: ${data.time}`}</div>
         </div>
     )
