@@ -27,7 +27,7 @@ function GetSineTheta(opposite: number, adjacent: number): number {
     return Math.sin(theta);
 }
 
-function GetHorizontalDistance(gpsCur: GpsPointResponse, gpsNext: GpsPointResponse): number {
+export function GetHorizontalDistance(gpsCur: GpsPointResponse, gpsNext: GpsPointResponse): number {
     const lat1 = gpsCur.latitude / (180 / Math.PI);
     const long1 = gpsCur.longitude / (180 / Math.PI);
     const lat2 = gpsNext.latitude / (180 / Math.PI);
@@ -92,4 +92,9 @@ export function GetInclineAngle(cur: GpsPointResponse, next: GpsPointResponse): 
 export function ConvertMetersToFeet(meters: number): number {
     const feet = meters * 3.28;
     return feet;
+}
+
+export function ConvertMetersToMiles(meters: number): number {
+    const miles = meters * 0.000621371;
+    return miles;
 }
