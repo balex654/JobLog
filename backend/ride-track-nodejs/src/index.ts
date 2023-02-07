@@ -2,6 +2,7 @@ import "reflect-metadata";
 import http from 'http';
 import express, { Express } from 'express';
 import routes from './routes';
+const { auth } = require('express-oauth2-jwt-bearer');
 require('dotenv').config();
 
 export const knex = require('knex')({
@@ -16,6 +17,19 @@ export const knex = require('knex')({
 });
 
 const router: Express = express();
+
+const jwtCheck = auth({
+    audience: 'https://ride-track-backend-gol2gz2rwq-uc.a.run.app',
+    issuerBaseURL: 'https://dev-2uer6jn7.us.auth0.com/',
+    tokenSigningAlg: 'RS256'
+});
+
+// enforce on all endpoints
+router.use(jwtCheck);
+
+router.get('/authorized', function (req, res) {
+    res.send('Secured Resource');
+});
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
