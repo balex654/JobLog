@@ -6,4 +6,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 8000
-CMD ["npm", "run", "start:prod"]
+CMD ["knex migrate:latest; npm run start:prod"]
