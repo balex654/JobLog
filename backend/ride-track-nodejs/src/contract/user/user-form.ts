@@ -1,4 +1,4 @@
-export interface User {
+export interface UserForm {
     first_name: String;
     last_name: String;
     weight: Number;

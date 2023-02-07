@@ -10,13 +10,8 @@ const addUser = async (req: Request, res: Response, next: NextFunction) => {
 const getUserById = async (req: Request, res: Response, next: NextFunction) => {
     let id: string = req.params.id;
     const command = new GetUserByIdCommand();
-    const user = await command.getUserById(id);
-    if (user == undefined) {
-        return res.status(404).json({
-            message: 'User not found'
-        });
-    }
-    return res.status(200).json(user);
+    const response = await command.getUserById(id);
+    return res.status(response.status).json(response.resource);
 };
 
 export default { addUser, getUserById };
