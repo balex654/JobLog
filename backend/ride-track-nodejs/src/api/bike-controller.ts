@@ -4,6 +4,8 @@ import { BikeForm } from "../contract/bike/bike-form";
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { DeleteBikeCommand } from "../application/bike/delete-bike";
 import { GetBikeByIdQuery } from "../application/bike/get-bike-by-id";
+import { EditBikeCommand } from "../application/bike/edit-bike";
+import { GetBikesQuery } from "../application/bike/get-bikes";
 
 const addBike = async (req: Request, res: Response, next: NextFunction) => {
     const userId = jwtDecode<JwtPayload>(req.headers.authorization!).sub!;
@@ -29,4 +31,20 @@ const getBikeById = async (req: Request, res: Response, next: NextFunction) => {
     return res.status(response.status).json(response.resource);
 }
 
-export default { addBike, deleteBike, getBikeById };
+const editBike = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = jwtDecode<JwtPayload>(req.headers.authorization!).sub!;
+    const bikeId = parseInt(req.params.id);
+    const bikeForm = req.body as BikeForm;
+    const command = new EditBikeCommand()
+    const response = await command.editBike(bikeForm, bikeId, userId);
+    return res.status(response.status).json(response.resource);
+}
+
+const getBikes = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = jwtDecode<JwtPayload>(req.headers.authorization!).sub!;
+    const query = new GetBikesQuery()
+    const response = await query.getBikes(userId);
+    return res.status(response.status).json(response.resource);
+}
+
+export default { addBike, deleteBike, getBikeById, editBike, getBikes };

@@ -33,4 +33,20 @@ export class BikeRepository implements IBikeRepository {
         }
         return bike;
     }
+
+    public async editBike(bike: Bike, userId: string): Promise<Bike> {
+        await knex('ride_track_app_bike')
+                .where({id: bike.id!, user_id: userId, is_deleted: false})
+                .update({name: bike.name, weight: bike.weight});
+        return bike;
+    }
+
+    public async getBikes(userId: string): Promise<Bike[]> {
+        const bikes = await knex('ride_track_app_bike')
+                        .where({user_id: userId, is_deleted: false}) as any[];
+        bikes.forEach(b => {
+            b.id = parseInt(b.id!)
+        });
+        return bikes;
+    }
 }

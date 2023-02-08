@@ -12,5 +12,7 @@ router.get('/user', userController.getUserById);
 router.post('/bike', addBikeValidator, bikeController.addBike);
 router.delete('/bike/:id', bikeController.deleteBike);
 router.get('/bike/:id', bikeController.getBikeById);
+router.put('/bike/:id', addBikeValidator, bikeController.editBike);
+router.get('/bike', bikeController.getBikes);
 
 export = router;
