@@ -8,7 +8,9 @@ const router = express.Router();
 
 router.post('/user', addUserValidator, userController.addUser);
 router.get('/user', userController.getUserById);
+
 router.post('/bike', addBikeValidator, bikeController.addBike);
 router.delete('/bike/:id', bikeController.deleteBike);
+router.get('/bike/:id', bikeController.getBikeById);
 
 export = router;

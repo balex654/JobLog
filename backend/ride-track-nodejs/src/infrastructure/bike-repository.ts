@@ -19,14 +19,18 @@ export class BikeRepository implements IBikeRepository {
 
     public async deleteBike(bikeId: number, userId: string): Promise<undefined> {
         await knex('ride_track_app_bike')
-                .where({id: bikeId, user_id: userId})
+                .where({id: bikeId, user_id: userId, is_deleted: false})
                 .update({is_deleted: true});
         return undefined;
     }
 
     public async getBikeById(bikeId: number, userId: string): Promise<Bike> {
-        return await knex('ride_track_app_bike')
-                        .where({id: bikeId, user_id: userId})
+        const bike = await knex('ride_track_app_bike')
+                        .where({id: bikeId, user_id: userId, is_deleted: false})
                         .first();
+        if (bike != undefined) {
+            bike.id = parseInt(bike.id)
+        }
+        return bike;
     }
 }
