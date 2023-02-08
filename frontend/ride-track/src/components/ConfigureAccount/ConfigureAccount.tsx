@@ -73,7 +73,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
     const handleCreate = async (e: any) => {
         e.preventDefault();
-        if (form.valid) {
+        if (form.valid || true) {
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,

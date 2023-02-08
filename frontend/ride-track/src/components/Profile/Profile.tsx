@@ -13,6 +13,7 @@ const Profile = () => {
 
     const handleLogout = (event: any) => {
         event.preventDefault();
+        localStorage.clear();
         logout({ returnTo: process.env.REACT_APP_RETURN_TO_URI });
     }
 

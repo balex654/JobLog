@@ -4,6 +4,7 @@ import express, { Express } from 'express';
 import routes from './routes';
 const { auth } = require('express-oauth2-jwt-bearer');
 require('dotenv').config();
+const cors = require('cors');
 
 export const knex = require('knex')({
     client: 'pg',
@@ -17,6 +18,9 @@ export const knex = require('knex')({
 });
 
 const router: Express = express();
+router.use(cors({
+    origin: ['http://localhost:3000', 'https://ride-track-frontend-gol2gz2rwq-uc.a.run.app']
+}));
 
 const jwtCheck = auth({
     audience: 'https://ride-track-backend-gol2gz2rwq-uc.a.run.app',
@@ -24,7 +28,6 @@ const jwtCheck = auth({
     tokenSigningAlg: 'RS256'
 });
 
-// enforce on all endpoints
 router.use(jwtCheck);
 
 router.get('/authorized', function (req, res) {
@@ -34,24 +37,7 @@ router.get('/authorized', function (req, res) {
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
-router.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
-        return res.status(200).json({});
-    }
-    next();
-});
-
 router.use('/', routes);
-
-router.use((req, res, next) => {
-    const error = new Error('not found');
-    return res.status(404).json({
-        message: error.message
-    });
-});
 
 const httpServer = http.createServer(router);
 httpServer.listen(8000, () => console.log("Server is listening"))
