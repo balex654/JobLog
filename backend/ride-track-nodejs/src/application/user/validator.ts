@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { validator } from "../validation/validate";
+import { validator, validatorCallback } from "../validation/validate";
 
 export const addUserValidator = async (req: Request, res: Response, next: NextFunction) => {
     const rules = {
@@ -9,15 +9,5 @@ export const addUserValidator = async (req: Request, res: Response, next: NextFu
         "weight": "required",
         "id": "required|max:200"
     };
-    await validator(req.body, rules, {}, (err: any, valid: any) => {
-        if (!valid) {
-            res.status(400).send({
-                message: 'Validation failure',
-                data: err
-            });
-        }
-        else {
-            next();
-        }
-    }).catch(err => console.log(err));
+    await validatorCallback(req.body, rules, res, next);
 }

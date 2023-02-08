@@ -9,7 +9,8 @@ import { ApplicationResponse, Status } from "../application-response";
 import { Error } from "../error";
 
 export class AddUserCommand {
-    @inject(TYPES.IUserRepository) private userRepository: IUserRepository = container.get<IUserRepository>(TYPES.IUserRepository);
+    @inject(TYPES.IUserRepository) private userRepository: IUserRepository = 
+        container.get<IUserRepository>(TYPES.IUserRepository);
     
     public addUser = async (userForm: UserForm): Promise<ApplicationResponse> => {
         const existingUser = await this.userRepository.getUserByEmail(userForm.email);
