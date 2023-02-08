@@ -1,7 +1,7 @@
 export interface UserForm {
-    first_name: String;
-    last_name: String;
-    weight: Number;
-    email: String;
-    id: String;
+    first_name: string;
+    last_name: string;
+    weight: number;
+    email: string;
+    id: string;
 }

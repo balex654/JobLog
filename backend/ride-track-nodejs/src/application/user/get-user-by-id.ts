@@ -6,7 +6,7 @@ import { ApplicationResponse, Status } from "../application-response";
 import { Error } from "../error";
 import { UserResponse } from "../../contract/user/user-response";
 
-export class GetUserByIdCommand {
+export class GetUserByIdQuery {
     @inject(TYPES.IUserRepository) private userRepository: IUserRepository = container.get<IUserRepository>(TYPES.IUserRepository);
     
     public getUserById = async (id: string): Promise<ApplicationResponse> => {
