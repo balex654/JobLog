@@ -13,7 +13,20 @@ export class BikeRepository implements IBikeRepository {
                                 user_id: bike.user_id,
                                 is_deleted: bike.is_deleted
                             }, ['id']);
-        bike.id = idResponse[0].id;
+        bike.id = parseInt(idResponse[0].id);
         return bike;
+    }
+
+    public async deleteBike(bikeId: number, userId: string): Promise<undefined> {
+        await knex('ride_track_app_bike')
+                .where({id: bikeId, user_id: userId})
+                .update({is_deleted: true});
+        return undefined;
+    }
+
+    public async getBikeById(bikeId: number, userId: string): Promise<Bike> {
+        return await knex('ride_track_app_bike')
+                        .where({id: bikeId, user_id: userId})
+                        .first();
     }
 }

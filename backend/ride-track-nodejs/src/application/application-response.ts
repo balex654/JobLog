@@ -2,7 +2,7 @@ import { IResource } from "../contract/iresource"
 
 export type ApplicationResponse = {
     status: Status,
-    resource: IResource
+    resource: IResource | undefined
 }
 
 export enum Status {
@@ -10,5 +10,6 @@ export enum Status {
     Created = 201,
     NotFound = 404,
     BadRequest = 400,
-    Error = 500
+    Error = 500,
+    NoContent = 204
 }
