@@ -35,7 +35,7 @@ class ConfigureAccountViewController: UIViewController {
             if isFormValid() {
                 do {
                     let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
-                    let credentials = try await credentialsManager.credentials(withScope: "offline_access")
+                    let credentials = try await credentialsManager.credentials(withScope: "read write profile email openid offline_access")
                     guard let jwt = try? decode(jwt: credentials.accessToken),
                           let id = jwt["sub"].string,
                           let email = jwt["email"].string else { return }

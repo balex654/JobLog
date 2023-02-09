@@ -32,7 +32,7 @@ class TitleViewController: UIViewController {
             do {
                 let credentials = try await Auth0.webAuth()
                     .audience("https://ride-track-backend-gol2gz2rwq-uc.a.run.app")
-                    .scope("offline_access")
+                    .scope("read write profile email openid offline_access")
                     .start()
                 let _ = credentialsManager.store(credentials: credentials)
                 await getUserAndGoToDashboard()
