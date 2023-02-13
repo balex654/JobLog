@@ -3,6 +3,8 @@ import userController from "./api/user-controller";
 import bikeController from "./api/bike-controller";
 import { addBikeValidator } from "./application/bike/validator";
 import { addUserValidator } from "./application/user/validator";
+import activityController from "./api/activity-controller";
+import { addActivityValidator } from "./application/activity/validator";
 
 const router = express.Router();
 router.use((req: Request, res: Response, next: NextFunction) => {
@@ -20,5 +22,7 @@ router.delete('/bike/:id', bikeController.deleteBike);
 router.get('/bike/:id', bikeController.getBikeById);
 router.put('/bike/:id', addBikeValidator, bikeController.editBike);
 router.get('/bike', bikeController.getBikes);
+
+router.post('/activity', addActivityValidator, activityController.addActivity);
 
 export = router;
