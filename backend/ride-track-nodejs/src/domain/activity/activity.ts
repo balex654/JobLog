@@ -6,8 +6,9 @@ export class Activity {
     public bike_id: number;
     public user_id: string;
     public total_mass: number;
+    public id?: number;
 
-    constructor(name: string, start_date: Date, end_date: Date, moving_time: number, bike_id: number, user_id: string, total_mass: number) {
+    constructor(name: string, start_date: Date, end_date: Date, moving_time: number, bike_id: number, user_id: string, total_mass: number, id?: number) {
         this.name = name;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -15,5 +16,6 @@ export class Activity {
         this.bike_id = bike_id;
         this.user_id = user_id;
         this.total_mass = total_mass;
+        this.id = id;
     }
 }

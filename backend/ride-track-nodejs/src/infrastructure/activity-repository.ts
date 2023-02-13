@@ -31,4 +31,26 @@ export class ActivityRepository implements IActivityRepository {
                 );
         return undefined;
     }
+
+    public async getActivities(userId: string): Promise<Activity[]> {
+        const activities = await knex('ride_track_app_activity')
+                            .where({user_id: userId})
+                            .orderBy('start_date', 'desc') as any[];
+        activities.forEach(a => {
+            a.id = parseInt(a.id!);
+            a.bike_id = parseInt(a.bike_id!);
+        })
+        return activities;
+    }
+
+    public async getActivityById(userId: string, activityId: number): Promise<Activity> {
+        const activity = await knex('ride_track_app_activity')
+                            .where({id: activityId, user_id: userId})
+                            .first();
+        if (activity != undefined) {
+            activity.id = parseInt(activity.id);
+            activity.bike_id = parseInt(activity.bike_id);
+        }
+        return activity;
+    }
 }
