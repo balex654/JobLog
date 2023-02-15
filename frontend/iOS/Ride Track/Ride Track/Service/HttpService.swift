@@ -13,9 +13,10 @@ class HttpService {
     static func getUserById() async -> User {
         do {
             let request = await prepareHTTPRequest(urlPath: "/user", httpMethod: "GET")
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, urlResponse) = try await URLSession.shared.data(for: request)
             let jsonData = JSON(data).dictionaryValue
-            if jsonData["error"] != nil {
+            let httpResponse = urlResponse as! HTTPURLResponse
+            if httpResponse.statusCode == 404 {
                 return User()
             }
             else {
