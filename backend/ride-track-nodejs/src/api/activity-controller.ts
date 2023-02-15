@@ -3,6 +3,7 @@ import jwtDecode, { JwtPayload } from "jwt-decode";
 import { AddActivityCommand } from "../application/activity/add-activity";
 import { GetActivitiesQuery } from "../application/activity/get-activities";
 import { GetActivityByIdQuery } from "../application/activity/get-activity-by-id";
+import { GetGpsPointsByActivityIdQuery } from "../application/gps-point/get-gps-points-by-activity-id";
 import { ActivityForm } from "../contract/activity/activity-form";
 
 const addActivity = async (req: Request, res: Response, next: NextFunction) => {
@@ -28,4 +29,12 @@ const getActivityById = async (req: Request, res: Response, next: NextFunction) 
     return res.status(response.status).json(response.resource);
 }
 
-export default { addActivity, getActivities, getActivityById };
+const getGpsPointsByActivityId = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = jwtDecode<JwtPayload>(req.headers.authorization!).sub!;
+    const activityId = parseInt(req.params.id);
+    const query = new GetGpsPointsByActivityIdQuery();
+    const response = await query.getGpsPointsByActivityId(activityId, userId);
+    return res.status(response.status).json(response.resource);
+}
+
+export default { addActivity, getActivities, getActivityById, getGpsPointsByActivityId };

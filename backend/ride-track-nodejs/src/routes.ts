@@ -26,5 +26,6 @@ router.get('/bike', bikeController.getBikes);
 router.post('/activity', addActivityValidator, activityController.addActivity);
 router.get('/activity', activityController.getActivities);
 router.get('/activity/:id', activityController.getActivityById);
+router.get('/activity/:id/gps-point', activityController.getGpsPointsByActivityId);
 
 export = router;
