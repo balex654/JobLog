@@ -25,6 +25,11 @@ export class HttpStorageService implements IStorageService  {
         return data;
     }
 
+    public async editUser(user: UserForm): Promise<UserResponse> {
+        const { data } = await axios.put(`${this.baseUrl}/user`, user)
+        return data;
+    }
+
     public async getActivities(): Promise<ActivitiesResponse> {
         const { data } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`);
         return data;

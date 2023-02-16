@@ -50,7 +50,6 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
     }, [storageService]);
 
     const handleClose = (event: any) => {
-        event.preventDefault();
         onClose();
     }
 

@@ -1,0 +1,21 @@
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color: var(--white);
+    width: 12rem;
+    height: 13rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--grey3);
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.edit-profile-input {
+    border-width: .2rem;
+    border-radius: 1rem;
+    border-color: var(--dark-grey);
+    border-style: solid;
+}

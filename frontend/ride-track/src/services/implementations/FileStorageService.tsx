@@ -13,6 +13,9 @@ import { BikeForm } from "../../model/bike/BikeForm";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    editUser(): Promise<UserResponse> {
+        throw new Error("Method not implemented.");
+    }
     addBike(bike: BikeForm): Promise<BikeResponse> {
         throw new Error("Method not implemented.");
     }

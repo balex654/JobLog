@@ -28,4 +28,15 @@ export class UserRepository implements IUserRepository {
                 });
         return user;
     }
+
+    public async editUser(user: User): Promise<User> {
+        await knex('ride_track_app_user')
+                .where({id: user.id})
+                .update({
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    weight: user.weight
+                });
+        return user;
+    }
 }
