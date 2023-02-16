@@ -16,6 +16,7 @@ router.use((req: Request, res: Response, next: NextFunction) => {
 
 router.post('/user', addUserValidator, userController.addUser);
 router.get('/user', userController.getUserById);
+router.put('/user', addUserValidator, userController.editUser);
 
 router.post('/bike', addBikeValidator, bikeController.addBike);
 router.delete('/bike/:id', bikeController.deleteBike);
