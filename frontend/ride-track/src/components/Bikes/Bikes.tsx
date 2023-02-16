@@ -198,8 +198,8 @@ export class BikeNameField extends FormField {
     private readonly lengthMessage: string = 'Bike name cannot be more than 200 characters';
 
     public validate(): void {
-        EmptyValidator(this.value, this.emptyMessage, this.errors);
-        LengthValidator(this.value, 200, this.lengthMessage, this.errors);
+        this.errors = EmptyValidator(this.value, this.emptyMessage, this.errors);
+        this.errors = LengthValidator(this.value, 200, this.lengthMessage, this.errors);
     }
 }
 
@@ -209,8 +209,8 @@ export class BikeWeightField extends FormField {
     private readonly nonNegativeMessage: string = 'Bike weight cannot be negative';
 
     public validate(): void {
-        EmptyValidator(this.value, this.emptyMessage, this.errors);
-        NonFloatValueValidator(this.value, this.nonNumberMessage, this.errors);
-        NonNegativeValidator(this.value, this.nonNegativeMessage, this.errors);
+        this.errors = EmptyValidator(this.value, this.emptyMessage, this.errors);
+        this.errors = NonFloatValueValidator(this.value, this.nonNumberMessage, this.errors);
+        this.errors = NonNegativeValidator(this.value, this.nonNegativeMessage, this.errors);
     }
 }

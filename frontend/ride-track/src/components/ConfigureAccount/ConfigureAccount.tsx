@@ -27,11 +27,11 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
     const weightFieldId = 'weight';
-    const formMap = new Map<string, FormField>();
-    formMap.set(firstNameFieldId, new FirstNameField());
-    formMap.set(lastNameFieldId, new LastNameField());
-    formMap.set(weightFieldId, new WeightField());
-    let form = new Form(formMap);
+    const [form] = useState<Form>(new Form(new Map<string, FormField>([
+        [firstNameFieldId, new FirstNameField()],
+        [lastNameFieldId, new LastNameField()],
+        [weightFieldId, new WeightField()]
+    ])));
 
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -73,7 +73,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
     const handleCreate = async (e: any) => {
         e.preventDefault();
-        if (form.valid || true) {
+        if (form.valid) {
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
@@ -130,8 +130,8 @@ class FirstNameField extends FormField {
     private readonly lengthMessage: string = 'First name cannot be more than 200 characters';
 
     public validate(): void {
-        EmptyValidator(this.value, this.emptyMessage, this.errors);
-        LengthValidator(this.value, 200, this.lengthMessage, this.errors);
+        this.errors = EmptyValidator(this.value, this.emptyMessage, this.errors);
+        this.errors = LengthValidator(this.value, 200, this.lengthMessage, this.errors);
     }
 }
 
@@ -140,8 +140,8 @@ class LastNameField extends FormField {
     private readonly lengthMessage: string = 'Last name cannot be more than 200 characters';
 
     public validate(): void {
-        EmptyValidator(this.value, this.emptyMessage, this.errors);
-        LengthValidator(this.value, 200, this.lengthMessage, this.errors);
+        this.errors = EmptyValidator(this.value, this.emptyMessage, this.errors);
+        this.errors = LengthValidator(this.value, 200, this.lengthMessage, this.errors);
    }
 }
 
@@ -150,7 +150,7 @@ class WeightField extends FormField {
     private readonly nonNumberMessage: string = 'Weight can only be a number';
 
     public validate(): void {
-        EmptyValidator(this.value, this.emptyMessage, this.errors);
-        NonFloatValueValidator(this.value, this.nonNumberMessage, this.errors);
+        this.errors = EmptyValidator(this.value, this.emptyMessage, this.errors);
+        this.errors = NonFloatValueValidator(this.value, this.nonNumberMessage, this.errors);
     }
 }
