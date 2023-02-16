@@ -56,3 +56,12 @@ button {
   --red: #ff4400;
   --orange: #ff7b00;
 }
+
+div::-webkit-scrollbar {
+  display: none;
+}
+
+div {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
