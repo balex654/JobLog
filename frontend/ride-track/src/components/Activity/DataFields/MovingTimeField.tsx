@@ -14,9 +14,17 @@ export class MovingTimeField implements DataField<ActivityResponse> {
         let remainder = this.data.moving_time
         const hours = Math.floor(remainder / 3600);
         remainder = remainder - hours * 3600;
-        const minutes = Math.floor(remainder / 60);
+        let minutes = Math.floor(remainder / 60);
         remainder = remainder - minutes * 60;
-        const seconds = Math.floor(remainder);
-        this.setValueFunction(`${hours}:${minutes}:${seconds}`);
+        let seconds = Math.floor(remainder);
+        let minutesStr = minutes.toString();
+        let secondsStr = seconds.toString();
+        if (minutes < 10) {
+            minutesStr = minutesStr.padStart(2, '0');
+        }
+        if (seconds < 10) {
+            secondsStr = secondsStr.padStart(2, '0');
+        }
+        this.setValueFunction(`${hours}:${minutesStr}:${secondsStr}`);
     }
 }

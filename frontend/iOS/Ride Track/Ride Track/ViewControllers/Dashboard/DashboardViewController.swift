@@ -103,14 +103,14 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        if manager.location!.speed > 0.0 {
+        if manager.location!.speed > 0.2 {
             stopwatch.start()
             let gpsPoint = GpsPoint(context: context!)
             gpsPoint.date = Date().dateToString(date: manager.location!.timestamp, format: "yyyy-MM-dd'T'HH:mm:ss.SSS")
             gpsPoint.speed = manager.location!.speed
             gpsPoint.altitude = manager.location!.altitude
             gpsPoint.latitude = locValue.latitude
-            gpsPoint.longitude = locValue.latitude
+            gpsPoint.longitude = locValue.longitude
             gpsPoint.gpsPointRelation = currentActivity
         }
         else {
