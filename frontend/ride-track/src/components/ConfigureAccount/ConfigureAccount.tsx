@@ -125,7 +125,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
 export default ConfigureAccount;
 
-class FirstNameField extends FormField {
+export class FirstNameField extends FormField {
     private readonly emptyMessage: string = 'First name cannot be empty';
     private readonly lengthMessage: string = 'First name cannot be more than 200 characters';
 
@@ -135,7 +135,7 @@ class FirstNameField extends FormField {
     }
 }
 
-class LastNameField extends FormField {
+export class LastNameField extends FormField {
     private readonly emptyMessage: string = 'Last name cannot be empty';
     private readonly lengthMessage: string = 'Last name cannot be more than 200 characters';
 
@@ -145,7 +145,7 @@ class LastNameField extends FormField {
    }
 }
 
-class WeightField extends FormField {
+export class WeightField extends FormField {
     private readonly emptyMessage: string = 'Weight cannot be empty';
     private readonly nonNumberMessage: string = 'Weight can only be a number';
 

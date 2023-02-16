@@ -10,6 +10,7 @@ import { UserResponse } from "../model/user/UserResponse";
 export interface IStorageService {
     createUser(user: UserForm): Promise<UserResponse>;
     getUserById(): Promise<UserResponse>;
+    editUser(user: UserForm): Promise<UserResponse>;
     getActivities(): Promise<ActivitiesResponse>;
     getActivityById(activityId: string): Promise<ActivityResponse>;
     getBikeById(bikeId: string): Promise<BikeResponse>;
