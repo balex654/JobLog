@@ -1,87 +1,97 @@
-export function EmptyValidator(value: string, message: string, errors: string[]): void {
+export function EmptyValidator(value: string, message: string, errors: string[]): string[] {
     if (value === '') {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
     else {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
 }
 
-export function LengthValidator(value: string, length: number, message: string, errors: string[]): void {
+export function LengthValidator(value: string, length: number, message: string, errors: string[]): string[] {
     if (value.length > length) {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
     else {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
 }
 
-export function NonNegativeValidator(value: string, message: string, errors: string[]): void {
+export function NonNegativeValidator(value: string, message: string, errors: string[]): string[] {
     const numValue = Number.isNaN(parseInt(value)) ? 0 : parseInt(value);
     if (numValue < 0) {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
     else {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
 }
 
-export function MatchValidator(value1: string, value2: string, message: string, errors: string[]) {
+export function MatchValidator(value1: string, value2: string, message: string, errors: string[]): string[] {
     if (value1 !== value2) {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
     else {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
 }
 
-export function MinLengthValidator(value: string, length: number, message: string, errors: string[]): void {
+export function MinLengthValidator(value: string, length: number, message: string, errors: string[]): string[] {
     if (value.length < length) {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
     else {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
 }
 
-export function SpecialCharsValidator(value: string, message: string, errors: string[]): void {
+export function SpecialCharsValidator(value: string, message: string, errors: string[]): string[] {
     const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
     if (specialChars.test(value)) {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
     else {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
 }
 
-export function CapitalLettersValidator(value: string, message: string, errors: string[]): void {
+export function CapitalLettersValidator(value: string, message: string, errors: string[]): string[] {
     const capitalLetter = /[A-Z]/;
     if (capitalLetter.test(value)) {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
     else {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
 }
 
-export function NonFloatValueValidator(value: string, message: string, errors: string[]): void {
+export function NonFloatValueValidator(value: string, message: string, errors: string[]): string[] {
     const floatValue = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
     if (floatValue.test(value)) {
-        RemoveFromList(message, errors);
+        return RemoveFromList(message, errors);
     }
     else {
-        AddToList(message, errors);
+        return AddToList(message, errors);
     }
 }
 
-function AddToList(message: string, list: string[]): void {
+function AddToList(message: string, list: string[]): string[] {
     if (!list.includes(message)) {
         list.push(message);
     }
+    return list;
 }
 
-function RemoveFromList(message: string, list: string[]): void {
+function RemoveFromList(message: string, list: string[]): string[] {
     if (list.includes(message)) {
-        list = list.filter(e => e === message);
+        let newList: string[] = [];
+        list.forEach(e => {
+            if (e !== message) {
+                newList.push(e);
+            }
+        });
+        return newList;
+    }
+    else {
+        return list;
     }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form } from "../../../common/Form";
 import { FormField } from "../../../common/FormField";
 import { BikeForm } from "../../../model/bike/BikeForm";
@@ -15,17 +15,12 @@ interface AddBikeProps {
 const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) => {
     const [nameValue, setNameValue] = useState<string>('');
     const [weightValue, setWeightValue] = useState<string>('');
-    const [form, setForm] = useState<Form>(new Form(new Map<string, FormField>()));
-
     const nameFieldId = 'name';
     const weightFieldId = 'weight';
-
-    useEffect(() => {
-        const formMap = new Map<string, FormField>();
-        formMap.set(nameFieldId, new BikeNameField());
-        formMap.set(weightFieldId, new BikeWeightField());
-        setForm(new Form(formMap));
-    }, []);
+    const [form] = useState<Form>(new Form(new Map<string, FormField>([
+        [nameFieldId, new BikeNameField()],
+        [weightFieldId, new BikeWeightField()]
+    ])));
 
     const handleCancel = () => {
         cancelAction(false);
