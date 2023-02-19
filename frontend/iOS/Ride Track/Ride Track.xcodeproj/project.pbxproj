@@ -16,6 +16,7 @@
 		3D06DEAC28F7662B007C77FD /* Ride_Track.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DEAA28F7662B007C77FD /* Ride_Track.xcdatamodeld */; };
 		3D06DEAE28F76631007C77FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D06DEAD28F76631007C77FD /* Assets.xcassets */; };
 		3D06DEB128F76631007C77FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D06DEAF28F76631007C77FD /* LaunchScreen.storyboard */; };
+		3D4AF847299EEB0C00E16F1C /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4AF846299EEB0C00E16F1C /* Util.swift */; };
 		3D4D73F22906FBBE00953417 /* ViewActivitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D73F12906FBBD00953417 /* ViewActivitesTableViewCell.swift */; };
 		3D4D73F529072D5700953417 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D73F429072D5700953417 /* Stopwatch.swift */; };
 		3DA52A99290C4FE600E19486 /* BikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA52A98290C4FE600E19486 /* BikesViewController.swift */; };
@@ -48,6 +49,7 @@
 		3D06DEAD28F76631007C77FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D06DEB028F76631007C77FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D06DEB228F76631007C77FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D4AF846299EEB0C00E16F1C /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		3D4D73F12906FBBD00953417 /* ViewActivitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitesTableViewCell.swift; sourceTree = "<group>"; };
 		3D4D73F429072D5700953417 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		3DA52A98290C4FE600E19486 /* BikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				3D4D73F429072D5700953417 /* Stopwatch.swift */,
 				3DD430E62911AE21006424C9 /* Errors.swift */,
+				3D4AF846299EEB0C00E16F1C /* Util.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				3DC4CCE12901F5B80033B278 /* User.swift in Sources */,
 				3DD430E72911AE21006424C9 /* Errors.swift in Sources */,
 				3D00BD3629034FA40052BE82 /* ViewActivitiesViewController.swift in Sources */,
+				3D4AF847299EEB0C00E16F1C /* Util.swift in Sources */,
 				3DA52A9B290C506A00E19486 /* BikesTableViewCell.swift in Sources */,
 				3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */,
 			);

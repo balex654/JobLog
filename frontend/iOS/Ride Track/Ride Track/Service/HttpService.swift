@@ -129,6 +129,23 @@ class HttpService {
         }
     }
     
+    static func editBike(bike: Bike) async {
+        do {
+            var request = await prepareHTTPRequest(urlPath: "/bike/\(bike.id)", httpMethod: "PUT")
+            let bikeDict: [String: Any] = [
+                "name": bike.name,
+                "weight": bike.weight,
+            ]
+            let bikeData = try JSONSerialization.data(withJSONObject: bikeDict)
+            request.httpBody = bikeData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let (_, _) = try await URLSession.shared.data(for: request)
+        }
+        catch {
+            print("edit bike error")
+        }
+    }
+    
     private static func prepareHTTPRequest(urlPath: String, httpMethod: String) async ->  URLRequest {
         let urlStr = Variables.baseUrl + urlPath
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
