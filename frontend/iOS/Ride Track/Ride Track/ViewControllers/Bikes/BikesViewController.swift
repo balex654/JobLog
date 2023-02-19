@@ -9,6 +9,7 @@ import UIKit
 
 class BikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var bikesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,6 +52,16 @@ class BikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         else {
             editBike(bike: bike)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        Task {
+            let bike = bikes[indexPath.row]
+            bikes.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            await HttpService.deleteBike(bike: bike)
+            self.getBikes()
         }
     }
     
@@ -116,5 +127,10 @@ class BikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return false
         }
         return true
+    }
+    
+    @IBAction func editButton(_ sender: Any) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        editButton.title = tableView.isEditing ? "Done" : "Edit"
     }
 }

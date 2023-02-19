@@ -146,6 +146,16 @@ class HttpService {
         }
     }
     
+    static func deleteBike(bike: Bike) async {
+        do {
+            let request = await prepareHTTPRequest(urlPath: "/bike/\(bike.id)", httpMethod: "DELETE")
+            let (_, _) = try await URLSession.shared.data(for: request)
+        }
+        catch {
+            print("delete bike error")
+        }
+    }
+    
     private static func prepareHTTPRequest(urlPath: String, httpMethod: String) async ->  URLRequest {
         let urlStr = Variables.baseUrl + urlPath
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
