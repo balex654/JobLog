@@ -12,11 +12,12 @@
     display: flex;
     text-decoration: none;
     color: var(--white);
-    font-family: 'Inter';
+    font-family: 'Oswald';
     font-size: 1.5rem;
+    line-height: 1.8rem;
     height: 2rem;
     margin: .5rem;
-    background-color: var(--orange);
+    background-color: var(--green);
     justify-content: center;
     border-radius: .5rem;
 }
@@ -38,5 +39,5 @@
     margin-bottom: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    min-height: 2rem;
+    min-height: 2.2rem;
 }

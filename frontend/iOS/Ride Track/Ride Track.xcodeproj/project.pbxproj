@@ -22,6 +22,12 @@
 		3DA52A99290C4FE600E19486 /* BikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA52A98290C4FE600E19486 /* BikesViewController.swift */; };
 		3DA52A9B290C506A00E19486 /* BikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA52A9A290C506A00E19486 /* BikesTableViewCell.swift */; };
 		3DA52A9D290C549E00E19486 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA52A9C290C549E00E19486 /* Bike.swift */; };
+		3DA60AF029A547C900CC30FE /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD8129A546400052B96F /* Oswald-Light.ttf */; };
+		3DA60AF129A547CD00CC30FE /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD8229A546400052B96F /* Oswald-ExtraLight.ttf */; };
+		3DA60AF229A547D100CC30FE /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD7E29A5463F0052B96F /* Oswald-Bold.ttf */; };
+		3DA60AF329A547D300CC30FE /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD7D29A5463F0052B96F /* Oswald-Medium.ttf */; };
+		3DA60AF429A547D600CC30FE /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD8029A5463F0052B96F /* Oswald-Regular.ttf */; };
+		3DA60AF529A547D900CC30FE /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D54FD7F29A5463F0052B96F /* Oswald-SemiBold.ttf */; };
 		3DA6288A28FEFE1E0017B815 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288928FEFE1D0017B815 /* TitleViewController.swift */; };
 		3DA6288E28FF025D0017B815 /* ConfigureAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288D28FF025D0017B815 /* ConfigureAccountViewController.swift */; };
 		3DA6289028FF026E0017B815 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6288F28FF026E0017B815 /* DashboardViewController.swift */; };
@@ -52,6 +58,12 @@
 		3D4AF846299EEB0C00E16F1C /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		3D4D73F12906FBBD00953417 /* ViewActivitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitesTableViewCell.swift; sourceTree = "<group>"; };
 		3D4D73F429072D5700953417 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		3D54FD7D29A5463F0052B96F /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Medium.ttf"; sourceTree = "<group>"; };
+		3D54FD7E29A5463F0052B96F /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
+		3D54FD7F29A5463F0052B96F /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
+		3D54FD8029A5463F0052B96F /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		3D54FD8129A546400052B96F /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
+		3D54FD8229A546400052B96F /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
 		3DA52A98290C4FE600E19486 /* BikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesViewController.swift; sourceTree = "<group>"; };
 		3DA52A9A290C506A00E19486 /* BikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesTableViewCell.swift; sourceTree = "<group>"; };
 		3DA52A9C290C549E00E19486 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
@@ -121,6 +133,7 @@
 		3D06DEA028F7662B007C77FD /* Ride Track */ = {
 			isa = PBXGroup;
 			children = (
+				3D54FD7429A545D40052B96F /* Fonts */,
 				3D4D73F329072D4700953417 /* Util */,
 				3D00BD19290334C80052BE82 /* DataPersistence */,
 				3DC4CCDF2901F5A90033B278 /* Model */,
@@ -146,6 +159,19 @@
 				3D4AF846299EEB0C00E16F1C /* Util.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		3D54FD7429A545D40052B96F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3D54FD7E29A5463F0052B96F /* Oswald-Bold.ttf */,
+				3D54FD8229A546400052B96F /* Oswald-ExtraLight.ttf */,
+				3D54FD8129A546400052B96F /* Oswald-Light.ttf */,
+				3D54FD7D29A5463F0052B96F /* Oswald-Medium.ttf */,
+				3D54FD8029A5463F0052B96F /* Oswald-Regular.ttf */,
+				3D54FD7F29A5463F0052B96F /* Oswald-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		3DA52A95290C4F7000E19486 /* Bikes */ = {
@@ -280,8 +306,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D06DEB128F76631007C77FD /* LaunchScreen.storyboard in Resources */,
+				3DA60AF529A547D900CC30FE /* Oswald-SemiBold.ttf in Resources */,
+				3DA60AF429A547D600CC30FE /* Oswald-Regular.ttf in Resources */,
+				3DA60AF029A547C900CC30FE /* Oswald-Light.ttf in Resources */,
+				3DA60AF129A547CD00CC30FE /* Oswald-ExtraLight.ttf in Resources */,
 				3D06DEAE28F76631007C77FD /* Assets.xcassets in Resources */,
 				3D06DEA928F7662B007C77FD /* Main.storyboard in Resources */,
+				3DA60AF329A547D300CC30FE /* Oswald-Medium.ttf in Resources */,
+				3DA60AF229A547D100CC30FE /* Oswald-Bold.ttf in Resources */,
 				3DECAD6E28FB4FF30063339C /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

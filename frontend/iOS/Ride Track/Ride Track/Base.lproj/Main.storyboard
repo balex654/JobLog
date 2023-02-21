@@ -7,6 +7,17 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Oswald-Bold.ttf">
+            <string>Oswald-Bold</string>
+        </array>
+        <array key="Oswald-Medium.ttf">
+            <string>Oswald-Medium</string>
+        </array>
+        <array key="Oswald-SemiBold.ttf">
+            <string>Oswald-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Title View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -17,19 +28,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ride Track" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZD-5X-aJM">
-                                <rect key="frame" x="0.0" y="247.00000000000003" width="390" height="38.333333333333343"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.35686274509803922" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="246.99999999999997" width="390" height="47.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Oswald-SemiBold" family="Oswald" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.27843137254901962" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eY-ZAt">
                                 <rect key="frame" x="91" y="405" width="208" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.62352941176470589" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Login or Create Account">
-                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
+                                <color key="backgroundColor" red="0.0" green="0.80784313725490198" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Login or Create Account">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="LoginOrCreateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AzB-o3-zmo"/>
                                 </connections>
@@ -60,13 +72,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configure Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcU-gP-NGU">
-                                <rect key="frame" x="0.0" y="97" width="390" height="39"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.35686274509999999" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="97" width="390" height="47.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Oswald-SemiBold" family="Oswald" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xvx-ah-oEb">
-                                <rect key="frame" x="20" y="156" width="350" height="35"/>
+                                <rect key="frame" x="20" y="164.66666666666666" width="350" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Qk6-TC-u3a"/>
                                 </constraints>
@@ -74,7 +86,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HIY-Ol-WOg">
-                                <rect key="frame" x="20" y="201" width="350" height="35"/>
+                                <rect key="frame" x="20" y="209.66666666666666" width="350" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="HL2-s1-VxN"/>
                                 </constraints>
@@ -82,22 +94,23 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ab-eV-cFh">
-                                <rect key="frame" x="151.66666666666666" y="291" width="87" height="35"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.62352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="151.66666666666666" y="299.66666666666669" width="87" height="41"/>
+                                <color key="backgroundColor" red="0.0" green="0.80784313725490198" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="Dbo-d8-4Dl"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Register">
-                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="19"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="LoginOrCreateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pCH-yf-sGD"/>
                                     <action selector="RegisterAction:" destination="Kmr-nX-ceS" eventType="touchUpInside" id="ey5-Ro-2ks"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight (kg)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rml-p9-PAI">
-                                <rect key="frame" x="20" y="246" width="350" height="35"/>
+                                <rect key="frame" x="20" y="254.66666666666663" width="350" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="uUh-hw-wqI"/>
                                 </constraints>
@@ -145,44 +158,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axx-Bb-Zi7">
-                                <rect key="frame" x="156" y="504.66666666666674" width="78" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <rect key="frame" x="170.66666666666666" y="502.66666666666674" width="49" height="39"/>
+                                <fontDescription key="fontDescription" name="Oswald-SemiBold" family="Oswald" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="LogoutAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="2RJ-d6-QiE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxe-ax-LhI">
-                                <rect key="frame" x="134" y="304.66666666666669" width="122" height="35"/>
+                                <rect key="frame" x="135" y="301.66666666666669" width="120" height="41"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start Activity">
-                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="mDA-ux-pfm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="19"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Start Activity">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="StartStopAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="Ds9-lV-cpr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asR-ld-A0c">
-                                <rect key="frame" x="127.66666666666669" y="404.66666666666669" width="135" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="View Activities"/>
+                                <rect key="frame" x="144" y="402.66666666666669" width="102" height="39"/>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="View Activities">
+                                    <color key="titleColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="TUQ-G2-E4c" kind="show" id="Tgb-sZ-HWE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I7-es-mOM">
-                                <rect key="frame" x="142" y="354.66666666666669" width="106" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="View Bikes"/>
+                                <rect key="frame" x="157" y="352.66666666666669" width="76" height="39"/>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="View Bikes">
+                                    <color key="titleColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="fEr-R1-hqY" kind="show" id="rDO-o3-kba"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVS-7J-YVf">
-                                <rect key="frame" x="142" y="454.66666666666669" width="106" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Edit Profile"/>
+                                <rect key="frame" x="156" y="452.66666666666669" width="78" height="39"/>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Edit Profile">
+                                    <color key="titleColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="EditProfileAction:" destination="dHy-Ba-mCs" eventType="touchUpInside" id="NPA-On-sZU"/>
                                 </connections>
@@ -226,16 +255,16 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bikesTableViewCell" id="xYd-XX-5Yu" customClass="BikesTableViewCell" customModule="Ride_Track" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="49.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xYd-XX-5Yu" id="M8Q-ft-sbL">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="49.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bike" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ban-JA-1W9">
-                                                    <rect key="frame" x="20" y="11" width="350" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="350" height="27.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -257,16 +286,16 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bikes Added" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-KL-yTn">
-                                <rect key="frame" x="144.33333333333334" y="47" width="101.33333333333334" height="21"/>
+                                <rect key="frame" x="149.33333333333334" y="47" width="91.333333333333343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="z6G-Zl-agw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="3b8-ig-PJa">
-                                <rect key="frame" x="-1" y="708" width="391" height="45"/>
+                                <rect key="frame" x="-2" y="708" width="392" height="45"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Item" image="plus" catalog="system" id="pbY-gP-YGC">
@@ -317,16 +346,16 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="viewActivitiesTableViewCell" id="Ivh-Ze-6Wb" customClass="ViewActivitesTableViewCell" customModule="Ride_Track" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="49.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ivh-Ze-6Wb" id="g4n-kN-WSx">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="49.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-zt-6rW">
-                                                    <rect key="frame" x="20" y="10.999999999999998" width="350" height="21.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="350" height="27.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.2784313725" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
