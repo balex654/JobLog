@@ -55,6 +55,26 @@ class HttpService {
         }
     }
     
+    static func editUser(user: User) async {
+        do {
+            var request = await prepareHTTPRequest(urlPath: "/user", httpMethod: "PUT")
+            let userDict: [String: Any] = [
+                "id": user.id,
+                "first_name": user.firstName,
+                "last_name": user.lastName,
+                "email": user.email,
+                "weight": user.weight
+            ]
+            let userData = try JSONSerialization.data(withJSONObject: userDict)
+            request.httpBody = userData
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let (_, _) = try await URLSession.shared.data(for: request)
+        }
+        catch {
+            print("Edit user error")
+        }
+    }
+    
     static func createActivity(activity: Activity) async throws {
         do {
             var request = await prepareHTTPRequest(urlPath: "/activity", httpMethod: "POST")
