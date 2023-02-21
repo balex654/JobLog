@@ -60,20 +60,14 @@ class ConfigureAccountViewController: UIViewController {
     
     func isFormValid() -> Bool {
         if FirstNameInput.text == "" || LastNameInput.text == "" || WeightInput.text == "" {
-            makeAlert(message: "A field is empty")
+            Util.MakeAlert(message: "A field is empty", vc: self)
             return false
         }
         if FirstNameInput.text!.count > 200 || LastNameInput.text!.count > 200 {
-            makeAlert(message: "Input can't be greater than 200 characters")
+            Util.MakeAlert(message: "Input can't be greater than 200 characters", vc: self)
             return false
         }
         
         return true
-    }
-    
-    func makeAlert(message: String) {
-        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        self.present(alert, animated: true, completion: nil)
     }
 }

@@ -118,6 +118,50 @@ class DashboardViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func EditProfileAction(_ sender: Any) {
+        Task {
+            let user = await HttpService.getUserById()
+            let alert = UIAlertController(title: "Edit Profile", message: "First Name, Last Name, Weight (kg)", preferredStyle: .alert)
+            alert.addTextField{ (UITextField) in UITextField.text = user.firstName }
+            alert.addTextField{ (UITextField) in UITextField.text = user.lastName }
+            alert.addTextField{ (UITextField) in
+                UITextField.text = String(user.weight)
+                UITextField.keyboardType = .decimalPad
+            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+                let firstName = alert.textFields![0] as UITextField
+                let lastName = alert.textFields![1] as UITextField
+                let weight = alert.textFields![2] as UITextField
+                if self.isFormValid(firstName: firstName.text!, lastName: lastName.text!, weight: weight.text!) {
+                    user.firstName = firstName.text!
+                    user.lastName = lastName.text!
+                    user.weight = Double(weight.text!)!
+                    Task {
+                        await HttpService.editUser(user: user)
+                    }
+                }
+            }))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func isFormValid(firstName: String, lastName: String, weight: String) -> Bool {
+        if firstName == "" || lastName == "" || weight == "" {
+            Util.MakeAlert(message: "A field is empty", vc: self)
+            return false
+        }
+        if firstName.count > 200 || lastName.count > 200 {
+            Util.MakeAlert(message: "Input can't be greater than 200 characters", vc: self)
+            return false
+        }
+        if Double(weight) == nil {
+            Util.MakeAlert(message: "Weight must be a number", vc: self)
+            return false
+        }
+        return true
+    }
+    
     @IBAction func LogoutAction(_ sender: Any) {
         Task {
             do {
