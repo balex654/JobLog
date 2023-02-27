@@ -16,7 +16,9 @@ root.render(
       useRefreshTokens={true}
       useRefreshTokensFallback={false}
       authorizationParams={{
-        redirect_uri:"com.benalexander.Ride-Track://dev-2uer6jn7.us.auth0.com/capacitor/com.benalexander.Ride-Track/callback"
+        audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
+        redirect_uri:"com.benalexander.Ride-Track://dev-2uer6jn7.us.auth0.com/capacitor/com.benalexander.Ride-Track/callback",
+        scope:"read write profile email openid offline_access"
       }}
     >
       <App />
