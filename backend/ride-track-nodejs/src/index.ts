@@ -19,7 +19,7 @@ export const knex = require('knex')({
 
 const router: Express = express();
 router.use(cors({
-    origin: ['http://localhost:3000', 'https://ride-track-frontend-gol2gz2rwq-uc.a.run.app']
+    origin: ['http://localhost:3000', 'https://ride-track-frontend-gol2gz2rwq-uc.a.run.app', 'capacitor://localhost']
 }));
 
 const jwtCheck = auth({

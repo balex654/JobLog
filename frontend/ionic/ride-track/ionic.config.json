@@ -1,0 +1,7 @@
+{
+  "name": "Ride Track",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -4,6 +4,7 @@
     align-items: center;
     padding-top: 10rem;
     justify-content: flex-start;
+    gap: 1rem;
 }
 
 .form {
@@ -20,6 +21,7 @@
     border-radius: 2rem;
     border-width: 0;
     padding-left: 1rem;
+    background-color: var(--light-grey);
 }
 
 .input-container {
@@ -32,7 +34,7 @@
 
 .create-button {
     height: 2rem;
-    width: 5rem;
+    width: 6rem;
     border-radius: 2rem;
     border-width: 0;
     background-color: var(--green);
@@ -45,7 +47,6 @@
     align-items: center;
     height: 5rem;
     justify-content: space-between;
-    margin-top: 1rem;
 }
 
 .error {

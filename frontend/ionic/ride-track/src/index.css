@@ -1,0 +1,36 @@
+p {
+    font-family: "Oswald";
+    color: var(--blue);
+}
+
+button {
+    height: 2rem;
+    border-radius: 2rem;
+    border-width: 0;
+    background-color: var(--green);
+    color: var(--white);
+    font-family: "Oswald";
+    font-size: 1rem;
+    line-height: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 2rem;
+}
+
+:root {
+    --light-grey: #f2f2f2;
+    --dark-grey: #343434;
+    --grey3: #9f9f9f;
+    --blue: #00478a;
+    --green: #00ce15;
+    --white: white;
+    --yellow: #CC9F00;
+    --red: #ff4400;
+    --orange: #ff7b00;
+}
