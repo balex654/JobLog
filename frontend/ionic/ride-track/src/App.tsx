@@ -29,11 +29,11 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Title from './components/title/Title';
 import { useEffect } from 'react';
-import RideTrack from './components/RideTrack';
 import ConfigureAccount from './components/configure-account/ConfigureAccount';
 import axios from "axios";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import { Storage, Drivers } from "@ionic/storage";
+import TabView from './components/TabView';
 
 setupIonicReact();
 
@@ -89,7 +89,7 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/" component={Title}/>
-          <Route path="/ride-track" component={RideTrack}/>
+          <Route path="/tab-view" component={TabView}/>
           <Route path="/configure-account" component={ConfigureAccount}/>
         </IonRouterOutlet>
       </IonReactRouter>

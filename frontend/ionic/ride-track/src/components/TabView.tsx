@@ -7,7 +7,7 @@ import Tab3 from "../pages/Tab3"
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from "react";
 
-const RideTrack = () => {
+const TabView = () => {
     const { user } = useAuth0();
 
     useEffect(() => {
@@ -48,4 +48,4 @@ const RideTrack = () => {
     )
 }
 
-export default RideTrack;
+export default TabView;

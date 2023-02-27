@@ -17,7 +17,7 @@ const Title = () => {
             if (!isLoading && isAuthenticated) {
                 const response = await storageService.getUserById();
                 if (response.status === Status.Ok) {
-                    history.push('/ride-track');
+                    history.push('/tab-view');
                 }
                 else if (response.status === Status.NotFound){
                     history.push('/configure-account');
