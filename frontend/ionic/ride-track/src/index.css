@@ -34,3 +34,8 @@ button {
     --red: #ff4400;
     --orange: #ff7b00;
 }
+
+ion-title {
+    font-family: "Oswald";
+    color: var(--blue);
+}
