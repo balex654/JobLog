@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Status, StorageResponse } from "../model/StorageResponse";
+import { StorageResponse } from "../model/StorageResponse";
 import { UserForm } from "../model/user/UserForm";
 import { UserResponse } from "../model/user/UserResponse";
 

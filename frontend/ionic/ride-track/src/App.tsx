@@ -75,7 +75,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     CapApp.addListener('appUrlOpen', async ({ url }) => {
-      if (url.includes('state') && (url.includes('code')) || url.includes('error')) {
+      if ((url.includes('state') && (url.includes('code'))) || url.includes('error')) {
         await handleRedirectCallback(url);
       }
 

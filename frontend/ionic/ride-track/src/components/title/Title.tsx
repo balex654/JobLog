@@ -8,11 +8,11 @@ import { HttpStorageService } from "../../services/HttpStorageService";
 import { Status } from "../../model/StorageResponse";
 
 const Title = () => {
-    const storageService = new HttpStorageService();
     const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
     const history = useHistory();
 
     useEffect(() => {
+        const storageService = new HttpStorageService();
         const init = async () => {
             if (!isLoading && isAuthenticated) {
                 const response = await storageService.getUserById();
