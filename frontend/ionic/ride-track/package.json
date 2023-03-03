@@ -5,6 +5,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
     "@awesome-cordova-plugins/http": "^6.3.0",
+    "@capacitor-community/background-geolocation": "^1.2.12",
     "@capacitor-community/sqlite": "^4.6.3-1",
     "@capacitor/app": "^4.1.1",
     "@capacitor/browser": "^4.1.1",
@@ -15,6 +16,7 @@
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
     "@ionic-native/background-geolocation": "^5.36.0",
+    "@ionic-native/core": "^5.36.0",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
     "@ionic/storage": "^3.0.6",

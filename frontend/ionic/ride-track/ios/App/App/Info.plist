@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location needed for activity tracking</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Motion needed for activity tracking</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -58,10 +54,15 @@
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location needed for activity tracking</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location needed for activity tracking</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location needed for activity tracking</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion needed for activity tracking</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 		<string>processing</string>
 	</array>

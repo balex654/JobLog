@@ -1,7 +1,7 @@
-export interface Activity {
+export class Activity {
     id?: number;
-    movingTime?: number;
-    name?: string;
-    startDate: Date;
-    endDate?: Date;
+    movingTime: number = 0;
+    name: string = "default";
+    startDate: Date = new Date();
+    endDate: Date = new Date();
 }

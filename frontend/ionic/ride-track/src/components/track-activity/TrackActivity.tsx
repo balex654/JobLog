@@ -1,28 +1,23 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import { useEffect, useState } from "react";
 import "./TrackActivity.css";
-import { Geolocation } from '@capacitor/geolocation';
 import { Stopwatch } from "../../common/Stopwatch";
-import { sqlite } from "../../App";
-import { 
-    BackgroundGeolocation, 
-    BackgroundGeolocationConfig, 
-    BackgroundGeolocationEvents,
-    BackgroundGeolocationResponse } from "@ionic-native/background-geolocation";
 import { DatabaseService } from "../../services/database/DatabaseService";
 import { Activity } from "../../model/sqlite/Activity";
+import {registerPlugin} from "@capacitor/core";
+import { BackgroundGeolocationPlugin } from "@capacitor-community/background-geolocation";
+const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation")
 
 const TrackActivity = () => {
     const [activityStarted, setActivityStarted] = useState<boolean>(false)
     const [watchId, setWatchId] = useState<string>("");
     const [stopwatch] = useState<Stopwatch>(new Stopwatch);
-    const [startDate, setStartDate] = useState<Date>(new Date());
     const [dbService, setDbService] = useState<DatabaseService>(new DatabaseService());
     const [currentActivity, setCurrentActivity] = useState<Activity>();
 
     useEffect(() => {
         setDbService(new DatabaseService());
-    });
+    }, []);
 
     const handleTrackActivity = async () => {
         if (activityStarted) {
@@ -33,53 +28,59 @@ const TrackActivity = () => {
         }
     }
 
+    const handleDelete = async () => {
+        await dbService.TestDelete();
+    }
+
+    const handleLogData = async () => {
+        const data = await dbService.TestGetData();
+        data.forEach(d => {
+            console.log(data);
+        });
+    }
+
+    const handleLogActivities = async () => {
+        const data = await dbService.TestGetActivities();
+        data.forEach(d => {
+            console.log(data);
+        });
+    }
+
     const startActivity = async () => {
         stopwatch.reset();
         stopwatch.start();
-        setStartDate(new Date());
         setActivityStarted(true);
-        const activity = await dbService.AddActivity({
-            startDate: startDate
-        });
+        const a = new Activity();
+        a.startDate = new Date();
+        const activity = await dbService.AddActivity(a);
         setCurrentActivity(activity);
-        await watchPosition();
-        /*const config: BackgroundGeolocationConfig = {
-            desiredAccuracy: 1
-        }
-        BackgroundGeolocation.start();
-        BackgroundGeolocation.configure(config).then(() => {
-            BackgroundGeolocation.on(BackgroundGeolocationEvents.location)
-                .subscribe((location: BackgroundGeolocationResponse) => {
-                    console.log(location.altitude);
-                    BackgroundGeolocation.finish();
-                });
-        })*/
+        await watchPosition(activity);
     }
 
     const stopActivity = () => {
         stopwatch.stop();
         setActivityStarted(false);
-        Geolocation.clearWatch({
-            id: watchId
-        });
+        BackgroundGeolocation.removeWatcher({ id: watchId });
     }
 
-    const watchPosition = async () => {
-        const id = await Geolocation.watchPosition({}, (position, error) => {
-            if (position!.coords.speed! > 0.0) {
+    const watchPosition = async (activity: Activity) => {
+        const id = await BackgroundGeolocation.addWatcher({}, async (position: any, error: any) => {
+            if (position.speed! > 0.0 || true) {
+                console.log(activity);
                 stopwatch.start();
-                dbService.AddGpsPoint({
-                    activityId: currentActivity!.id!,
-                    altitude: position!.coords.altitude!,
-                    latitude: position!.coords.latitude!,
-                    longitude: position!.coords.latitude!,
-                    speed: position!.coords.speed!,
-                    date: new Date(position!.timestamp)
+                await dbService.AddGpsPoint({
+                    activityId: activity.id!,
+                    altitude: position.altitude,
+                    latitude: position.latitude,
+                    longitude: position.longitude,
+                    speed: position.speed,
+                    date: new Date(position.time)
                 });
             }
             else {
                 stopwatch.stop();
             }
+
         });
         setWatchId(id);
     }
@@ -105,6 +106,9 @@ const TrackActivity = () => {
                     <button onClick={handleTrackActivity} className={activityStarted ? "red-button" : ""}>
                         {activityStarted ? "Stop Activity": "Start Activity"}
                     </button>
+                    <button onClick={handleDelete}>Delete Data</button>
+                    <button onClick={handleLogData}>Log data</button>
+                    <button onClick={handleLogActivities}>Log activities</button>
                 </div>
             </IonContent>
         </IonPage>
