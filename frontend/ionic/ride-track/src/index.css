@@ -16,6 +16,17 @@ button {
     padding-right: 1rem;
 }
 
+.button-grey {
+    background-color: var(--light-grey);
+    color: black;
+}
+
+input {
+    border-radius: 2rem;
+    border-width: 0;
+    background-color: var(--light-grey);
+}
+
 .title {
     margin: 0;
     font-size: 2rem;
@@ -33,4 +44,9 @@ button {
     --yellow: #CC9F00;
     --red: #ff4400;
     --orange: #ff7b00;
+}
+
+ion-title {
+    font-family: "Oswald";
+    color: var(--blue);
 }

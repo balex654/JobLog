@@ -52,6 +52,20 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location needed for activity tracking</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location needed for activity tracking</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location needed for activity tracking</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion needed for activity tracking</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -1,25 +1,25 @@
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react"
-import { ellipse, square, triangle } from "ionicons/icons"
+import { ellipse, square, play } from "ionicons/icons"
 import { Redirect, Route } from "react-router-dom"
-import Tab1 from "../pages/Tab1"
 import Tab2 from "../pages/Tab2"
 import Tab3 from "../pages/Tab3"
+import TrackActivity from "./track-activity/TrackActivity"
 
 const TabView = () => {
     return (
         <IonTabs>
             <IonRouterOutlet>
-                <Route path="/tab-view/tab1" component={Tab1}/>
+                <Route path="/tab-view/track-activity" component={TrackActivity}/>
                 <Route path="/tab-view/tab2" component={Tab2}/>
                 <Route path="/tab-view/tab3" component={Tab3}/>
                 <Route exact path="/tab-view">
-                    <Redirect to="/tab-view/tab1" />
+                    <Redirect to="/tab-view/track-activity" />
                 </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
-                <IonTabButton tab="tab1" href="/tab-view/tab1">
-                    <IonIcon icon={triangle} />
-                    <IonLabel>Tab 1</IonLabel>
+                <IonTabButton tab="track-activity" href="/tab-view/track-activity">
+                    <IonIcon icon={play} />
+                    <IonLabel>Start Activity</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="tab2" href="/tab-view/tab2">
                     <IonIcon icon={ellipse} />

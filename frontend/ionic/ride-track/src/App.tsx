@@ -5,7 +5,8 @@ import { Browser } from '@capacitor/browser';
 import {
   IonApp,
   IonRouterOutlet,
-  setupIonicReact
+  setupIonicReact,
+  useIonViewWillEnter
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -28,14 +29,19 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Title from './components/title/Title';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ConfigureAccount from './components/configure-account/ConfigureAccount';
 import axios from "axios";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import { Storage, Drivers } from "@ionic/storage";
 import TabView from './components/TabView';
+import { useSQLite } from 'react-sqlite-hook';
+import { InitDb } from './services/database/InitDb';
 
 setupIonicReact();
+
+export let sqlite: any;
+export let existingConn: any;
 
 const App: React.FC = () => {
   const { handleRedirectCallback, getAccessTokenSilently } = useAuth0();
@@ -73,6 +79,24 @@ const App: React.FC = () => {
     }
   );
 
+  const [existConn, setExistConn] = useState(false);
+  existingConn = {existConn: existConn, setExistConn: setExistConn};
+  const {echo, getPlatform, createConnection, closeConnection,
+    retrieveConnection, retrieveAllConnections, closeAllConnections,
+    addUpgradeStatement, importFromJson, isJsonValid, copyFromAssets,
+    isAvailable} = useSQLite();
+  sqlite = {echo: echo, getPlatform: getPlatform,
+        createConnection: createConnection,
+        closeConnection: closeConnection,
+        retrieveConnection: retrieveConnection,
+        retrieveAllConnections: retrieveAllConnections,
+        closeAllConnections: closeAllConnections,
+        addUpgradeStatement: addUpgradeStatement,
+        importFromJson: importFromJson,
+        isJsonValid: isJsonValid,
+        copyFromAssets: copyFromAssets,
+        isAvailable:isAvailable};
+
   useEffect(() => {
     CapApp.addListener('appUrlOpen', async ({ url }) => {
       if ((url.includes('state') && (url.includes('code'))) || url.includes('error')) {
@@ -80,8 +104,9 @@ const App: React.FC = () => {
       }
 
       await Browser.close();
-      
     });
+
+    InitDb();
   }, [handleRedirectCallback]);
 
   return (
