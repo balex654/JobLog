@@ -6,6 +6,8 @@ import { DatabaseService } from "../../services/database/DatabaseService";
 import { Activity } from "../../model/sqlite/Activity";
 import {registerPlugin} from "@capacitor/core";
 import { BackgroundGeolocationPlugin } from "@capacitor-community/background-geolocation";
+import Alert from "../../common/alert/Alert";
+import SaveActivityAlert from "./SaveActivityAlert";
 const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation")
 
 const TrackActivity = () => {
@@ -14,6 +16,8 @@ const TrackActivity = () => {
     const [stopwatch] = useState<Stopwatch>(new Stopwatch);
     const [dbService, setDbService] = useState<DatabaseService>(new DatabaseService());
     const [currentActivity, setCurrentActivity] = useState<Activity>();
+    const [isFirstAlertVisible, setFirstAlertVisible] = useState<boolean>(false);
+    const [isSaveActivityVisible, setSaveActivityVisible] = useState<boolean>(false);
 
     useEffect(() => {
         setDbService(new DatabaseService());
@@ -58,9 +62,7 @@ const TrackActivity = () => {
     }
 
     const stopActivity = () => {
-        stopwatch.stop();
-        setActivityStarted(false);
-        BackgroundGeolocation.removeWatcher({ id: watchId });
+        setFirstAlertVisible(true);
     }
 
     const watchPosition = async (activity: Activity) => {
@@ -80,9 +82,30 @@ const TrackActivity = () => {
             else {
                 stopwatch.stop();
             }
-
         });
         setWatchId(id);
+    }
+
+    const stopActivityFirstAlert = () => {
+        BackgroundGeolocation.removeWatcher({ id: watchId });
+        stopwatch.stop();
+        currentActivity!.endDate = new Date();
+        currentActivity!.movingTime = stopwatch.time;
+        setFirstAlertVisible(false);
+        setSaveActivityVisible(true);
+        setActivityStarted(false);
+    }
+
+    const onFirstAlertCancel = () => {
+        setFirstAlertVisible(false);
+    }
+
+    const saveActivity = async (name: string) => {
+        if (name !== "") {
+            currentActivity!.name = name;
+            await dbService.EditActivity(currentActivity!);
+            setSaveActivityVisible(false);
+        }
     }
 
     return (
@@ -109,6 +132,20 @@ const TrackActivity = () => {
                     <button onClick={handleDelete}>Delete Data</button>
                     <button onClick={handleLogData}>Log data</button>
                     <button onClick={handleLogActivities}>Log activities</button>
+                    {
+                        isFirstAlertVisible &&
+                        <Alert
+                            message="Are you sure you want to end the activity?"
+                            actionLabel="Yes"
+                            actionStyle=""
+                            action={stopActivityFirstAlert}
+                            onCancel={onFirstAlertCancel}
+                        />
+                    }
+                    {
+                        isSaveActivityVisible &&
+                        <SaveActivityAlert saveAction={saveActivity}/>
+                    }
                 </div>
             </IonContent>
         </IonPage>

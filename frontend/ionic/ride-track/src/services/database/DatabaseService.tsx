@@ -20,11 +20,26 @@ export class DatabaseService {
             VALUES (
                 ${activity.movingTime}, 
                 '${activity.name}', 
-                '${s.getFullYear()}-${s.getMonth()}-${s.getDay()} ${s.getHours()}:${s.getMinutes()}:${s.getSeconds()}', 
-                '${e.getFullYear()}-${e.getMonth()}-${e.getDay()} ${e.getHours()}:${e.getMinutes()}:${e.getSeconds()}');`
+                '${s.getFullYear()}-${s.getMonth() + 1}-${s.getDate()} ${s.getHours()}:${s.getMinutes()}:${s.getSeconds()}', 
+                '${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()} ${e.getHours()}:${e.getMinutes()}:${e.getSeconds()}');`
         const insertResponse = await this.db.run(cmd);
         const id = insertResponse.changes.lastId;
         activity.id = id;
+        return activity;
+    }
+
+    public async EditActivity(activity: Activity): Promise<Activity> {
+        const n = activity.name;
+        const m = activity.movingTime;
+        const s = activity.startDate;
+        const e = activity.endDate;
+        const cmd = `UPDATE activity SET 
+            name = '${n}',
+            moving_time = ${m},
+            start_date = '${s.getFullYear()}-${s.getMonth() + 1}-${s.getDate()} ${s.getHours()}:${s.getMinutes()}:${s.getSeconds()}',
+            end_date = '${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()} ${e.getHours()}:${e.getMinutes()}:${e.getSeconds()}'
+            WHERE id = ${activity.id!}`;
+        await this.db.run(cmd);
         return activity;
     }
 
@@ -37,7 +52,7 @@ export class DatabaseService {
                 ${gpsPoint.latitude},
                 ${gpsPoint.longitude},
                 ${gpsPoint.speed},
-                '${d.getFullYear()}-${d.getMonth()}-${d.getDay()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}.${d.getMilliseconds()}'
+                '${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}.${d.getMilliseconds()}'
             )`;
         const insertResponse = await this.db.run(cmd);
         const id = insertResponse.changes.lastId;
