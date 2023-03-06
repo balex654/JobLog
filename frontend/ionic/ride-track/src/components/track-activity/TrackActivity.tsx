@@ -66,7 +66,9 @@ const TrackActivity = () => {
     }
 
     const watchPosition = async (activity: Activity) => {
-        const id = await BackgroundGeolocation.addWatcher({}, async (position: any, error: any) => {
+        const id = await BackgroundGeolocation.addWatcher({
+            backgroundMessage: "Tracking location in background"
+        }, async (position: any, error: any) => {
             if (position.speed! > 0.0 || true) {
                 console.log(activity);
                 stopwatch.start();
