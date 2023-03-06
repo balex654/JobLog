@@ -34,8 +34,8 @@ router.get('/authorized', function (req, res) {
     res.send('Secured Resource');
 });
 
-router.use(express.urlencoded({ extended: false }));
-router.use(express.json());
+router.use(express.json({limit: '1gb'}));
+router.use(express.urlencoded({ limit: '1gb', extended: false }));
 
 router.use('/', routes);
 
