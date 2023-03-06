@@ -12,7 +12,7 @@ export const addActivityValidator = async (req: Request, res: Response, next: Ne
         "gps_points.*.date": "required",
         "gps_points.*.speed": "required|min:0",
         "gps_points.*.latitude": "required|min:-90|max:90",
-        "gps_points.*.longitude": "required|min:-90|max:90",
+        "gps_points.*.longitude": "required|min:-180|max:180",
         "gps_points.*.altitude": "required|min:0"
     }
     await validatorCallback(req.body, activityRules, res, next);
