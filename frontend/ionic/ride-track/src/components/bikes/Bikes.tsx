@@ -4,6 +4,7 @@ import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { EmptyValidator, LengthValidator, NonFloatValueValidator, NonNegativeValidator } from "../../common/Validators";
 import { BikeForm } from "../../model/bike/BikeForm";
+import { BikeResponse } from "../../model/bike/BikeResponse";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import AddBike from "./AddBike/AddBike";
 import { BikeListItem } from "./BikeListItem";
@@ -20,7 +21,7 @@ const Bikes = () => {
     useEffect(() => {
         const getBikes = async () => {
             const response = await storageService.getBikes();
-            const bikeList = response.resource!.bikes.map((bike, index) => {
+            const bikeList = response.resource!.bikes.map((bike: BikeResponse, index: number) => {
                 const item: BikeListItem = {
                     bike: bike,
                     isEditing: false,
