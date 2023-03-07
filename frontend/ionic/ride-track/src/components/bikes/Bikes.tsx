@@ -8,6 +8,7 @@ import { BikeResponse } from "../../model/bike/BikeResponse";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import AddBike from "./AddBike/AddBike";
 import { BikeListItem } from "./BikeListItem";
+import "./Bikes.css";
 
 const Bikes = () => {
     const [bikes, setBikes] = useState<BikeListItem[]>([]);
@@ -42,7 +43,7 @@ const Bikes = () => {
         }
 
         getBikes();
-    }, [storageService])
+    }, [])
 
     const handleEditBike = (bike: BikeListItem) => {
         const bikeList = bikes.map(b => b);
@@ -114,7 +115,7 @@ const Bikes = () => {
     const createForm = (bikeListItem: BikeListItem): Form => {
         const formMap = new Map<string, FormField>();
         const bikeNameField = new BikeNameField();
-        bikeNameField.value = bikeListItem.bike.name;
+        bikeNameField.value = bikeListItem.bike.name
         const bikeWeightField = new BikeWeightField();
         bikeWeightField.value = bikeListItem.bike.weight.toString();
         formMap.set(bikeNameFieldId, bikeNameField);
@@ -139,7 +140,7 @@ const Bikes = () => {
                         </IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <div className="bikes-container">
+                <div className="bike-container">
                     {
                         addBikeVisible &&
                         <AddBike 
@@ -158,13 +159,13 @@ const Bikes = () => {
                                     <div className="bike">
                                         <div className="bike-data">
                                             <input 
-                                                className="bike-input" 
+                                                className="bike-input bike-name-input" 
                                                 value={b.bike.name} 
                                                 onChange={(event) => bikeNameInputHandler(event, b)}/>
                                             <input 
-                                                type="number" 
-                                                className="bike-input weight-input" 
-                                                value={b.bike.weight} 
+                                                type="number"
+                                                className="bike-input bike-weight-input" 
+                                                defaultValue={b.bike.weight}
                                                 onChange={(event) => weightInputHandler(event, b)}/>
                                         </div>
                                         <button className="delete" onClick={() => handleDeleteBike(b)}>Delete</button>
@@ -189,6 +190,7 @@ const Bikes = () => {
                     </div>
                 </div>
             </IonContent>
+            <button className="add-bike-button" onClick={handleAddBike}>Add Bike</button>
         </IonPage>
     );
 }

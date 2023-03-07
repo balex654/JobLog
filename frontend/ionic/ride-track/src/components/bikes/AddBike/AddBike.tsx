@@ -4,6 +4,7 @@ import { FormField } from "../../../common/FormField";
 import { BikeForm } from "../../../model/bike/BikeForm";
 import { HttpStorageService } from "../../../services/HttpStorageService"
 import { BikeNameField, BikeWeightField } from "../Bikes";
+import "./AddBike.css";
 
 interface AddBikeProps {
     storageService: HttpStorageService,
@@ -41,7 +42,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
                 name: nameValue,
                 weight: parseFloat(weightValue)
             }
-            const bikeResponse = await storageService.addBike(bikeForm);
+            const bikeResponse = (await storageService.addBike(bikeForm)).resource;
             addedBikeAction({
                 bike: bikeResponse,
                 isEditing: false,
