@@ -1,0 +1,79 @@
+.label-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 2rem;
+    margin-bottom: .5rem;
+}
+
+.label {
+    font-weight: bold;
+    width: 8rem;
+}
+
+.bike-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.bike-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.bike {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 4rem;
+    border-radius: 1rem;
+    border-width: .2rem;
+    border-color: var(--grey3);
+    border-style: solid;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.bike-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.name {
+    width: 8rem;
+}
+
+.delete {
+    background-color: var(--red);
+}
+
+.bike-input {
+    border-width: .2rem;
+    border-radius: 1rem;
+    border-color: var(--dark-grey);
+    border-style: solid;
+}
+
+.bike-name-input {
+    width: 7rem;
+}
+
+.bike-weight-input {
+    width: 3rem;
+    margin-left: .5rem;
+}
+
+.add-bike-button {
+    position: fixed;
+    left: calc(50% - 2.5rem);
+    bottom: 1rem;
+}

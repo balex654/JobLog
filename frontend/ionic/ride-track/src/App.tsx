@@ -5,8 +5,7 @@ import { Browser } from '@capacitor/browser';
 import {
   IonApp,
   IonRouterOutlet,
-  setupIonicReact,
-  useIonViewWillEnter
+  setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -37,6 +36,7 @@ import { Storage, Drivers } from "@ionic/storage";
 import TabView from './components/TabView';
 import { useSQLite } from 'react-sqlite-hook';
 import { InitDb } from './services/database/InitDb';
+import { devAccessToken } from './DevAccessToken';
 
 setupIonicReact();
 
@@ -55,6 +55,9 @@ const App: React.FC = () => {
     async (config) => {
       const url = config === undefined ? '' : config.url!;
       if (url.includes(process.env.REACT_APP_API_URL!)) {
+        if (process.env.REACT_APP_ENV === "dev") {
+          await storage.set('accessToken', devAccessToken);
+        }
         let accessToken = await storage.get('accessToken');
         if (accessToken === undefined || accessToken === null || jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
           const newAccessToken = await getAccessTokenSilently({

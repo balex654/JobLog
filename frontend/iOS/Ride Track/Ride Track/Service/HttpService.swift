@@ -104,6 +104,7 @@ class HttpService {
             let (data, urlResponse) = try await URLSession.shared.data(for: request)
             let json = JSON(data).dictionaryValue
             let httpResponse = urlResponse as! HTTPURLResponse
+            print(httpResponse.statusCode)
             if httpResponse.statusCode != 201 {
                 throw UploadActivityError.uploadError
             }

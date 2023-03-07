@@ -14,7 +14,7 @@ const Title = () => {
     useEffect(() => {
         const storageService = new HttpStorageService();
         const init = async () => {
-            if (!isLoading && isAuthenticated) {
+            if ((!isLoading && isAuthenticated) || process.env.REACT_APP_ENV === "dev") {
                 const response = await storageService.getUserById();
                 if (response.status === Status.Ok) {
                     history.push('/tab-view');

@@ -15,7 +15,7 @@ const TrackActivity = () => {
     const [watchId, setWatchId] = useState<string>("");
     const [stopwatch] = useState<Stopwatch>(new Stopwatch);
     const [dbService, setDbService] = useState<DatabaseService>(new DatabaseService());
-    const [currentActivity, setCurrentActivity] = useState<Activity>();
+    const [currentActivity, setCurrentActivity] = useState<Activity>(new Activity());
     const [isFirstAlertVisible, setFirstAlertVisible] = useState<boolean>(false);
     const [isSaveActivityVisible, setSaveActivityVisible] = useState<boolean>(false);
 
@@ -66,7 +66,9 @@ const TrackActivity = () => {
     }
 
     const watchPosition = async (activity: Activity) => {
-        const id = await BackgroundGeolocation.addWatcher({}, async (position: any, error: any) => {
+        const id = await BackgroundGeolocation.addWatcher({
+            backgroundMessage: "Tracking location in background"
+        }, async (position: any, error: any) => {
             if (position.speed! > 0.0 || true) {
                 console.log(activity);
                 stopwatch.start();

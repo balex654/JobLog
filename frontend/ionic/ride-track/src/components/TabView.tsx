@@ -1,8 +1,9 @@
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react"
-import { ellipse, square, play } from "ionicons/icons"
+import { ellipse, square, play, bicycle } from "ionicons/icons"
 import { Redirect, Route } from "react-router-dom"
 import Tab2 from "../pages/Tab2"
 import Tab3 from "../pages/Tab3"
+import Bikes from "./bikes/Bikes"
 import TrackActivity from "./track-activity/TrackActivity"
 
 const TabView = () => {
@@ -11,6 +12,7 @@ const TabView = () => {
             <IonRouterOutlet>
                 <Route path="/tab-view/track-activity" component={TrackActivity}/>
                 <Route path="/tab-view/tab2" component={Tab2}/>
+                <Route path="/tab-view/bikes" component={Bikes}/>
                 <Route path="/tab-view/tab3" component={Tab3}/>
                 <Route exact path="/tab-view">
                     <Redirect to="/tab-view/track-activity" />
@@ -24,6 +26,10 @@ const TabView = () => {
                 <IonTabButton tab="tab2" href="/tab-view/tab2">
                     <IonIcon icon={ellipse} />
                     <IonLabel>Tab 2</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="bikes" href="/tab-view/bikes">
+                    <IonIcon icon={bicycle} />
+                    <IonLabel>Bikes</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="tab3" href="/tab-view/tab3">
                     <IonIcon icon={square} />
