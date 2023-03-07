@@ -8,6 +8,8 @@ import {registerPlugin} from "@capacitor/core";
 import { BackgroundGeolocationPlugin } from "@capacitor-community/background-geolocation";
 import Alert from "../../common/alert/Alert";
 import SaveActivityAlert from "./SaveActivityAlert";
+import { Storage, Drivers } from "@ionic/storage";
+import jwtDecode, { JwtPayload } from "jwt-decode";
 const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation")
 
 const TrackActivity = () => {
@@ -18,6 +20,11 @@ const TrackActivity = () => {
     const [currentActivity, setCurrentActivity] = useState<Activity>(new Activity());
     const [isFirstAlertVisible, setFirstAlertVisible] = useState<boolean>(false);
     const [isSaveActivityVisible, setSaveActivityVisible] = useState<boolean>(false);
+    const storage = new Storage({
+        name: "storage",
+        driverOrder: [Drivers.LocalStorage]
+    });
+    storage.create();
 
     useEffect(() => {
         setDbService(new DatabaseService());
@@ -54,8 +61,10 @@ const TrackActivity = () => {
         stopwatch.reset();
         stopwatch.start();
         setActivityStarted(true);
+        const accessToken = await storage.get('accessToken');
         const a = new Activity();
         a.startDate = new Date();
+        a.userId = jwtDecode<JwtPayload>(accessToken!).sub!;
         const activity = await dbService.AddActivity(a);
         setCurrentActivity(activity);
         await watchPosition(activity);

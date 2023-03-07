@@ -1,4 +1,5 @@
 import { sqlite } from "../../App";
+import { ConvertSQLiteDateToObject } from "../../common/Util";
 import { Activity } from "../../model/sqlite/Activity";
 import { GpsPoint } from "../../model/sqlite/GpsPoint";
 
@@ -16,8 +17,9 @@ export class DatabaseService {
     public async AddActivity(activity: Activity): Promise<Activity> {
         const s = activity.startDate;
         const e = activity.endDate;
-        const cmd = `INSERT INTO activity (moving_time,name,start_date,end_date) 
+        const cmd = `INSERT INTO activity (user_id,moving_time,name,start_date,end_date) 
             VALUES (
+                '${activity.userId}',
                 ${activity.movingTime}, 
                 '${activity.name}', 
                 '${s.getFullYear()}-${s.getMonth() + 1}-${s.getDate()} ${s.getHours()}:${s.getMinutes()}:${s.getSeconds()}', 
@@ -41,6 +43,22 @@ export class DatabaseService {
             WHERE id = ${activity.id!}`;
         await this.db.run(cmd);
         return activity;
+    }
+
+    public async GetActivitiesForUser(userId: string): Promise<Activity[]> {
+        const query = `SELECT * FROM activity where user_id = '${userId}'`;
+        const response = await this.db.query(query);
+        const activities: Activity[] = response.values.map((v: any) => {
+            return {
+                id: v.id,
+                userId: v.user_id,
+                movingTime: v.moving_time,
+                name: v.name,
+                startDate: new Date(ConvertSQLiteDateToObject(v.start_date)),
+                endDate: new Date(ConvertSQLiteDateToObject(v.end_date))
+            };
+        });
+        return activities;
     }
 
     public async AddGpsPoint(gpsPoint: GpsPoint): Promise<GpsPoint> {

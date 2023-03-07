@@ -12,6 +12,7 @@ export const InitDb = async () => {
 const createTables: string = `
     CREATE TABLE IF NOT EXISTS activity (
         id INTEGER PRIMARY KEY NOT NULL,
+        user_id TEXT,
         moving_time INTEGER,
         name TEXT,
         start_date DATE,

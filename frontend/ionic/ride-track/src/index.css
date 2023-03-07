@@ -57,3 +57,7 @@ ion-title {
     font-family: "Oswald";
     color: var(--blue);
 }
+
+ion-header {
+    background-color: white;
+}
