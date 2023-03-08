@@ -5,5 +5,5 @@ export interface GpsPoint {
     latitude: number;
     longitude: number;
     speed: number;
-    date: Date;
+    date: number;
 }

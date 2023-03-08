@@ -1,0 +1,35 @@
+.select-bike-container {
+    width: 20rem;
+    height: 20rem;
+    left: calc(50% - 10rem);
+    top: calc(50% - 10rem);
+    padding-bottom: 1rem;
+}
+
+.select-bike-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    height: 18rem;
+    gap: .5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.select-bike-button {
+    background-color: var(--white);
+    color: var(--dark-grey);
+    border-radius: 1rem;
+    border-width: .2rem;
+    border-color: var(--grey3);
+    border-style: solid;
+    width: 10rem;
+    min-height: 2rem;
+}
+
+.select-bike-bottom-buttons {
+    display: flex;
+    flex-direction: row;
+}

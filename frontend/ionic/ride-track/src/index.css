@@ -57,3 +57,18 @@ ion-title {
     font-family: "Oswald";
     color: var(--blue);
 }
+
+ion-header {
+    background-color: white;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--grey3);
+    background-color: var(--white);
+}

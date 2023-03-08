@@ -1,0 +1,24 @@
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.activity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 4rem;
+    border-radius: 1rem;
+    border-width: .2rem;
+    border-color: var(--grey3);
+    border-style: solid;
+    margin-bottom: 1rem;
+    width: 100%;
+}

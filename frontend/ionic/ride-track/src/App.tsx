@@ -26,7 +26,6 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import './theme/variables.css';
 import Title from './components/title/Title';
 import { useEffect, useState } from 'react';
 import ConfigureAccount from './components/configure-account/ConfigureAccount';

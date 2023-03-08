@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ActivityForm } from "../model/activity/ActivityForm";
 import { BikeForm } from "../model/bike/BikeForm";
 import { BikeResponse } from "../model/bike/BikeResponse";
 import { BikesResponse } from "../model/bike/BikesResponse";
@@ -55,6 +56,14 @@ export class HttpStorageService {
 
     public async getBikeById(bikeId: string): Promise<StorageResponse<BikeResponse>> {
         const { data, status } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`).catch(err => err.response);
+        return {
+            status: status,
+            resource: data
+        }
+    }
+
+    public async createActivity(activity: ActivityForm): Promise<StorageResponse<undefined>> {
+        const { data, status } = await axios.post(`${this.baseUrl}/activity`, activity).catch(err => err.response);
         return {
             status: status,
             resource: data
