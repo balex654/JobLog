@@ -25,7 +25,7 @@ const createTables: string = `
         latitude FLOAT,
         longitude FLOAT,
         speed FLOAT,
-        date DATE,
+        date INTEGER,
         FOREIGN KEY (activity_id) REFERENCES activity(id) ON DELETE CASCADE
     );
 `

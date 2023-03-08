@@ -1,16 +1,9 @@
 .alert-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    background-color: var(--white);
     width: 12rem;
     height: 9rem;
-    border-radius: 2rem;
-    box-shadow: 0 0 1rem var(--grey3);
-    padding: 1rem;
     gap: 1rem;
+    top: calc(50% - 4.5rem);
+    padding: 1rem;
 }
 
 .action-button-container {

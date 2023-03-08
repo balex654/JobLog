@@ -57,7 +57,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
     }
 
     return (
-        <div className="add-bike-container">
+        <div className="popup add-bike-container">
             <input
                 onChange={nameInputHandler}
                 className="bike-input"

@@ -14,7 +14,7 @@ const Alert = ({message, actionLabel, actionStyle, action, onCancel}: AlertProps
     }
     
     return (
-        <div className="alert-container">
+        <div className="popup alert-container">
             <div className="text">{message}</div>
             <div className="action-button-container">
                 <button onClick={handleCancel} className="button-grey">Cancel</button>

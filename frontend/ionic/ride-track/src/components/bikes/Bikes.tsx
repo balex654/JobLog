@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewDidEnter } from "@ionic/react";
+import { useState } from "react";
 import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { EmptyValidator, LengthValidator, NonFloatValueValidator, NonNegativeValidator } from "../../common/Validators";
@@ -14,12 +14,12 @@ const Bikes = () => {
     const [bikes, setBikes] = useState<BikeListItem[]>([]);
     const [forms, setForms] = useState<Form[]>([]);
     const [addBikeVisible, setAddBikeVisible] = useState<boolean>(false);
-    const storageService = new HttpStorageService();
+    const [storageService] = useState<HttpStorageService>(new HttpStorageService());
 
     const bikeNameFieldId = 'name';
     const bikeWeightFieldId = 'weight';
 
-    useEffect(() => {
+    useIonViewDidEnter(() => {
         const getBikes = async () => {
             const response = await storageService.getBikes();
             const bikeList = response.resource!.bikes.map((bike: BikeResponse, index: number) => {
@@ -43,7 +43,7 @@ const Bikes = () => {
         }
 
         getBikes();
-    }, [])
+    }, [storageService])
 
     const handleEditBike = (bike: BikeListItem) => {
         const bikeList = bikes.map(b => b);

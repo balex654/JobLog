@@ -13,7 +13,7 @@ const SaveActivityAlert = ({saveAction}: SaveActivityAlertProps) => {
     }
 
     return (
-        <div className="save-activity-container">
+        <div className="popup save-activity-container">
             <div className="text">Enter Activity Name</div>
             <input
                 className="name-input" 

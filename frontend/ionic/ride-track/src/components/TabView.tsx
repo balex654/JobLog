@@ -1,5 +1,5 @@
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react"
-import { person, square, play, bicycle, arrowUp } from "ionicons/icons"
+import { person, play, bicycle, arrowUp } from "ionicons/icons"
 import { Redirect, Route } from "react-router-dom"
 import Tab3 from "../pages/Tab3"
 import Bikes from "./bikes/Bikes"
