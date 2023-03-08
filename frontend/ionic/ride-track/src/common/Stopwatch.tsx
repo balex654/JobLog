@@ -11,9 +11,11 @@ export class Stopwatch {
     }
 
     public stop() {
-        const now = Math.floor(Date.now() / 1000);
-        this.time += now - this.previous;
-        this.stopped = true;
+        if (!this.stopped) {
+            const now = Math.floor(Date.now() / 1000);
+            this.time += now - this.previous;
+            this.stopped = true;
+        }
     }
 
     public reset() {
