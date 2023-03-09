@@ -24,6 +24,7 @@ router.use(cors({
         'https://ride-track-frontend-gol2gz2rwq-uc.a.run.app', 
         'capacitor://localhost', 
         'http://192.168.0.2:8100',
+        'http://192.168.0.2:8101',
         'http://localhost'
     ]
 }));

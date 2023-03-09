@@ -60,6 +60,7 @@ const TrackActivity = () => {
         const id = await BackgroundGeolocation.addWatcher({
             backgroundMessage: "Tracking location in background"
         }, async (position: any, error: any) => {
+            console.log(position);
             if (position.speed > 0.3) {
                 stopwatch.start();
                 await dbService.AddGpsPoint({
