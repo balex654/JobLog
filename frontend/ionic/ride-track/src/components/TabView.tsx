@@ -1,8 +1,8 @@
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react"
 import { person, play, bicycle, arrowUp } from "ionicons/icons"
 import { Redirect, Route } from "react-router-dom"
-import Tab3 from "../pages/Tab3"
 import Bikes from "./bikes/Bikes"
+import Profile from "./profile/Profile"
 import TrackActivity from "./track-activity/TrackActivity"
 import UploadActivity from "./upload-activity/UploadActivity"
 
@@ -13,7 +13,7 @@ const TabView = () => {
                 <Route path="/tab-view/track-activity" component={TrackActivity}/>
                 <Route path="/tab-view/upload-activity" component={UploadActivity}/>
                 <Route path="/tab-view/bikes" component={Bikes}/>
-                <Route path="/tab-view/tab3" component={Tab3}/>
+                <Route path="/tab-view/profile" component={Profile}/>
                 <Route exact path="/tab-view">
                     <Redirect to="/tab-view/track-activity" />
                 </Route>
@@ -31,9 +31,9 @@ const TabView = () => {
                     <IonIcon icon={bicycle} />
                     <IonLabel>Bikes</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="tab3" href="/tab-view/tab3">
+                <IonTabButton tab="profile" href="/tab-view/profile">
                     <IonIcon icon={person} />
-                    <IonLabel>Tab 3</IonLabel>
+                    <IonLabel>Profile</IonLabel>
                 </IonTabButton>
             </IonTabBar>
         </IonTabs>

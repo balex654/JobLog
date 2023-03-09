@@ -26,6 +26,14 @@ export class HttpStorageService {
         }
     }
 
+    public async editUser(user: UserForm): Promise<StorageResponse<UserResponse>> {
+        const { data, status } = await axios.put(`${this.baseUrl}/user`, user).catch(err => err.response);
+        return {
+            status: status,
+            resource: data
+        }
+    }
+
     public async getBikes(): Promise<StorageResponse<BikesResponse>> {
         const { data, status } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`).catch(err => err.response);
         return {

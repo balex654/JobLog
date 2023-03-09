@@ -72,3 +72,7 @@ ion-header {
     box-shadow: 0 0 1rem var(--grey3);
     background-color: var(--white);
 }
+
+scroll-content {
+    padding-bottom: 0 !important;
+}
