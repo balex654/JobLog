@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ride Track</string>
+    <string name="title_activity_main">Ride Track</string>
+    <string name="package_name">com.benalexander.ridetrack</string>
+    <string name="custom_url_scheme">com.benalexander.ridetrack</string>
+</resources>
