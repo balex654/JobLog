@@ -1,0 +1,183 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.benalexander.ridetrack"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="33"
+8-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+10
+11    <!-- Permissions -->
+12
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:50:5-67
+13-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:50:22-64
+14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+14-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-81
+14-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-78
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-79
+15-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-76
+16    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+16-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-77
+16-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-74
+17
+18    <uses-feature android:name="android.hardware.location.gps" />
+18-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-66
+18-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:19-63
+19
+20    <uses-permission android:name="android.permission.VIBRATE" />
+20-->[:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-66
+20-->[:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-63
+21    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+21-->[androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
+21-->[androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:24:22-69
+22    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+22-->[androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
+22-->[androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:27:22-71
+23
+24    <application
+24-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:5:5-46:19
+25        android:allowBackup="true"
+25-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:6:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+27        android:debuggable="true"
+28        android:extractNativeLibs="false"
+29        android:icon="@mipmap/ic_launcher"
+29-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:7:9-43
+30        android:label="@string/app_name"
+30-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:8:9-41
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:9:9-54
+32        android:supportsRtl="true"
+32-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:10:9-35
+33        android:testOnly="true"
+34        android:theme="@style/AppTheme" >
+34-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:11:9-40
+35        <activity
+35-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:13:9-35:20
+36            android:name="com.benalexander.ridetrack.MainActivity"
+36-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:15:13-67
+37            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+37-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:14:13-129
+38            android:exported="true"
+38-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:19:13-36
+39            android:label="@string/title_activity_main"
+39-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:16:13-56
+40            android:launchMode="singleTask"
+40-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:18:13-44
+41            android:theme="@style/AppTheme.NoActionBarLaunch" >
+41-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:17:13-62
+42            <intent-filter>
+42-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:21:13-24:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:22:17-69
+43-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:22:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:23:17-77
+45-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:23:27-74
+46            </intent-filter>
+47            <intent-filter>
+47-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:26:13-33:29
+48                <action android:name="android.intent.action.VIEW" />
+48-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:27:17-68
+48-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:27:25-66
+49
+50                <category android:name="android.intent.category.DEFAULT" />
+50-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:28:17-76
+50-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:28:27-73
+51                <category android:name="android.intent.category.BROWSABLE" />
+51-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:29:17-78
+51-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:29:27-75
+52
+53                <data
+53-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:30:17-32:63
+54                    android:host="dev-2uer6jn7.us.auth0.com"
+54-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:32:21-61
+55                    android:scheme="com.benalexander.ride-track" />
+55-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:31:21-65
+56            </intent-filter>
+57        </activity>
+58
+59        <provider
+60            android:name="androidx.core.content.FileProvider"
+60-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:38:13-62
+61            android:authorities="com.benalexander.ridetrack.fileprovider"
+61-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:39:13-64
+62            android:exported="false"
+62-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:40:13-37
+63            android:grantUriPermissions="true" >
+63-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:41:13-47
+64            <meta-data
+64-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:42:13-44:64
+65                android:name="android.support.FILE_PROVIDER_PATHS"
+65-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:43:17-67
+66                android:resource="@xml/file_paths" />
+66-->/Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:44:17-51
+67        </provider>
+68
+69        <service
+69-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:56
+70            android:name="com.equimaps.capacitor_background_geolocation.BackgroundGeolocationService"
+70-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-102
+71            android:enabled="true"
+71-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-35
+72            android:exported="true"
+72-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-36
+73            android:foregroundServiceType="location" />
+73-->[:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-53
+74
+75        <activity
+75-->[com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+76            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+76-->[com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+77            android:exported="false"
+77-->[com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+78            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+78-->[com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+79
+80        <meta-data
+80-->[com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+81            android:name="com.google.android.gms.version"
+81-->[com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+82            android:value="@integer/google_play_services_version" />
+82-->[com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+83
+84        <provider
+84-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+85            android:name="androidx.startup.InitializationProvider"
+85-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+86            android:authorities="com.benalexander.ridetrack.androidx-startup"
+86-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+87            android:exported="false" >
+87-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+88            <meta-data
+88-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+89                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+89-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+90                android:value="androidx.startup" />
+90-->[androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+91            <meta-data
+91-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+92                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+92-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+93                android:value="androidx.startup" />
+93-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+94        </provider>
+95
+96        <service
+96-->[androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:24:9-28:63
+97            android:name="androidx.room.MultiInstanceInvalidationService"
+97-->[androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:25:13-74
+98            android:directBootAware="true"
+98-->[androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:26:13-43
+99            android:exported="false" />
+99-->[androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:27:13-37
+100    </application>
+101
+102</manifest>

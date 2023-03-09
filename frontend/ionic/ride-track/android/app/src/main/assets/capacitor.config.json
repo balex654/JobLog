@@ -1,0 +1,9 @@
+{
+	"appId": "com.benalexander.Ride-Track",
+	"appName": "Ride Track",
+	"webDir": "build",
+	"bundledWebRuntime": false,
+	"server": {
+		"iosScheme": "https"
+	}
+}

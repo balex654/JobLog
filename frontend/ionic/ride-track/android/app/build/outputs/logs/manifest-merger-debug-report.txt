@@ -1,0 +1,392 @@
+-- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:37:9-45:20
+	android:grantUriPermissions
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:41:13-47
+	android:authorities
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:39:13-64
+	android:exported
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:40:13-37
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:38:13-62
+manifest
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+MERGED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-21:12
+MERGED from [:capacitor-community-sqlite] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/sqlite/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-app] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-browser] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:capacitor-keyboard] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/keyboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-status-bar] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/status-bar/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-android] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/android/capacitor/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:capacitor-cordova-android-plugins] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/capacitor-cordova-android-plugins/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:17:1-29:12
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/21d8b1fde245d97305264421cc2eb160/transformed/appcompat-1.4.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/d418ecfa6a7d747a780df93424be6421/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-splashscreen:1.0.0-rc01] /Users/benalexander/.gradle/caches/transforms-3/6846e4e6edc42e0fce81484ac6ff9fb6/transformed/jetified-core-splashscreen-1.0.0-rc01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/a157e686f8615d69dc300cb0fac6af9e/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/16e3cb3a2816a911010becea6d217a83/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/c4bb13b90f606444b5186bd7d8194e69/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location:20.0.0] /Users/benalexander/.gradle/caches/transforms-3/99832216f82ccb95a7a5db573f02aad8/transformed/jetified-play-services-location-20.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/13dbed6763a77498787a42d91dc595a1/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.4.1] /Users/benalexander/.gradle/caches/transforms-3/0c258f8cf8e1fb1ec5b740695f7115ff/transformed/fragment-1.4.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/f17665fe23d091ac873e8d9aab79e4a0/transformed/jetified-activity-1.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/46263318c4c19a8b6e68687528411002/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/69a0c117e3a4a084673f88bc71ddc749/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/77fe9287aee065dbe210205db6eaf9a7/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/9c2e47e6bffb94b839dc4918bddb3a02/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/de3ebe4398a9a24a505dc193355c430e/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/6056aa42b1fdd8ec25bebecadb6c28e2/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/85ed77524a8c401322622a65eb7b4a1c/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/32b2975f4bcfb2b95ec5505145c591d9/transformed/webkit-1.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/84c2c6f0ec656b3468d90e67446814da/transformed/browser-1.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/644256d887f5af5c042f28bdc3a0a66f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/cc7500d19cee95509b5ae2593ac4cd0b/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/47b2583ce0069ee099654cab45f6a53c/transformed/jetified-core-ktx-1.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/1017011be56798249eefcd68b92dc999/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:17:1-31:12
+MERGED from [net.zetetic:android-database-sqlcipher:4.5.3] /Users/benalexander/.gradle/caches/transforms-3/88e0a60741a1f32dc9f7554cfc89e196/transformed/jetified-android-database-sqlcipher-4.5.3/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/6027d1df1d820e080d34ab8a26d71aa0/transformed/sqlite-framework-2.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/85dcdfa1b95c68e1d40512d298be2a8f/transformed/sqlite-2.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha05] /Users/benalexander/.gradle/caches/transforms-3/8d1adf62981e1303ee344ddcafb36939/transformed/jetified-security-crypto-1.1.0-alpha05/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/benalexander/.gradle/caches/transforms-3/c77dad19479ae8f9dde35cb8f21bc5ca/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/667dad401bbc11111c42bbf2ce9f8b52/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/fe8307e7d5fd8a5c86a3f3a846db74c2/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/77e536ed3af32b067b9509a55db926d2/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/benalexander/.gradle/caches/transforms-3/9554410b8399b4075d9248f9383b3697/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/2fd200e6877412b1d4a7f0ae9152a45a/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/benalexander/.gradle/caches/transforms-3/9e2c70c84143ef606c5302f6f57caa3e/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [org.apache.cordova:framework:10.1.1] /Users/benalexander/.gradle/caches/transforms-3/a12c4a0ccb8ee0a426082994376f0573/transformed/jetified-framework-10.1.1/AndroidManifest.xml:20:1-27:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/eae00d01b7beb325b4bee05e82d8dcd4/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+	package
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:3:5-41
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:1-51:12
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:5:5-46:19
+MERGED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-19:19
+MERGED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-19:19
+MERGED from [:capacitor-cordova-android-plugins] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/capacitor-cordova-android-plugins/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-9:19
+MERGED from [:capacitor-cordova-android-plugins] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/capacitor-cordova-android-plugins/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-9:19
+MERGED from [com.google.android.gms:play-services-location:20.0.0] /Users/benalexander/.gradle/caches/transforms-3/99832216f82ccb95a7a5db573f02aad8/transformed/jetified-play-services-location-20.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:20.0.0] /Users/benalexander/.gradle/caches/transforms-3/99832216f82ccb95a7a5db573f02aad8/transformed/jetified-play-services-location-20.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/13dbed6763a77498787a42d91dc595a1/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/13dbed6763a77498787a42d91dc595a1/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/benalexander/.gradle/caches/transforms-3/c77dad19479ae8f9dde35cb8f21bc5ca/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/benalexander/.gradle/caches/transforms-3/c77dad19479ae8f9dde35cb8f21bc5ca/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:25:5-31:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:11:9-40
+activity#com.benalexander.ridetrack.MainActivity
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:13:9-35:20
+	android:label
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:16:13-56
+	android:launchMode
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:18:13-44
+	android:exported
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:19:13-36
+	android:configChanges
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:14:13-129
+	android:theme
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:17:13-62
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:15:13-67
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:21:13-24:29
+action#android.intent.action.MAIN
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:23:17-77
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:23:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:dev-2uer6jn7.us.auth0.com+data:scheme:com.benalexander.ride-track
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:26:13-33:29
+action#android.intent.action.VIEW
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:27:17-68
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:27:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:28:17-76
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:28:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:29:17-78
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:29:27-75
+data
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:30:17-32:63
+	android:host
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:32:21-61
+	android:scheme
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:31:21-65
+uses-permission#android.permission.INTERNET
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:50:5-67
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:50:22-64
+uses-sdk
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+MERGED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-community-sqlite] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/sqlite/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-community-sqlite] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/sqlite/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-app] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-app] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-browser] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-browser] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/browser/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-keyboard] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/keyboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-keyboard] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/keyboard/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-status-bar] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/status-bar/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-status-bar] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/status-bar/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-android] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/android/capacitor/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-android] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/android/capacitor/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:capacitor-cordova-android-plugins] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/capacitor-cordova-android-plugins/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-44
+MERGED from [:capacitor-cordova-android-plugins] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/capacitor-cordova-android-plugins/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-44
+MERGED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/21d8b1fde245d97305264421cc2eb160/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/21d8b1fde245d97305264421cc2eb160/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/d418ecfa6a7d747a780df93424be6421/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/d418ecfa6a7d747a780df93424be6421/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-splashscreen:1.0.0-rc01] /Users/benalexander/.gradle/caches/transforms-3/6846e4e6edc42e0fce81484ac6ff9fb6/transformed/jetified-core-splashscreen-1.0.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-splashscreen:1.0.0-rc01] /Users/benalexander/.gradle/caches/transforms-3/6846e4e6edc42e0fce81484ac6ff9fb6/transformed/jetified-core-splashscreen-1.0.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/a157e686f8615d69dc300cb0fac6af9e/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/a157e686f8615d69dc300cb0fac6af9e/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/16e3cb3a2816a911010becea6d217a83/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/benalexander/.gradle/caches/transforms-3/16e3cb3a2816a911010becea6d217a83/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/c4bb13b90f606444b5186bd7d8194e69/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/c4bb13b90f606444b5186bd7d8194e69/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:20.0.0] /Users/benalexander/.gradle/caches/transforms-3/99832216f82ccb95a7a5db573f02aad8/transformed/jetified-play-services-location-20.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:20.0.0] /Users/benalexander/.gradle/caches/transforms-3/99832216f82ccb95a7a5db573f02aad8/transformed/jetified-play-services-location-20.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/13dbed6763a77498787a42d91dc595a1/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/13dbed6763a77498787a42d91dc595a1/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.4.1] /Users/benalexander/.gradle/caches/transforms-3/0c258f8cf8e1fb1ec5b740695f7115ff/transformed/fragment-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.4.1] /Users/benalexander/.gradle/caches/transforms-3/0c258f8cf8e1fb1ec5b740695f7115ff/transformed/fragment-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/f17665fe23d091ac873e8d9aab79e4a0/transformed/jetified-activity-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/f17665fe23d091ac873e8d9aab79e4a0/transformed/jetified-activity-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/46263318c4c19a8b6e68687528411002/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/46263318c4c19a8b6e68687528411002/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/69a0c117e3a4a084673f88bc71ddc749/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/69a0c117e3a4a084673f88bc71ddc749/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/77fe9287aee065dbe210205db6eaf9a7/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/77fe9287aee065dbe210205db6eaf9a7/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.loader:loader:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/9c2e47e6bffb94b839dc4918bddb3a02/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/9c2e47e6bffb94b839dc4918bddb3a02/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/de3ebe4398a9a24a505dc193355c430e/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/de3ebe4398a9a24a505dc193355c430e/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/6056aa42b1fdd8ec25bebecadb6c28e2/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/6056aa42b1fdd8ec25bebecadb6c28e2/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/85ed77524a8c401322622a65eb7b4a1c/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/85ed77524a8c401322622a65eb7b4a1c/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/32b2975f4bcfb2b95ec5505145c591d9/transformed/webkit-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/32b2975f4bcfb2b95ec5505145c591d9/transformed/webkit-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/84c2c6f0ec656b3468d90e67446814da/transformed/browser-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] /Users/benalexander/.gradle/caches/transforms-3/84c2c6f0ec656b3468d90e67446814da/transformed/browser-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/644256d887f5af5c042f28bdc3a0a66f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/644256d887f5af5c042f28bdc3a0a66f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/cc7500d19cee95509b5ae2593ac4cd0b/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/cc7500d19cee95509b5ae2593ac4cd0b/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/47b2583ce0069ee099654cab45f6a53c/transformed/jetified-core-ktx-1.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.2.0] /Users/benalexander/.gradle/caches/transforms-3/47b2583ce0069ee099654cab45f6a53c/transformed/jetified-core-ktx-1.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.8.0] /Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/1017011be56798249eefcd68b92dc999/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/1017011be56798249eefcd68b92dc999/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:21:5-44
+MERGED from [net.zetetic:android-database-sqlcipher:4.5.3] /Users/benalexander/.gradle/caches/transforms-3/88e0a60741a1f32dc9f7554cfc89e196/transformed/jetified-android-database-sqlcipher-4.5.3/AndroidManifest.xml:5:5-7:41
+MERGED from [net.zetetic:android-database-sqlcipher:4.5.3] /Users/benalexander/.gradle/caches/transforms-3/88e0a60741a1f32dc9f7554cfc89e196/transformed/jetified-android-database-sqlcipher-4.5.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/6027d1df1d820e080d34ab8a26d71aa0/transformed/sqlite-framework-2.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/6027d1df1d820e080d34ab8a26d71aa0/transformed/sqlite-framework-2.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/85dcdfa1b95c68e1d40512d298be2a8f/transformed/sqlite-2.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.3.0] /Users/benalexander/.gradle/caches/transforms-3/85dcdfa1b95c68e1d40512d298be2a8f/transformed/sqlite-2.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.security:security-crypto:1.1.0-alpha05] /Users/benalexander/.gradle/caches/transforms-3/8d1adf62981e1303ee344ddcafb36939/transformed/jetified-security-crypto-1.1.0-alpha05/AndroidManifest.xml:20:5-44
+MERGED from [androidx.security:security-crypto:1.1.0-alpha05] /Users/benalexander/.gradle/caches/transforms-3/8d1adf62981e1303ee344ddcafb36939/transformed/jetified-security-crypto-1.1.0-alpha05/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/benalexander/.gradle/caches/transforms-3/c77dad19479ae8f9dde35cb8f21bc5ca/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/benalexander/.gradle/caches/transforms-3/c77dad19479ae8f9dde35cb8f21bc5ca/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/667dad401bbc11111c42bbf2ce9f8b52/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/667dad401bbc11111c42bbf2ce9f8b52/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/fe8307e7d5fd8a5c86a3f3a846db74c2/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/fe8307e7d5fd8a5c86a3f3a846db74c2/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/77e536ed3af32b067b9509a55db926d2/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/77e536ed3af32b067b9509a55db926d2/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/benalexander/.gradle/caches/transforms-3/9554410b8399b4075d9248f9383b3697/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/benalexander/.gradle/caches/transforms-3/9554410b8399b4075d9248f9383b3697/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/2fd200e6877412b1d4a7f0ae9152a45a/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/benalexander/.gradle/caches/transforms-3/2fd200e6877412b1d4a7f0ae9152a45a/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/benalexander/.gradle/caches/transforms-3/9e2c70c84143ef606c5302f6f57caa3e/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/benalexander/.gradle/caches/transforms-3/9e2c70c84143ef606c5302f6f57caa3e/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [org.apache.cordova:framework:10.1.1] /Users/benalexander/.gradle/caches/transforms-3/a12c4a0ccb8ee0a426082994376f0573/transformed/jetified-framework-10.1.1/AndroidManifest.xml:25:5-44
+MERGED from [org.apache.cordova:framework:10.1.1] /Users/benalexander/.gradle/caches/transforms-3/a12c4a0ccb8ee0a426082994376f0573/transformed/jetified-framework-10.1.1/AndroidManifest.xml:25:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/eae00d01b7beb325b4bee05e82d8dcd4/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/eae00d01b7beb325b4bee05e82d8dcd4/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:42:13-44:64
+	android:resource
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:44:17-51
+	android:name
+		ADDED from /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/android/app/src/main/AndroidManifest.xml:43:17-67
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-76
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-77
+	android:name
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-74
+uses-feature#android.hardware.location.gps
+ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-66
+	android:name
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:19-63
+service#com.equimaps.capacitor_background_geolocation.BackgroundGeolocationService
+ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:56
+	android:enabled
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-35
+	android:exported
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-36
+	android:foregroundServiceType
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-53
+	android:name
+		ADDED from [:capacitor-community-background-geolocation] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor-community/background-geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-102
+uses-permission#android.permission.VIBRATE
+ADDED from [:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from [:capacitor-haptics] /Users/benalexander/Programming/Projects/RideTrack/frontend/ionic/ride-track/node_modules/@capacitor/haptics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-63
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
+	android:name
+		ADDED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:24:22-69
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
+	android:name
+		ADDED from [androidx.biometric:biometric:1.1.0] /Users/benalexander/.gradle/caches/transforms-3/b2cd653f68c9cb550c4de7c8aabb752d/transformed/biometric-1.1.0/AndroidManifest.xml:27:22-71
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/benalexander/.gradle/caches/transforms-3/1977d65ff37d1912fee4ba3f2348197a/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] /Users/benalexander/.gradle/caches/transforms-3/88dc9d92007b7fffe893ef07db8a91f7/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/24a1641adfb9ed4f2d0cb18783b29983/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:30:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/benalexander/.gradle/caches/transforms-3/5f573ab3e6d9d6d8c840e9debb118415/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.5.0] /Users/benalexander/.gradle/caches/transforms-3/4096e59c3537d0e0dc8d8e90cb147f74/transformed/room-runtime-2.5.0/AndroidManifest.xml:25:13-74
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/benalexander/.gradle/caches/transforms-3/8ab54ea5145e0d444b4fb773e9b78950/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
