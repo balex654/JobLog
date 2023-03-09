@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.benalexander.ridetrack.app-mergeDebugResources-27:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/benalexander/.gradle/caches/transforms-3/db1779bbad0872c604d674749f8ad356/transformed/core-1.8.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/benalexander/.gradle/caches/transforms-3/21d8b1fde245d97305264421cc2eb160/transformed/appcompat-1.4.2/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        }
+    ]
+}
