@@ -2,7 +2,7 @@
     "apps": [
         {
             "appId": "f188a40e",
-            "root": "frontend/ionic"
+            "root": "frontend/ionic/ride-track"
         }
     ]
 }
