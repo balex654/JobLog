@@ -7,27 +7,40 @@ import { IStorageService } from "./services/IStorageService"
 import { container } from "./services/InversifyConfig";
 import { TYPES } from "./services/Types";
 import GuardedRoute, { GuardedRouteProps } from "./common/GuardedRoute";
-import { useAuth0 } from "@auth0/auth0-react";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import Profile from "./components/Profile/Profile";
 import Activity from "./components/Activity/Activity";
 import axios from "axios";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 
 function App() {
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated } = useAuth0();
+
+  const refreshAuth = async (refreshToken: string) => {
+    const body = {
+      "grant_type": "refresh_token",
+      "client_id": "AHsTOUfAHVTFnlwFLHGf7Y0kzeIHmLKF",
+      "refresh_token": refreshToken
+    }
+    const { data } = await axios.post("https://dev-2uer6jn7.us.auth0.com/oauth/token", body);
+    return data;
+  }
 
   axios.interceptors.request.use(
     async (config) => {
       const url = config === undefined ? '' : config.url!;
       if (url.includes(process.env.REACT_APP_API_URL!)) {
-        let accessToken = localStorage.getItem('accessToken');
-        if (accessToken === undefined || accessToken === null || jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
-          const newAccessToken = await getAccessTokenSilently({
-            audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
-            scope: "read write offline_access"
-          });
-          localStorage.setItem('accessToken', newAccessToken);
-          config.headers!['Authorization'] = `Bearer ${newAccessToken}`;
+        const cache = new LocalStorageCache();
+        const key = cache.allKeys().find(k => k.includes("auth0spa"));
+        const authData = cache.get(key!) as any;
+        const accessToken = authData.body.access_token;
+        
+        if (jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
+          const newAuthData = await refreshAuth(authData.body.refresh_token);
+          authData.body.access_token = newAuthData.access_token;
+          authData.body.refresh_token = newAuthData.refresh_token;
+          cache.set(key!, authData);
+          config.headers!['Authorization'] = `Bearer ${authData.access_token}`;
           return config;
         }
 
