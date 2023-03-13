@@ -22,6 +22,7 @@ export class EditUserCommand {
         user.first_name = userForm.first_name;
         user.last_name = userForm.last_name;
         user.weight = userForm.weight;
+        user.unit = userForm.unit;
         user = await this.userRepository.editUser(user);
         return {
             status: Status.Ok,
@@ -30,7 +31,8 @@ export class EditUserCommand {
                 user.last_name,
                 user.weight,
                 user.email,
-                user.id
+                user.id,
+                user.unit
             )
         };
     }

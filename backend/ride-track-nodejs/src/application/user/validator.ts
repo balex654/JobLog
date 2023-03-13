@@ -7,7 +7,8 @@ export const addUserValidator = async (req: Request, res: Response, next: NextFu
         "last_name": "required|max:100",
         "email": "required|email|max:200",
         "weight": "required",
-        "id": "required|max:200"
+        "id": "required|max:200",
+        "unit": "required|in:imperial,metric"
     };
     await validatorCallback(req.body, rules, res, next);
 }
