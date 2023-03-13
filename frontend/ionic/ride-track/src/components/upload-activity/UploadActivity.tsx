@@ -4,13 +4,13 @@ import { Activity } from "../../model/sqlite/Activity";
 import { DatabaseService } from "../../services/database/DatabaseService";
 import "./UploadActivity.css";
 import { Storage, Drivers } from "@ionic/storage";
-import jwtDecode, { JwtPayload } from "jwt-decode";
 import { GpsPointForm } from "../../model/gps-point/GpsPointForm";
 import { ActivityForm } from "../../model/activity/ActivityForm";
 import SelectBike from "./select-bike/SelectBike";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { BikeResponse } from "../../model/bike/BikeResponse";
 import { Status } from "../../model/StorageResponse";
+import { getUserId } from "../../common/Auth";
 
 const UploadActivity = () => {
     const [activities, setActivities] = useState<Activity[]>([]);
@@ -27,17 +27,12 @@ const UploadActivity = () => {
     useIonViewDidEnter(() => {
         const init = async () => {
             setDbService(new DatabaseService());
-            const userId = await getUserId();
+            const userId = await getUserId(storage);
             setActivities(await dbService.GetActivitiesForUser(userId));
         }
         
         init(); 
     });
-
-    const getUserId = async () => {
-        const accessToken = await storage.get('accessToken');
-        return jwtDecode<JwtPayload>(accessToken!).sub!;
-    }
 
     const selectActivity = (activity: Activity) => {
         setActivityToUpload(activity);
@@ -77,7 +72,7 @@ const UploadActivity = () => {
         else {
             alert("Upload Success");
             await dbService.DeleteActivity(activityToUpload!.id!);
-            const userId = await getUserId();
+            const userId = await getUserId(storage);
             setActivities(await dbService.GetActivitiesForUser(userId));
         }
     }

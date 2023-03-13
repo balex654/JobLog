@@ -1,26 +1,35 @@
 import { IonContent, IonPage } from "@ionic/react";
 import "./Title.css";
-import { useAuth0 } from "@auth0/auth0-react";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import { Browser } from '@capacitor/browser';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { Status } from "../../model/StorageResponse";
+import { cacheAuthKey } from "../../common/Auth";
 
 const Title = () => {
     const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
     const history = useHistory();
+    const location = useLocation();
 
     useEffect(() => {
         const storageService = new HttpStorageService();
         const init = async () => {
-            if ((!isLoading && isAuthenticated) || process.env.REACT_APP_ENV === "dev") {
+            if ((!isLoading && isAuthenticated && !location.pathname.includes('tab-view')) || process.env.REACT_APP_ENV === "dev") {
                 const response = await storageService.getUserById();
                 if (response.status === Status.Ok) {
                     history.push('/tab-view');
                 }
                 else if (response.status === Status.NotFound){
                     history.push('/configure-account');
+                }
+            }
+            else {
+                const cache = new LocalStorageCache();
+                const key = cache.allKeys().find(k => k.includes(cacheAuthKey));
+                if (key) {
+                    history.push('/tab-view');
                 }
             }
         }

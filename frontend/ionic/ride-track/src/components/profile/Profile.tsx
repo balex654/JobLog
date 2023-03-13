@@ -9,7 +9,7 @@ import { FirstNameField, LastNameField, WeightField } from "../configure-account
 import { FormField } from "../../common/FormField";
 import { UserForm } from "../../model/user/UserForm";
 import { Storage, Drivers } from "@ionic/storage";
-import { useAuth0 } from "@auth0/auth0-react";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router";
 import { Browser } from '@capacitor/browser';
 
@@ -57,6 +57,11 @@ const Profile = () => {
 
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
+            const cache = new LocalStorageCache();
+            const keys = cache.allKeys();
+            keys.forEach(k => {
+                cache.remove(k);
+            });
             storage.clear();
             history.push('/');
         }
