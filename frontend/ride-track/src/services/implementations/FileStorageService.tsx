@@ -10,6 +10,7 @@ import { BikeResponse } from "../../model/bike/BikeResponse";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { BikesResponse } from "../../model/bike/BikesResponse";
 import { BikeForm } from "../../model/bike/BikeForm";
+import { Unit } from "../../model/user/Unit";
 
 @injectable()
 export class FileStorageService implements IStorageService {
@@ -59,7 +60,8 @@ export class FileStorageService implements IStorageService {
                 last_name: domainUser.last_name,
                 email: domainUser.email,
                 id: domainUser.id,
-                weight: domainUser.weight
+                weight: domainUser.weight,
+                unit: Unit.Imperial
             };
             resolve(userResponse);
         });

@@ -6,6 +6,7 @@ import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { FirstNameField, LastNameField, WeightField } from "../ConfigureAccount/ConfigureAccount";
 import { UserForm } from "../../model/user/UserForm";
+import { Unit } from "../../model/user/Unit";
 
 interface EditProfileProps {
     storageService: IStorageService;
@@ -16,6 +17,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
     const [firstNameValue, setFirstNameValue] = useState<string>('');
     const [lastNameValue, setLastNameValue] = useState<string>('');
     const [weightValue, setWeightValue] = useState<number>(0);
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
     const [user, setUser] = useState<UserResponse>();
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
@@ -29,6 +31,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
             setFirstNameValue(response.first_name);
             setLastNameValue(response.last_name);
             setWeightValue(response.weight);
+            setUnit(response.unit);
             const firstNameField = new FirstNameField();
             firstNameField.value = response.first_name;
             const lastNameField = new LastNameField();
@@ -63,6 +66,15 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
         setWeightValue(parseInt(event.target.value))
     }
 
+    const unitInputHandler = (event: any) => {
+        if (event.target.checked) {
+            setUnit(Unit.Metric);
+        }
+        else {
+            setUnit(Unit.Imperial);
+        }
+    }
+
     const handleSave = async () => {
         if (form!.valid) {
             const userForm: UserForm = {
@@ -70,7 +82,8 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
                 last_name: lastNameValue,
                 email: user!.email,
                 id: user!.id,
-                weight: weightValue
+                weight: weightValue,
+                unit: unitValue
             };
             await storageService.editUser(userForm);
             onClose();
@@ -103,6 +116,13 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
                 onChange={(event) => weightInputHandler(event)}
                 type="number"
             />
+            <div className="unit-input-container">
+                <div className="text">Metric Units</div>
+                <input 
+                    type="checkbox" 
+                    onChange={unitInputHandler} 
+                    checked={unitValue === Unit.Imperial ? false : true}/>
+            </div>
             <button onClick={handleSave}>Save</button>
             <button onClick={handleClose}>Cancel</button>
         </div>
