@@ -72,6 +72,7 @@ window.addEventListener('DOMContentLoaded', async () => {
               redirect_uri:"com.benalexander.Ride-Track://dev-2uer6jn7.us.auth0.com/capacitor/com.benalexander.Ride-Track/callback",
               scope:"read write profile email openid offline_access"
             }}
+            cacheLocation="localstorage"
           >
             <App />
           </Auth0Provider>

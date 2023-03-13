@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
 import { App as CapApp } from '@capacitor/app';
 import { Browser } from '@capacitor/browser';
 import {
@@ -36,6 +36,7 @@ import TabView from './components/TabView';
 import { useSQLite } from 'react-sqlite-hook';
 import { InitDb } from './services/database/InitDb';
 import { devAccessToken } from './DevAccessToken';
+import { cacheAuthKey } from './common/Auth';
 
 setupIonicReact();
 
@@ -43,30 +44,43 @@ export let sqlite: any;
 export let existingConn: any;
 
 const App: React.FC = () => {
-  const { handleRedirectCallback, getAccessTokenSilently } = useAuth0();
+  const { handleRedirectCallback } = useAuth0();
   const storage = new Storage({
     name: "storage",
     driverOrder: [Drivers.LocalStorage]
   });
   storage.create();
 
+  const refreshAuth = async (refreshToken: string) => {
+    const body = {
+      "grant_type": "refresh_token",
+      "client_id": "NNEnH1PYbXV0BXONtkQlg4hD30X9uo0r",
+      "refresh_token": refreshToken
+    }
+    const { data } = await axios.post("https://dev-2uer6jn7.us.auth0.com/oauth/token", body);
+    return data;
+  }
+
   axios.interceptors.request.use(
     async (config) => {
       const url = config === undefined ? '' : config.url!;
-      if (url.includes(process.env.REACT_APP_API_URL!)) {
+      if (url.includes(process.env.REACT_APP_API_URL!)) {        
         if (process.env.REACT_APP_ENV === "dev") {
           await storage.set('accessToken', devAccessToken);
+          config.headers!['Authorization'] = `Bearer ${devAccessToken}`;
+          return config;
         }
-        let accessToken = await storage.get('accessToken');
-        if (accessToken === undefined || accessToken === null || jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
-          const newAccessToken = await getAccessTokenSilently({
-            authorizationParams: {
-              audience: "https://ride-track-backend-gol2gz2rwq-uc.a.run.app",
-              scope: "read write profile email openid offline_access"
-            }
-          });
-          storage.set('accessToken', newAccessToken);
-          config.headers!['Authorization'] = `Bearer ${newAccessToken}`;
+
+        const cache = new LocalStorageCache();
+        const key = cache.allKeys().find(k => k.includes(cacheAuthKey));
+        const authData = cache.get(key!) as any;
+        const accessToken = authData.body.access_token;
+        if (jwtDecode<JwtPayload>(accessToken!).exp! < (Date.now() / 1000)) {
+          const newAuthData = await refreshAuth(authData.body.refresh_token);
+          authData.body.access_token = newAuthData.access_token;
+          authData.body.refresh_token = newAuthData.refresh_token;
+          cache.set(key!, authData);
+          config.headers!['Authorization'] = `Bearer ${authData.access_token}`;
           return config;
         }
 
