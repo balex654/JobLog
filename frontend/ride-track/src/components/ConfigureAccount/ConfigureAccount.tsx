@@ -8,6 +8,7 @@ import { EmptyValidator, LengthValidator, NonFloatValueValidator } from "../../c
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { Unit } from "../../model/user/Unit";
+import { ConvertPoundsToKilos } from "../../common/Calculations";
 
 interface ConfigureAccountProps {
     storageService: IStorageService;
@@ -84,13 +85,14 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
     const handleCreate = async (e: any) => {
         e.preventDefault();
+        const weight = parseFloat(weightValue);
         if (form.valid) {
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
                 email: user!.email!,
                 id: user!.sub!,
-                weight: parseFloat(weightValue),
+                weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weight) : weight,
                 unit: unitValue
             };
             const response = await storageService.createUser(userForm);
@@ -120,7 +122,10 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                     </div>
                     {lastNameErrors.map(e => <div className="error">{e}</div>)}
                     <div className="input-container">
-                        <input onChange={weightInputHandler} className='input' placeholder='Weight (kg)'/>
+                        <input 
+                            onChange={weightInputHandler} 
+                            className='input' 
+                            placeholder={unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}/>
                     </div>
                     {weightErrors.map(e => <div className="error">{e}</div>)}
                     <div className="unit-input-container input-container">

@@ -1,4 +1,5 @@
 import { GpsPointResponse } from "../model/gps-point/GpsPointResponse";
+import { Unit } from "../model/user/Unit";
 
 export function GetPowerForTwoPoints(cur: GpsPointResponse, next: GpsPointResponse, totalMass: number): number {
     const forceDueToAcc = GetForceDueToAcceration(cur, next, totalMass);
@@ -97,4 +98,26 @@ export function ConvertMetersToFeet(meters: number): number {
 export function ConvertMetersToMiles(meters: number): number {
     const miles = meters * 0.000621371;
     return miles;
+}
+
+export function ConvertPoundsToKilos(pounds: number): number {
+    const kilos = pounds * 0.453592;
+    const rounded = Math.round(kilos * 10) / 10;
+    return rounded;
+}
+
+export function ConvertKilosToPounds(kilos: number): number {
+    const pounds = kilos * 2.20462;
+    const rounded = Math.round(pounds * 10) / 10;
+    return rounded;
+}
+
+export function GetWeightValueByUnit(kilos: number) {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertKilosToPounds(kilos);
+    }
+    else {
+        return kilos;
+    }
 }
