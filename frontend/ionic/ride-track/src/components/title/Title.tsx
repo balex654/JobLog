@@ -34,7 +34,7 @@ const Title = () => {
             }
         }
         init();
-    }, [isAuthenticated, isLoading, history]);
+    }, [isAuthenticated, isLoading, history, location]);
 
     const handleLoginClick = async () => {
         await loginWithRedirect({

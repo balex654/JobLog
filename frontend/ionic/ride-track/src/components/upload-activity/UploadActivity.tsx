@@ -10,7 +10,7 @@ import SelectBike from "./select-bike/SelectBike";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { BikeResponse } from "../../model/bike/BikeResponse";
 import { Status } from "../../model/StorageResponse";
-import { getUserId } from "../../common/Auth";
+import { getAccessToken } from "../../common/Auth";
 
 const UploadActivity = () => {
     const [activities, setActivities] = useState<Activity[]>([]);
@@ -27,8 +27,8 @@ const UploadActivity = () => {
     useIonViewDidEnter(() => {
         const init = async () => {
             setDbService(new DatabaseService());
-            const userId = await getUserId(storage);
-            setActivities(await dbService.GetActivitiesForUser(userId));
+            const accessToken = await getAccessToken(storage);
+            setActivities(await dbService.GetActivitiesForUser(accessToken.sub!));
         }
         
         init(); 
@@ -72,8 +72,8 @@ const UploadActivity = () => {
         else {
             alert("Upload Success");
             await dbService.DeleteActivity(activityToUpload!.id!);
-            const userId = await getUserId(storage);
-            setActivities(await dbService.GetActivitiesForUser(userId));
+            const accessToken = await getAccessToken(storage);
+            setActivities(await dbService.GetActivitiesForUser(accessToken.sub!));
         }
     }
 

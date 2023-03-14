@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewDidEnter, useIonViewDidLeave } from "@ionic/react";
+import { IonCheckbox, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewDidEnter, useIonViewDidLeave } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import "./Profile.css";
@@ -12,6 +12,7 @@ import { Storage, Drivers } from "@ionic/storage";
 import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router";
 import { Browser } from '@capacitor/browser';
+import { Unit } from "../../model/user/Unit";
 
 const Profile = () => {
     const { logout, isLoading, isAuthenticated } = useAuth0();
@@ -21,6 +22,7 @@ const Profile = () => {
     const [lastNameValue, setLastNameValue] = useState<string>("");
     const [weightValue, setWeightValue] = useState<string>("");
     const [user, setUser] = useState<UserResponse>();
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
     const weightFieldId = 'weight';
@@ -37,6 +39,7 @@ const Profile = () => {
         setFirstNameValue(user.first_name);
         setLastNameValue(user.last_name);
         setWeightValue(user.weight.toString());
+        setUnit(user.unit);
         const firstNameField = new FirstNameField();
         firstNameField.value = user.first_name;
         const lastNameField = new LastNameField();
@@ -86,6 +89,15 @@ const Profile = () => {
         setWeightValue(event.target.value);
     }
 
+    const unitInputHandler = (event: any) => {
+        if (event.target.checked) {
+            setUnit(Unit.Metric);
+        }
+        else {
+            setUnit(Unit.Imperial);
+        }
+    }
+
     const handleSave = async () => {
         if (form!.valid) {
             const userForm: UserForm = {
@@ -93,7 +105,8 @@ const Profile = () => {
                 last_name: lastNameValue,
                 email: user!.email,
                 id: user!.id,
-                weight: parseFloat(weightValue)
+                weight: parseFloat(weightValue),
+                unit: unitValue
             };
             await storageService.editUser(userForm);
             alert("Profile Saved");
@@ -156,6 +169,12 @@ const Profile = () => {
                         type="number"
                         onChange={(event) => weightInputHandler(event)}
                         value={weightValue}/>
+                    <div className="unit-input-container input-container">
+                        <div className="text">Metric Units</div>
+                        <IonCheckbox 
+                            checked={unitValue === Unit.Imperial ? false : true}
+                            onIonChange={unitInputHandler}/>
+                    </div>
                     <button onClick={handleSave}>Save</button>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
