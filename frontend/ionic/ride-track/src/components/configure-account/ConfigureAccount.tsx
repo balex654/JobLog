@@ -10,6 +10,7 @@ import { HttpStorageService } from "../../services/HttpStorageService";
 import { Storage, Drivers } from "@ionic/storage";
 import { Unit } from "../../model/user/Unit";
 import { getAccessToken } from "../../common/Auth";
+import { ConvertPoundsToKilos } from "../../common/Calculations";
 
 const ConfigureAccount = () => {
     const history = useHistory();
@@ -70,12 +71,13 @@ const ConfigureAccount = () => {
             const accessToken = await getAccessToken(storage);
             const email = (accessToken as any).email;
             const userId = accessToken.sub!;
+            const weight = parseFloat(weightValue);
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
                 email: email,
                 id: userId,
-                weight: parseFloat(weightValue),
+                weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weight) : weight,
                 unit: unitValue
             }
             const response = await storageService.createUser(userForm);
@@ -101,7 +103,10 @@ const ConfigureAccount = () => {
                         </div>
                         {lastNameErrors.map(e => <div className="error">{e}</div>)}
                         <div className="input-container">
-                            <input onChange={weightInputHandler} className='input' placeholder='Weight (kg)'/>
+                            <input 
+                                onChange={weightInputHandler} 
+                                className='input'
+                                placeholder={unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}/>
                         </div>
                         {weightErrors.map(e => <div className="error">{e}</div>)}
                         <div className="unit-input-container input-container">

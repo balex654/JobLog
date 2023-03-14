@@ -13,6 +13,7 @@ import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router";
 import { Browser } from '@capacitor/browser';
 import { Unit } from "../../model/user/Unit";
+import { ConvertKilosToPounds, ConvertPoundsToKilos, GetWeightValueByUnit } from "../../common/Calculations";
 
 const Profile = () => {
     const { logout, isLoading, isAuthenticated } = useAuth0();
@@ -35,17 +36,19 @@ const Profile = () => {
 
     const getUser = async () => {
         const user = (await storageService.getUserById()).resource!;
+        await storage.set('user', JSON.stringify(user));
+        const weightValue = await GetWeightValueByUnit(user.weight, storage);
         setUser(user);
         setFirstNameValue(user.first_name);
         setLastNameValue(user.last_name);
-        setWeightValue(user.weight.toString());
+        setWeightValue(weightValue.toString());
         setUnit(user.unit);
         const firstNameField = new FirstNameField();
         firstNameField.value = user.first_name;
         const lastNameField = new LastNameField();
         lastNameField.value = user.last_name;
         const weightField = new WeightField();
-        weightField.value = user.weight.toString();
+        weightField.value = weightValue.toString();
         setForm(new Form(new Map<string, FormField>([
             [firstNameFieldId, firstNameField],
             [lastNameFieldId, lastNameField],
@@ -90,12 +93,18 @@ const Profile = () => {
     }
 
     const unitInputHandler = (event: any) => {
+        let newWeightValue;
+        const weight = parseFloat(weightValue);
         if (event.target.checked) {
             setUnit(Unit.Metric);
+            newWeightValue = ConvertPoundsToKilos(weight);
         }
         else {
             setUnit(Unit.Imperial);
+            newWeightValue = ConvertKilosToPounds(weight);
         }
+        form!.formFields.get(weightFieldId)!.value = newWeightValue.toString();
+        setWeightValue(newWeightValue.toString());
     }
 
     const handleSave = async () => {
@@ -109,6 +118,7 @@ const Profile = () => {
                 unit: unitValue
             };
             await storageService.editUser(userForm);
+            await storage.set('user', JSON.stringify(user));
             alert("Profile Saved");
         }
         else {
@@ -164,7 +174,7 @@ const Profile = () => {
                     <input 
                         onChange={(event) => lastNameInputHandler(event)}
                         value={lastNameValue}/>
-                    <p className="text">Weight</p>
+                    <p className="text">{unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}</p>
                     <input 
                         type="number"
                         onChange={(event) => weightInputHandler(event)}
