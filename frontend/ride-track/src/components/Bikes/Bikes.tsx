@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { GetWeightInKilos, GetWeightValueByUnit } from "../../common/Calculations";
 import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { EmptyValidator, LengthValidator, NonFloatValueValidator, NonNegativeValidator } from "../../common/Validators";
 import { BikeForm } from "../../model/bike/BikeForm";
+import { Unit } from "../../model/user/Unit";
+import { UserResponse } from "../../model/user/UserResponse";
 import { container } from "../../services/InversifyConfig";
 import { IStorageService } from "../../services/IStorageService";
 import { TYPES } from "../../services/Types";
@@ -22,6 +25,7 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
 
     const bikeNameFieldId = 'name';
     const bikeWeightFieldId = 'weight';
+    const user = JSON.parse(localStorage.getItem('user')!) as UserResponse;
 
     useEffect(() => {
         const getBikes = async () => {
@@ -69,7 +73,7 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
     const weightInputHandler = (event: any, bike: BikeListItem) => {
         forms[bike.index].formFields.get(bikeWeightFieldId)!.value = event.target.value;
         const bikeList = bikes.map(b => b);
-        bikeList[bike.index].bike.weight = parseFloat(event.target.value);
+        bikeList[bike.index].bike.weight = GetWeightInKilos(parseFloat(event.target.value));;
         setBikes(bikeList);
     }
 
@@ -143,7 +147,7 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
             <div className="list-container">
                 <div className="label-container">
                     <p className="text label">Name</p>
-                    <p className="text label">Weight (kg)</p>
+                    <p className="text label">Weight ({user.unit === Unit.Imperial ? "lbs" : "kg"})</p>
                 </div>
                 <div className="bike-list">
                     {bikes.map(b => {
@@ -153,12 +157,11 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
                                     <div className="bike-data">
                                         <input 
                                             className="bike-input" 
-                                            value={b.bike.name} 
+                                            value={b.bike.name}
                                             onChange={(event) => bikeNameInputHandler(event, b)}/>
                                         <input 
-                                            type="number" 
-                                            className="bike-input weight-input" 
-                                            value={b.bike.weight} 
+                                            className="bike-input weight-input"
+                                            defaultValue={GetWeightValueByUnit(b.bike.weight)}
                                             onChange={(event) => weightInputHandler(event, b)}/>
                                     </div>
                                     <button className="delete" onClick={() => handleDeleteBike(b)}>Delete</button>
@@ -173,7 +176,7 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
                                         {b.bike.name}
                                     </p>
                                     <p className="text">
-                                        {`${b.bike.weight}kg`}
+                                        {`${GetWeightValueByUnit(b.bike.weight)}${user.unit === Unit.Imperial ? "lbs" : "kg"}`}
                                     </p>
                                 </div>
                                 <button onClick={() => handleEditBike(b)}>Edit</button>

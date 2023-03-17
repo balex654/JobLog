@@ -1,5 +1,7 @@
-import { ConvertMetersToMiles, GetHorizontalDistance } from "../../../common/Calculations";
+import { GetHorizontalDistance, GetLengthValueByUnit } from "../../../common/Calculations";
 import { GpsPointResponse } from "../../../model/gps-point/GpsPointResponse";
+import { Unit } from "../../../model/user/Unit";
+import { UserResponse } from "../../../model/user/UserResponse";
 import { DataField } from "./DataField";
 
 export class TotalDistanceField implements DataField<GpsPointResponse[]> {
@@ -12,15 +14,18 @@ export class TotalDistanceField implements DataField<GpsPointResponse[]> {
     }
 
     generateValue(): void {
-        let totalDistance = 0;
+        let totalMeters = 0;
         let i = 0;
         for (i = 0; i < this.data.length - 2; i++) {
             const cur = this.data[i];
             const next = this.data[i + 1];
-            let distance = ConvertMetersToMiles(GetHorizontalDistance(cur, next));
-            totalDistance += distance;
+            let distance = GetHorizontalDistance(cur, next);
+            totalMeters += distance;
         }
 
-        this.setValueFunction(`${totalDistance.toFixed(2)} mi`);
+        const totalKilometers = totalMeters / 1000;
+        const distanceValue = GetLengthValueByUnit(totalKilometers);
+        const unitValue = (JSON.parse(localStorage.getItem('user')!) as UserResponse).unit;
+        this.setValueFunction(`${distanceValue.toFixed(2)} ${unitValue === Unit.Imperial ? "mi" : "km"}`);
     }
 }

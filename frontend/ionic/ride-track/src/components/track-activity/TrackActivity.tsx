@@ -61,14 +61,14 @@ const TrackActivity = () => {
             backgroundMessage: "Tracking location in background"
         }, async (position: any, error: any) => {
             console.log(position);
-            if (position.speed > 0.3) {
+            if (position.speed > 0.3 || true) {
                 stopwatch.start();
                 await dbService.AddGpsPoint({
                     activityId: activity.id!,
                     altitude: position.altitude,
                     latitude: position.latitude,
                     longitude: position.longitude,
-                    speed: position.speed,
+                    speed: position.speed === null ? 0 : position.speed,
                     date: position.time
                 });
             }

@@ -30,6 +30,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
             const response = await storageService.getUserById();
             localStorage.setItem('user', JSON.stringify(response));
             const weightValue = GetWeightValueByUnit(response.weight);
+            console.log(response);
             setUser(response);
             setFirstNameValue(response.first_name);
             setLastNameValue(response.last_name);
