@@ -13,8 +13,16 @@ export function ConvertKilosToPounds(kilos: number): number {
     return rounded;
 }
 
-export async function GetWeightValueByUnit(kilos: number, storage: Storage) {
-    const unit = JSON.parse(await storage.get("user")!).unit;
+export function GetWeightInKilos(weight: number, unit: Unit): number {
+    if (unit === Unit.Imperial) {
+        return ConvertPoundsToKilos(weight);
+    }
+    else {
+        return weight;
+    }
+}
+
+export function GetWeightValueByUnit(kilos: number, unit: Unit): number {
     if (unit === Unit.Imperial) {
         return ConvertKilosToPounds(kilos);
     }

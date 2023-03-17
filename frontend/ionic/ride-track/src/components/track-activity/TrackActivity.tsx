@@ -61,7 +61,7 @@ const TrackActivity = () => {
             backgroundMessage: "Tracking location in background"
         }, async (position: any, error: any) => {
             console.log(position);
-            if (position.speed > 0.3 || true) {
+            if (position.speed > 0.3) {
                 stopwatch.start();
                 await dbService.AddGpsPoint({
                     activityId: activity.id!,

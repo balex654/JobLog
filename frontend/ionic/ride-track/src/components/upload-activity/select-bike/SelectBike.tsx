@@ -3,6 +3,9 @@ import { BikeResponse } from "../../../model/bike/BikeResponse";
 import { HttpStorageService } from "../../../services/HttpStorageService";
 import AddBike from "../../bikes/AddBike/AddBike";
 import "./SelectBike.css";
+import { Storage, Drivers } from "@ionic/storage";
+import { Unit } from "../../../model/user/Unit";
+import { UserResponse } from "../../../model/user/UserResponse";
 
 interface SelectBikeProps {
     storageService: HttpStorageService;
@@ -12,13 +15,25 @@ interface SelectBikeProps {
 
 const SelectBike = ({storageService, cancelAction, selectedAction}: SelectBikeProps) => {
     const [bikes, setBikes] = useState<BikeResponse[]>([]);
-    const [addBikeVisible, setAddBikeVisible] = useState<boolean>(false); 
+    const [addBikeVisible, setAddBikeVisible] = useState<boolean>(false);
+    const [storage] = useState<Storage>(new Storage({
+        name: "storage",
+        driverOrder: [Drivers.LocalStorage]
+    }))
+    storage.create();
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
     const getBikes = useCallback(async () => {
         const response = await storageService.getBikes();
         setBikes(response.resource!.bikes);
     }, [storageService])
 
     useEffect(() => {
+        const init = async () => {
+            const user = JSON.parse(await storage.get("user")) as UserResponse;
+            setUnit(user.unit);
+        }
+
+        init();
         getBikes();
     }, [storageService, getBikes]);
 
@@ -61,6 +76,7 @@ const SelectBike = ({storageService, cancelAction, selectedAction}: SelectBikePr
                     cancelAction={addBikeCancel}
                     storageService={storageService}
                     addedBikeAction={bikeAdded}
+                    unit={unitValue}
                 />
             }
         </div>

@@ -37,7 +37,7 @@ const Profile = () => {
     const getUser = async () => {
         const user = (await storageService.getUserById()).resource!;
         await storage.set('user', JSON.stringify(user));
-        const weightValue = await GetWeightValueByUnit(user.weight, storage);
+        const weightValue = GetWeightValueByUnit(user.weight, user.unit);
         setUser(user);
         setFirstNameValue(user.first_name);
         setLastNameValue(user.last_name);
@@ -109,16 +109,18 @@ const Profile = () => {
 
     const handleSave = async () => {
         if (form!.valid) {
+            const weight = parseFloat(weightValue);
+            const weightInUserUnits = unitValue === Unit.Imperial ? ConvertPoundsToKilos(weight) : weight;
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
                 email: user!.email,
                 id: user!.id,
-                weight: parseFloat(weightValue),
+                weight: weightInUserUnits,
                 unit: unitValue
             };
-            await storageService.editUser(userForm);
-            await storage.set('user', JSON.stringify(user));
+            const response = (await storageService.editUser(userForm)).resource;
+            await storage.set('user', JSON.stringify(response));
             alert("Profile Saved");
         }
         else {
