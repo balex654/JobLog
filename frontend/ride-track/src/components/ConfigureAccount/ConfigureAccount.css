@@ -26,6 +26,11 @@
     margin-top: 0.5rem;
 }
 
+.unit-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .title {
     color: var(--blue);
 }

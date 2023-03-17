@@ -2,8 +2,10 @@ import "./Chart.css";
 import { GpsPointResponse } from "../../../model/gps-point/GpsPointResponse"
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, YAxis } from 'recharts';
 import { useEffect, useState } from "react";
-import { ConvertMetersToFeet, ConvertMetersToMiles, ConvertMStoMilesPerHour, GetHorizontalDistance, GetInclineAngle, GetPowerForTwoPoints } from "../../../common/Calculations";
+import { GetHorizontalDistance, GetInclineAngle, GetLengthValueByUnit, GetPowerForTwoPoints, GetShortLengthValueByUnit, GetVelocityByUnit } from "../../../common/Calculations";
 import CustomTooltip from "./CustomTooltip";
+import { UserResponse } from "../../../model/user/UserResponse";
+import { Unit } from "../../../model/user/Unit";
 
 export interface ChartProps {
     gpsPoints: GpsPointResponse[];
@@ -21,6 +23,7 @@ export interface ChartDataPoint {
 
 const Chart = ({gpsPoints, totalMass}: ChartProps) => {
     const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
+    const unitValue = (JSON.parse(localStorage.getItem('user')!) as UserResponse).unit;
 
     useEffect(() => {
         let data: ChartDataPoint[] = [];
@@ -29,9 +32,9 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
         for (i = 0; i < gpsPoints.length - 2; i++) {
             const cur = gpsPoints[i];
             const next = gpsPoints[i + 1];
-            const milesPerHour = ConvertMStoMilesPerHour(cur.speed);
-            const altitudeFeet = ConvertMetersToFeet(cur.altitude);
-            const distance = ConvertMetersToMiles(GetHorizontalDistance(cur, next));
+            const speed = GetVelocityByUnit(cur.speed);
+            const altitude = GetShortLengthValueByUnit(cur.altitude);
+            const distance = GetLengthValueByUnit(GetHorizontalDistance(cur, next) * 0.001);
             totalDistance += distance;
             let inclineAngle = GetInclineAngle(cur, next);
             let power: number = GetPowerForTwoPoints(cur, next, totalMass);            
@@ -45,8 +48,8 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
             data.push({
                 time: `${date.getHours()}:${minutes}:${seconds}`,
                 power: power,
-                speed: Number(milesPerHour.toFixed(1)),
-                altitude: Number(altitudeFeet.toFixed(0)),
+                speed: Number(speed.toFixed(1)),
+                altitude: Number(altitude.toFixed(0)),
                 inclineAngle: inclineAngle,
                 distance: Number(totalDistance.toFixed(2))
             });
@@ -98,7 +101,7 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                         stroke="#9e1919" 
                         activeDot={{ r: 5 }} 
                         dot={false} 
-                        name="Speed (mi/hr)"/>
+                        name={`Speed ${unitValue === Unit.Imperial ? "(mi/hr)" : "(km/hr)"}`}/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>
@@ -130,7 +133,7 @@ const Chart = ({gpsPoints, totalMass}: ChartProps) => {
                         stroke="#199e29" 
                         activeDot={{ r: 5 }} 
                         dot={false} 
-                        name="Altitude (ft)"/>
+                        name={`Altitude ${unitValue === Unit.Imperial ? "(ft)" : "(m)"}`}/>
                 </LineChart>
             </ResponsiveContainer>
             <ResponsiveContainer>

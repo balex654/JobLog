@@ -1,7 +1,6 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonCheckbox, IonContent, IonPage } from "@ionic/react";
 import { useHistory } from "react-router";
 import "./ConfigureAccount.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
@@ -9,10 +8,12 @@ import { EmptyValidator, LengthValidator, NonFloatValueValidator } from "../../c
 import { UserForm } from "../../model/user/UserForm";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { Storage, Drivers } from "@ionic/storage";
+import { Unit } from "../../model/user/Unit";
+import { getAccessToken } from "../../common/Auth";
+import { ConvertPoundsToKilos } from "../../common/Calculations";
 
 const ConfigureAccount = () => {
     const history = useHistory();
-    const { user } = useAuth0();
     const storageService = new HttpStorageService();
     const storage = new Storage({
         name: "storage",
@@ -27,6 +28,7 @@ const ConfigureAccount = () => {
     const [firstNameValue, setFirstName] = useState<string>('');
     const [lastNameValue, setLastName] = useState<string>('');
     const [weightValue, setWeight] = useState<string>('');
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
 
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
@@ -55,14 +57,28 @@ const ConfigureAccount = () => {
         setWeight(event.target.value);
     }
 
+    const unitInputHandler = (event: any) => {
+        if (event.target.checked) {
+            setUnit(Unit.Metric);
+        }
+        else {
+            setUnit(Unit.Imperial);
+        }
+    }
+
     const handleCreate = async () => {
         if (form.valid) {
+            const accessToken = await getAccessToken(storage);
+            const email = (accessToken as any).email;
+            const userId = accessToken.sub!;
+            const weight = parseFloat(weightValue);
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
-                email: user!.email!,
-                id: user!.sub!,
-                weight: parseFloat(weightValue)
+                email: email,
+                id: userId,
+                weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weight) : weight,
+                unit: unitValue
             }
             const response = await storageService.createUser(userForm);
             storage.set('user', JSON.stringify(response));
@@ -87,9 +103,16 @@ const ConfigureAccount = () => {
                         </div>
                         {lastNameErrors.map(e => <div className="error">{e}</div>)}
                         <div className="input-container">
-                            <input onChange={weightInputHandler} className='input' placeholder='Weight (kg)'/>
+                            <input 
+                                onChange={weightInputHandler} 
+                                className='input'
+                                placeholder={unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}/>
                         </div>
                         {weightErrors.map(e => <div className="error">{e}</div>)}
+                        <div className="unit-input-container input-container">
+                            <div className="text">Metric Units</div>
+                            <IonCheckbox onIonChange={unitInputHandler}/>
+                        </div>
                     </form>
                     <div className='button-container'>
                         <button onClick={handleCreate} className='create-button'>

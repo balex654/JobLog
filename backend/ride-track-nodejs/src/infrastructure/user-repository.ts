@@ -24,7 +24,8 @@ export class UserRepository implements IUserRepository {
                     last_name: user.last_name,
                     weight: user.weight,
                     email: user.email,
-                    id: user.id
+                    id: user.id,
+                    unit: user.unit
                 });
         return user;
     }
@@ -35,7 +36,8 @@ export class UserRepository implements IUserRepository {
                 .update({
                     first_name: user.first_name,
                     last_name: user.last_name,
-                    weight: user.weight
+                    weight: user.weight,
+                    unit: user.unit
                 });
         return user;
     }

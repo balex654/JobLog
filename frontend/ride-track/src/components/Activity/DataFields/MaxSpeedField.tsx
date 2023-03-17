@@ -1,5 +1,7 @@
-import { ConvertMStoMilesPerHour } from "../../../common/Calculations";
+import { GetVelocityByUnit } from "../../../common/Calculations";
 import { GpsPointResponse } from "../../../model/gps-point/GpsPointResponse";
+import { Unit } from "../../../model/user/Unit";
+import { UserResponse } from "../../../model/user/UserResponse";
 import { DataField } from "./DataField";
 
 export class MaxSpeedField implements DataField<GpsPointResponse[]> {
@@ -19,7 +21,8 @@ export class MaxSpeedField implements DataField<GpsPointResponse[]> {
             }
         });
 
-        const milesPerHour = ConvertMStoMilesPerHour(max);
-        this.setValueFunction(`${milesPerHour.toFixed(1)} mi/hr`);
+        const velocity = GetVelocityByUnit(max);
+        const unitValue = (JSON.parse(localStorage.getItem('user')!) as UserResponse).unit;
+        this.setValueFunction(`${velocity.toFixed(1)} ${unitValue === Unit.Imperial ? "mi/hr" : "km/hr"}`);
     }
 }

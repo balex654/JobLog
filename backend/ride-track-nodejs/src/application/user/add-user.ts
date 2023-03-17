@@ -26,7 +26,8 @@ export class AddUserCommand {
             userForm.last_name,
             userForm.weight,
             userForm.email,
-            userForm.id
+            userForm.id,
+            userForm.unit
         ));
         return {
             status: Status.Created,
@@ -35,7 +36,8 @@ export class AddUserCommand {
                 user.last_name,
                 user.weight,
                 user.email,
-                user.id)
+                user.id,
+                user.unit)
         };
     }
 }

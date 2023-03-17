@@ -1,4 +1,5 @@
 import { GpsPointResponse } from "../model/gps-point/GpsPointResponse";
+import { Unit } from "../model/user/Unit";
 
 export function GetPowerForTwoPoints(cur: GpsPointResponse, next: GpsPointResponse, totalMass: number): number {
     const forceDueToAcc = GetForceDueToAcceration(cur, next, totalMass);
@@ -81,6 +82,13 @@ export function ConvertMStoMilesPerHour(ms: number): number {
     return milesPerHour;
 }
 
+export function ConvertMStoKPH(ms: number): number {
+    // m/s * s/hr * km/m
+    const metersPerHour = ms * 3600;
+    const kilometersPerHour = metersPerHour * 0.001;
+    return kilometersPerHour;
+}
+
 export function GetInclineAngle(cur: GpsPointResponse, next: GpsPointResponse): number {
     const altitudeChange = next.altitude - cur.altitude;
     const distanceChange = GetHorizontalDistance(cur, next);
@@ -97,4 +105,71 @@ export function ConvertMetersToFeet(meters: number): number {
 export function ConvertMetersToMiles(meters: number): number {
     const miles = meters * 0.000621371;
     return miles;
+}
+
+export function ConvertKilometersToMiles(kilometers: number): number {
+    const miles = kilometers * 0.621371;
+    return miles;
+}
+
+export function ConvertPoundsToKilos(pounds: number): number {
+    const kilos = pounds * 0.453592;
+    const rounded = Math.round(kilos * 100) / 100;
+    return rounded;
+}
+
+export function ConvertKilosToPounds(kilos: number): number {
+    const pounds = kilos * 2.20462;
+    const rounded = Math.round(pounds * 100) / 100;
+    return rounded;
+}
+
+export function GetWeightValueByUnit(kilos: number): number {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertKilosToPounds(kilos);
+    }
+    else {
+        return kilos;
+    }
+}
+
+export function GetWeightInKilos(weight: number): number {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertPoundsToKilos(weight);
+    }
+    else {
+        return weight;
+    }
+}
+
+export function GetLengthValueByUnit(kilometers: number): number {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertKilometersToMiles(kilometers);
+    }
+    else {
+        return kilometers;
+    }
+}
+
+export function GetShortLengthValueByUnit(meters: number): number {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertMetersToFeet(meters);
+    }
+    else {
+        return meters;
+    }
+}
+
+export function GetVelocityByUnit(metersPerSecond: number): number {
+    const unit = JSON.parse(localStorage.getItem("user")!).unit;
+    if (unit === Unit.Imperial) {
+        return ConvertMStoMilesPerHour(metersPerSecond);
+    }
+    else {
+        return ConvertMStoKPH(metersPerSecond);
+    }
 }

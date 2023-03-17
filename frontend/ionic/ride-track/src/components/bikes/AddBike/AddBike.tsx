@@ -1,18 +1,24 @@
 import { useState } from "react";
+import { GetWeightInKilos } from "../../../common/Calculations";
 import { Form } from "../../../common/Form";
 import { FormField } from "../../../common/FormField";
 import { BikeForm } from "../../../model/bike/BikeForm";
+import { Unit } from "../../../model/user/Unit";
 import { HttpStorageService } from "../../../services/HttpStorageService"
 import { BikeNameField, BikeWeightField } from "../Bikes";
 import "./AddBike.css";
+import { Storage, Drivers } from "@ionic/storage";
+import { UserResponse } from "../../../model/user/UserResponse";
+import { useIonViewDidEnter } from "@ionic/react";
 
 interface AddBikeProps {
     storageService: HttpStorageService,
     cancelAction: Function,
-    addedBikeAction: Function
+    addedBikeAction: Function,
+    unit: Unit
 }
 
-const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) => {
+const AddBike = ({storageService, cancelAction, addedBikeAction, unit}: AddBikeProps) => {
     const [nameValue, setNameValue] = useState<string>('');
     const [weightValue, setWeightValue] = useState<string>('');
     const nameFieldId = 'name';
@@ -38,9 +44,10 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
 
     const handleAdd = async () => {
         if (form.valid) {
+            const weightFloat = parseFloat(weightValue);
             const bikeForm: BikeForm = {
                 name: nameValue,
-                weight: parseFloat(weightValue)
+                weight: GetWeightInKilos(weightFloat, unit)
             }
             const bikeResponse = (await storageService.addBike(bikeForm)).resource;
             addedBikeAction({
@@ -65,7 +72,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
             <input
                 onChange={weightInputHandler}
                 className="bike-input"
-                placeholder="weight (kg)"
+                placeholder={`weight (${unit === Unit.Imperial ? "lbs" : "kg"})`}
                 type="number"/>
             <button onClick={handleAdd}>Add</button>
             <button onClick={handleCancel}>Cancel</button>

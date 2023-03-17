@@ -9,7 +9,7 @@ import { BackgroundGeolocationPlugin } from "@capacitor-community/background-geo
 import Alert from "../../common/alert/Alert";
 import SaveActivityAlert from "./SaveActivityAlert";
 import { Storage, Drivers } from "@ionic/storage";
-import { getUserId } from "../../common/Auth";
+import { getAccessToken } from "../../common/Auth";
 const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation")
 
 const TrackActivity = () => {
@@ -45,7 +45,8 @@ const TrackActivity = () => {
         setActivityStarted(true);
         const a = new Activity();
         a.startDate = new Date();
-        a.userId = await getUserId(storage);
+        const accessToken = await getAccessToken(storage);
+        a.userId = accessToken.sub!;
         const activity = await dbService.AddActivity(a);
         setCurrentActivity(activity);
         await watchPosition(activity);
@@ -67,7 +68,7 @@ const TrackActivity = () => {
                     altitude: position.altitude,
                     latitude: position.latitude,
                     longitude: position.longitude,
-                    speed: position.speed,
+                    speed: position.speed === null ? 0 : position.speed,
                     date: position.time
                 });
             }

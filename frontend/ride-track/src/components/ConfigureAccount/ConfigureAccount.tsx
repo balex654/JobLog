@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { EmptyValidator, LengthValidator, NonFloatValueValidator } from "../../common/Validators";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { Unit } from "../../model/user/Unit";
+import { ConvertPoundsToKilos } from "../../common/Calculations";
 
 interface ConfigureAccountProps {
     storageService: IStorageService;
@@ -23,6 +25,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
     const [firstNameValue, setFirstName] = useState<string>('');
     const [lastNameValue, setLastName] = useState<string>('');
     const [weightValue, setWeight] = useState<string>('');
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
 
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
@@ -71,16 +74,27 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
         setWeight(event.target.value);
     }
 
+    const unitInputHandler = (event: any) => {
+        if (event.target.checked) {
+            setUnit(Unit.Metric);
+        }
+        else {
+            setUnit(Unit.Imperial);
+        }
+    }
+
     const handleCreate = async (e: any) => {
         e.preventDefault();
+        const weight = parseFloat(weightValue);
         if (form.valid) {
             const userForm: UserForm = {
                 first_name: firstNameValue,
                 last_name: lastNameValue,
                 email: user!.email!,
                 id: user!.sub!,
-                weight: parseFloat(weightValue)
-            }
+                weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weight) : weight,
+                unit: unitValue
+            };
             const response = await storageService.createUser(userForm);
             localStorage.setItem('user', JSON.stringify(response));
             navigate('/dashboard/profile');
@@ -108,9 +122,16 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                     </div>
                     {lastNameErrors.map(e => <div className="error">{e}</div>)}
                     <div className="input-container">
-                        <input onChange={weightInputHandler} className='input' placeholder='Weight (kg)'/>
+                        <input 
+                            onChange={weightInputHandler} 
+                            className='input' 
+                            placeholder={unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}/>
                     </div>
                     {weightErrors.map(e => <div className="error">{e}</div>)}
+                    <div className="unit-input-container input-container">
+                        <div className="text">Metric Units</div>
+                        <input type="checkbox" onChange={unitInputHandler}/>
+                    </div>
                 </form>
                 <div className='button-container'>
                     <button onClick={handleCreate} className='create-button'>

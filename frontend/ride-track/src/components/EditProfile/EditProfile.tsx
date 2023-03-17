@@ -6,6 +6,8 @@ import { Form } from "../../common/Form";
 import { FormField } from "../../common/FormField";
 import { FirstNameField, LastNameField, WeightField } from "../ConfigureAccount/ConfigureAccount";
 import { UserForm } from "../../model/user/UserForm";
+import { Unit } from "../../model/user/Unit";
+import { ConvertKilosToPounds, ConvertPoundsToKilos, GetWeightValueByUnit } from "../../common/Calculations";
 
 interface EditProfileProps {
     storageService: IStorageService;
@@ -16,6 +18,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
     const [firstNameValue, setFirstNameValue] = useState<string>('');
     const [lastNameValue, setLastNameValue] = useState<string>('');
     const [weightValue, setWeightValue] = useState<number>(0);
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
     const [user, setUser] = useState<UserResponse>();
     const firstNameFieldId = 'firstName';
     const lastNameFieldId = 'lastName';
@@ -25,16 +28,20 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
     useEffect(() => {
         const getUser = async () => {
             const response = await storageService.getUserById();
+            localStorage.setItem('user', JSON.stringify(response));
+            const weightValue = GetWeightValueByUnit(response.weight);
+            console.log(response);
             setUser(response);
             setFirstNameValue(response.first_name);
             setLastNameValue(response.last_name);
-            setWeightValue(response.weight);
+            setWeightValue(weightValue);
+            setUnit(response.unit);
             const firstNameField = new FirstNameField();
             firstNameField.value = response.first_name;
             const lastNameField = new LastNameField();
             lastNameField.value = response.last_name;
             const weightField = new WeightField();
-            weightField.value = response.weight.toString();
+            weightField.value = weightValue.toString();
             setForm(new Form(new Map<string, FormField>([
                 [firstNameFieldId, firstNameField],
                 [lastNameFieldId, lastNameField],
@@ -60,7 +67,21 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
 
     const weightInputHandler = (event: any) => {
         form!.formFields.get(weightFieldId)!.value = event.target.value;
-        setWeightValue(parseInt(event.target.value))
+        setWeightValue(parseFloat(event.target.value))
+    }
+
+    const unitInputHandler = (event: any) => {
+        let newWeightValue;
+        if (event.target.checked) {
+            setUnit(Unit.Metric);
+            newWeightValue = ConvertPoundsToKilos(weightValue);            
+        }
+        else {
+            setUnit(Unit.Imperial);
+            newWeightValue = ConvertKilosToPounds(weightValue);
+        }
+        form!.formFields.get(weightFieldId)!.value = newWeightValue.toString();
+        setWeightValue(newWeightValue);
     }
 
     const handleSave = async () => {
@@ -70,9 +91,11 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
                 last_name: lastNameValue,
                 email: user!.email,
                 id: user!.id,
-                weight: weightValue
+                weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weightValue) : weightValue,
+                unit: unitValue
             };
-            await storageService.editUser(userForm);
+            const response = await storageService.editUser(userForm);
+            localStorage.setItem('user', JSON.stringify(response));
             onClose();
         }
         else {
@@ -96,13 +119,20 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
                 value={lastNameValue}
                 onChange={(event) => lastNameInputHandler(event)}
             />
-            <div className="text">Weight</div>
+            <div className="text">{unitValue === Unit.Imperial ? "Weight (lbs)" : "Weight (kg)"}</div>
             <input
                 className="edit-profile-input"
                 value={weightValue.toString()}
                 onChange={(event) => weightInputHandler(event)}
                 type="number"
             />
+            <div className="unit-input-container">
+                <div className="text">Metric Units</div>
+                <input 
+                    type="checkbox" 
+                    onChange={unitInputHandler} 
+                    checked={unitValue === Unit.Imperial ? false : true}/>
+            </div>
             <button onClick={handleSave}>Save</button>
             <button onClick={handleClose}>Cancel</button>
         </div>

@@ -9,12 +9,22 @@ import { HttpStorageService } from "../../services/HttpStorageService";
 import AddBike from "./AddBike/AddBike";
 import { BikeListItem } from "./BikeListItem";
 import "./Bikes.css";
+import { Storage, Drivers } from "@ionic/storage";
+import { Unit } from "../../model/user/Unit";
+import { UserResponse } from "../../model/user/UserResponse";
+import { GetWeightInKilos, GetWeightValueByUnit } from "../../common/Calculations";
 
 const Bikes = () => {
     const [bikes, setBikes] = useState<BikeListItem[]>([]);
     const [forms, setForms] = useState<Form[]>([]);
     const [addBikeVisible, setAddBikeVisible] = useState<boolean>(false);
     const [storageService] = useState<HttpStorageService>(new HttpStorageService());
+    const [storage] = useState<Storage>(new Storage({
+        name: "storage",
+        driverOrder: [Drivers.LocalStorage]
+    }))
+    storage.create();
+    const [unitValue, setUnit] = useState<Unit>(Unit.Imperial);
 
     const bikeNameFieldId = 'name';
     const bikeWeightFieldId = 'weight';
@@ -42,7 +52,14 @@ const Bikes = () => {
             setForms(forms);
         }
 
+        const init = async () => {
+            const user = JSON.parse(await storage.get("user")) as UserResponse;
+            setUnit(user.unit);
+        }
+
+        init();
         getBikes();
+
     }, [storageService])
 
     const handleEditBike = (bike: BikeListItem) => {
@@ -61,7 +78,8 @@ const Bikes = () => {
     const weightInputHandler = (event: any, bike: BikeListItem) => {
         forms[bike.index].formFields.get(bikeWeightFieldId)!.value = event.target.value;
         const bikeList = bikes.map(b => b);
-        bikeList[bike.index].bike.weight = parseFloat(event.target.value);
+        const bikeWeightFloat = parseFloat(event.target.value);
+        bikeList[bike.index].bike.weight = GetWeightInKilos(bikeWeightFloat, unitValue);
         setBikes(bikeList);
     }
 
@@ -146,11 +164,12 @@ const Bikes = () => {
                         <AddBike 
                             addedBikeAction={addedBikeAction}
                             cancelAction={addBikeCancel}
-                            storageService={storageService}/>
+                            storageService={storageService}
+                            unit={unitValue}/>
                     }
                     <div className="label-container">
                         <p className="text label">Name</p>
-                        <p className="text label">Weight (kg)</p>
+                        <p className="text label">Weight ({unitValue === Unit.Imperial ? "lbs" : "kg"})</p>
                     </div>
                     <div className="bike-list">
                         {bikes.map(b => {
@@ -165,7 +184,7 @@ const Bikes = () => {
                                             <input 
                                                 type="number"
                                                 className="bike-input bike-weight-input" 
-                                                defaultValue={b.bike.weight}
+                                                defaultValue={GetWeightValueByUnit(b.bike.weight, unitValue)}
                                                 onChange={(event) => weightInputHandler(event, b)}/>
                                         </div>
                                         <button className="delete" onClick={() => handleDeleteBike(b)}>Delete</button>
@@ -180,7 +199,7 @@ const Bikes = () => {
                                             {b.bike.name}
                                         </p>
                                         <p className="text">
-                                            {`${b.bike.weight}kg`}
+                                            {`${GetWeightValueByUnit(b.bike.weight, unitValue)}${unitValue === Unit.Imperial ? "lbs" : "kg"}`}
                                         </p>
                                     </div>
                                     <button onClick={() => handleEditBike(b)}>Edit</button>

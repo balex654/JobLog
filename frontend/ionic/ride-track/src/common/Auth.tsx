@@ -4,9 +4,9 @@ import { Storage } from "@ionic/storage";
 
 export const cacheAuthKey = "auth0spajs@@::NNEnH1PYbXV0BXONtkQlg4hD30X9uo0r::https://ride-track-backend-gol2gz2rwq-uc.a.run.app";
 
-export const getUserId = async (storage: Storage): Promise<string> => {
+export const getAccessToken = async (storage: Storage): Promise<JwtPayload> => {
     let accessToken;
-    if (process.env.REACT_APP_API_URL! === "dev") {
+    if (process.env.REACT_APP_ENV! === "dev") {
         accessToken = await storage.get('accessToken');
     }
     else {
@@ -16,5 +16,5 @@ export const getUserId = async (storage: Storage): Promise<string> => {
         accessToken = authData.body.access_token;
     }
 
-    return jwtDecode<JwtPayload>(accessToken).sub!;
+    return jwtDecode<JwtPayload>(accessToken);
 }

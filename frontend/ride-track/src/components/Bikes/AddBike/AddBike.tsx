@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { GetWeightInKilos } from "../../../common/Calculations";
 import { Form } from "../../../common/Form";
 import { FormField } from "../../../common/FormField";
 import { BikeForm } from "../../../model/bike/BikeForm";
+import { Unit } from "../../../model/user/Unit";
+import { UserResponse } from "../../../model/user/UserResponse";
 import { IStorageService } from "../../../services/IStorageService";
 import { BikeNameField, BikeWeightField } from "../Bikes";
 import "./AddBike.css";
@@ -21,6 +24,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
         [nameFieldId, new BikeNameField()],
         [weightFieldId, new BikeWeightField()]
     ])));
+    const user = JSON.parse(localStorage.getItem('user')!) as UserResponse;
 
     const handleCancel = () => {
         cancelAction(false);
@@ -40,7 +44,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
         if (form.valid) {
             const bikeForm: BikeForm = {
                 name: nameValue,
-                weight: parseFloat(weightValue)
+                weight: GetWeightInKilos(parseFloat(weightValue))
             }
             const bikeResponse = await storageService.addBike(bikeForm);
             addedBikeAction({
@@ -65,7 +69,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
             <input
                 onChange={weightInputHandler}
                 className="bike-input"
-                placeholder="weight (kg)"
+                placeholder={`weight (${user.unit === Unit.Imperial ? "lbs" : "kg"})`}
                 type="number"/>
             <button onClick={handleAdd}>Add</button>
             <button onClick={handleCancel}>Cancel</button>

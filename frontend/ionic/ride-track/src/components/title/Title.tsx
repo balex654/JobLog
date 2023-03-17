@@ -12,7 +12,7 @@ const Title = () => {
     const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
     const history = useHistory();
     const location = useLocation();
-
+    
     useEffect(() => {
         const storageService = new HttpStorageService();
         const init = async () => {

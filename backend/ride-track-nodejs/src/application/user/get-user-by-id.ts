@@ -26,7 +26,8 @@ export class GetUserByIdQuery {
                 user.last_name, 
                 user.weight,
                 user.email,
-                user.id)
+                user.id,
+                user.unit)
         };
     }
 }
