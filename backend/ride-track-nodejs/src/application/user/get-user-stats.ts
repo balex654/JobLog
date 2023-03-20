@@ -20,10 +20,9 @@ export class GetUserStatsQuery {
         }
 
         const stats = await this.userRepository.getUserStats(user);
-
-        return {
-            status: Status.Ok,
-            resource: new StatsResponse(
+        let statsResponse: StatsResponse | undefined;
+        if (stats.longest_ride !== undefined && stats.top_speed !== undefined) {
+            statsResponse = new StatsResponse(
                 {
                     activity: new ActivityResponse(
                         stats.longest_ride.activity.id!,
@@ -38,13 +37,27 @@ export class GetUserStatsQuery {
                     distance: stats.longest_ride.distance
                 },
                 {
-                    activity: undefined,
-                    speed: 0
+                    activity: new ActivityResponse(
+                        stats.top_speed.activity.id!,
+                        stats.top_speed.activity.name,
+                        stats.top_speed.activity.start_date,
+                        stats.top_speed.activity.end_date,
+                        stats.top_speed.activity.moving_time,
+                        stats.top_speed.activity.bike_id,
+                        stats.top_speed.activity.user_id,
+                        stats.top_speed.activity.total_mass
+                    ),
+                    speed: stats.top_speed.speed
                 },
                 stats.total_distance_year,
                 stats.total_distance_month,
                 stats.bike_stats
             )
+        }
+
+        return {
+            status: Status.Ok,
+            resource: statsResponse
         };
     }
 }

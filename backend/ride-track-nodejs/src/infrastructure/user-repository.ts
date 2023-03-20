@@ -48,18 +48,22 @@ export class UserRepository implements IUserRepository {
 
     public async getUserStats(user: User): Promise<Stats> {
         const longestRide = await this.getLongestRide(user);
-        let topSpeed: TopSpeed;
+        const topSpeed = await this.getTopSpeed(user);
         return new Stats(
             longestRide, 
-            topSpeed!,
+            topSpeed,
             0,
             0,
             []);
     }
 
-    private async getLongestRide(user: User): Promise<LongestRide> {
+    private async getLongestRide(user: User): Promise<LongestRide | undefined> {
         const activities = await knex('ride_track_app_activity')
                             .where({user_id: user.id}) as any[];
+        if (activities.length === 0) {
+            return undefined;
+        }
+        
         let longestDistance = 0;
         let longestActivity: Activity;
         let i = 0;
@@ -81,9 +85,36 @@ export class UserRepository implements IUserRepository {
             }
         }
 
+        longestActivity!.id = parseInt(longestActivity!.id! as any);
+        longestActivity!.bike_id = parseInt(longestActivity!.bike_id as any);        
         return {
             activity: longestActivity!,
             distance: longestDistance
+        };
+    }
+
+    private async getTopSpeed(user: User): Promise<TopSpeed | undefined> {
+        const result = await knex('ride_track_app_gpspoint')
+            .join('ride_track_app_activity', 'ride_track_app_gpspoint.activity_id', '=', 'ride_track_app_activity.id')
+            .where({'ride_track_app_activity.user_id': user.id})
+            .orderBy('speed', 'desc')
+            .first();
+        if (result === undefined) {
+            return undefined;
+        }
+
+        return {
+            activity: new Activity(
+                result.name,
+                result.start_date,
+                result.end_date,
+                result.moving_time,
+                parseInt(result.bike_id),
+                result.user_id,
+                result.total_mass,
+                parseInt(result.id)
+            ),
+            speed: result.speed
         };
     }
 }

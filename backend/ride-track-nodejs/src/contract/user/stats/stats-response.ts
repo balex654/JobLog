@@ -27,7 +27,7 @@ export interface LongestRideResponse {
 }
 
 export interface TopSpeedResponse {
-    activity?: ActivityResponse;
+    activity: ActivityResponse;
     speed: number;
 }
 
