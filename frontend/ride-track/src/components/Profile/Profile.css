@@ -1,9 +1,15 @@
 .profile-container {
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.profile-options-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10rem;
-    flex-grow: 1;
 }
 
 .profile-button-container {
