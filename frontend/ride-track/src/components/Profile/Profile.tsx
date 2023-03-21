@@ -68,7 +68,7 @@ const Profile = () => {
                     />
                 }
             </div>
-            <Stats/>
+            <Stats storageService={container.get<IStorageService>(TYPES.IStorageService)}/>
         </div>
         
     );

@@ -10,6 +10,7 @@ import { BikeResponse } from "../../model/bike/BikeResponse";
 import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { BikesResponse } from "../../model/bike/BikesResponse";
 import { BikeForm } from "../../model/bike/BikeForm";
+import { StatsResponse } from "../../model/user/StatsResponse";
 
 @injectable()
 export class HttpStorageService implements IStorageService  {
@@ -26,7 +27,12 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async editUser(user: UserForm): Promise<UserResponse> {
-        const { data } = await axios.put(`${this.baseUrl}/user`, user)
+        const { data } = await axios.put(`${this.baseUrl}/user`, user);
+        return data;
+    }
+
+    public async getUserStats(): Promise<StatsResponse> {
+        const { data } = await axios.get(`${this.baseUrl}/user/stats`);
         return data;
     }
 

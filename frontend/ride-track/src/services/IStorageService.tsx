@@ -4,6 +4,7 @@ import { BikeForm } from "../model/bike/BikeForm";
 import { BikeResponse } from "../model/bike/BikeResponse";
 import { BikesResponse } from "../model/bike/BikesResponse";
 import { GpsPointsResponse } from "../model/gps-point/GpsPointsResponse";
+import { StatsResponse } from "../model/user/StatsResponse";
 import { UserForm } from "../model/user/UserForm";
 import { UserResponse } from "../model/user/UserResponse";
 
@@ -11,6 +12,7 @@ export interface IStorageService {
     createUser(user: UserForm): Promise<UserResponse>;
     getUserById(): Promise<UserResponse>;
     editUser(user: UserForm): Promise<UserResponse>;
+    getUserStats(): Promise<StatsResponse>;
     getActivities(): Promise<ActivitiesResponse>;
     getActivityById(activityId: string): Promise<ActivityResponse>;
     getBikeById(bikeId: string): Promise<BikeResponse>;

@@ -11,9 +11,13 @@ import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { BikesResponse } from "../../model/bike/BikesResponse";
 import { BikeForm } from "../../model/bike/BikeForm";
 import { Unit } from "../../model/user/Unit";
+import { StatsResponse } from "../../model/user/StatsResponse";
 
 @injectable()
 export class FileStorageService implements IStorageService {
+    getUserStats(): Promise<StatsResponse> {
+        throw new Error("Method not implemented.");
+    }
     editUser(): Promise<UserResponse> {
         throw new Error("Method not implemented.");
     }
