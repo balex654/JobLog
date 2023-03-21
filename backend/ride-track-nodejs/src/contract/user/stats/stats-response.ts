@@ -32,6 +32,7 @@ export interface TopSpeedResponse {
 }
 
 export interface BikeStatsResponse {
+    bike_name: string;
     total_distance: number;
     average_speed: number;
     average_power: number;

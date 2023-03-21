@@ -3,11 +3,12 @@ import { knex } from "..";
 import { Activity } from "../domain/activity/activity";
 import { IActivityRepository } from "../domain/activity/iactivity-repository";
 import { GpsPoint } from "../domain/gps-point/gps-point";
+import { activity as activityTable, gpsPoint } from "./table-names";
 
 @injectable()
 export class ActivityRepository implements IActivityRepository {
     public async addActivity(activity: Activity, gpsPoints: GpsPoint[]): Promise<undefined> {
-        const activityId = await knex('ride_track_app_activity')
+        const activityId = await knex(activityTable)
                 .insert({
                     name: activity.name,
                     start_date: activity.start_date,
@@ -17,7 +18,7 @@ export class ActivityRepository implements IActivityRepository {
                     bike_id: activity.bike_id,
                     user_id: activity.user_id
                 }, ['id']);
-        await knex('ride_track_app_gpspoint')
+        await knex(gpsPoint)
                 .insert(gpsPoints.map(g => {
                         return {
                             date: g.date,
@@ -33,7 +34,7 @@ export class ActivityRepository implements IActivityRepository {
     }
 
     public async getActivities(userId: string): Promise<Activity[]> {
-        const activities = await knex('ride_track_app_activity')
+        const activities = await knex(activityTable)
                             .where({user_id: userId})
                             .orderBy('start_date', 'desc') as any[];
         activities.forEach(a => {
@@ -44,7 +45,7 @@ export class ActivityRepository implements IActivityRepository {
     }
 
     public async getActivityById(userId: string, activityId: number): Promise<Activity> {
-        const activity = await knex('ride_track_app_activity')
+        const activity = await knex(activityTable)
                             .where({id: activityId, user_id: userId})
                             .first();
         if (activity != undefined) {

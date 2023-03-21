@@ -21,7 +21,9 @@ export class GetUserStatsQuery {
 
         const stats = await this.userRepository.getUserStats(user);
         let statsResponse: StatsResponse | undefined;
+        let status: Status = Status.NoContent;
         if (stats.longest_ride !== undefined && stats.top_speed !== undefined) {
+            status = Status.Ok;
             statsResponse = new StatsResponse(
                 {
                     activity: new ActivityResponse(
@@ -56,7 +58,7 @@ export class GetUserStatsQuery {
         }
 
         return {
-            status: Status.Ok,
+            status: status,
             resource: statsResponse
         };
     }
