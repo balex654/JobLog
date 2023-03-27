@@ -2,14 +2,16 @@ import { injectable } from "inversify";
 import { knex } from "..";
 import { GpsPoint } from "../domain/gps-point/gps-point";
 import { IGpsPointRepository } from "../domain/gps-point/igps-point-repository";
+import { activity, gpsPoint } from "./table-names";
 
 @injectable()
 export class GpsPointRepository implements IGpsPointRepository {
     public async getGpsPointsByActivityId(userId: string, activityId: number): Promise<GpsPoint[]> {
-        const gpsPoints = await knex('ride_track_app_activity')
-            .join('ride_track_app_gpspoint', 'ride_track_app_activity.id', '=', 'ride_track_app_gpspoint.activity_id')
-            .where({'ride_track_app_activity.id': activityId, 'ride_track_app_activity.user_id': userId})
-            .orderBy('ride_track_app_gpspoint.date');
+        const gpsPoints = await knex(activity)
+            .join(gpsPoint, `${activity}.id`, '=', `${gpsPoint}.activity_id`)
+            .where(`${activity}.id`, activityId)
+            .where(`${activity}.user_id`, userId)
+            .orderBy(`${gpsPoint}.date`);
         return gpsPoints;
     }
 }

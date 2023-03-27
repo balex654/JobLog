@@ -1,0 +1,23 @@
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10rem;
+}
+
+.stat-field {
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+}
+
+.bike-header {
+    color: var(--blue);
+    font-size: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin-bottom: 0rem;
+}
+
+.stats-link {
+    margin-top: 1rem;
+}

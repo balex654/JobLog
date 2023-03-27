@@ -15,7 +15,7 @@ const Sidebar = ({storageService}: SidebarProps) => {
     useEffect(() => {
         const getActivities = async () => {
             const response = await storageService.getActivities();
-            setActivities(response.activities);
+            setActivities(response.resource!.activities);
         }
 
         getActivities();

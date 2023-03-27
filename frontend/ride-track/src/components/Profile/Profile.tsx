@@ -6,6 +6,7 @@ import { TYPES } from "../../services/Types";
 import Bikes from "../Bikes/Bikes";
 import EditProfile from "../EditProfile/EditProfile";
 import "./Profile.css";
+import Stats from "./Stats/Stats";
 
 const Profile = () => {
     const { logout } = useAuth0();
@@ -37,35 +38,39 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <p className="title">
-                {`${JSON.parse(localStorage.getItem('user')!).first_name}'s Profile`}
-            </p>
-            <div className="profile-button-container">
-                <button onClick={handleViewBikes}>
-                    View bikes
-                </button>
-                <button onClick={handleEditProfile}>
-                    Edit Profile
-                </button>
-                <button onClick={handleLogout}>
-                    Logout
-                </button>
+            <div className="profile-options-container">
+                <p className="title">
+                    {`${JSON.parse(localStorage.getItem('user')!).first_name}'s Profile`}
+                </p>
+                <div className="profile-button-container">
+                    <button onClick={handleViewBikes}>
+                        View bikes
+                    </button>
+                    <button onClick={handleEditProfile}>
+                        Edit Profile
+                    </button>
+                    <button onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
+                {
+                    isBikesVisible &&
+                    <Bikes 
+                        storageService={container.get<IStorageService>(TYPES.IStorageService)}
+                        onClose={onViewBikesClose}
+                    />
+                }
+                {
+                    isEditProfileVisible &&
+                    <EditProfile
+                        storageService={container.get<IStorageService>(TYPES.IStorageService)}
+                        onClose={onEditProfileClose}
+                    />
+                }
             </div>
-            {
-                isBikesVisible &&
-                <Bikes 
-                    storageService={container.get<IStorageService>(TYPES.IStorageService)}
-                    onClose={onViewBikesClose}
-                />
-            }
-            {
-                isEditProfileVisible &&
-                <EditProfile
-                    storageService={container.get<IStorageService>(TYPES.IStorageService)}
-                    onClose={onEditProfileClose}
-                />
-            }
+            <Stats storageService={container.get<IStorageService>(TYPES.IStorageService)}/>
         </div>
+        
     );
 }
 
