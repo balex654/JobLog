@@ -6,24 +6,24 @@ import { BikeStats, LongestRide, Stats, TopSpeed } from "../domain/user/stats/st
 import { Activity } from "../domain/activity/activity";
 import { GpsPoint } from "../domain/gps-point/gps-point";
 import { GetHorizontalDistance, GetPowerForTwoPoints } from "../common/calculations";
-import { activity, bike, gpsPoint, user } from "./table-names";
+import { activity, bike, gpsPoint, user as userTable } from "./table-names";
 
 @injectable()
 export class UserRepository implements IUserRepository {
     public async getUserById(id: string): Promise<User> {
-        return await knex(user)
+        return await knex(userTable)
                 .where('id', id)
                 .first();
     }
 
     public async getUserByEmail(email: string): Promise<User> {
-        return await knex(user)
+        return await knex(userTable)
                 .where('email', email)
                 .first();
     }
 
     public async addUser(user: User): Promise<User> {
-        await knex(user)
+        await knex(userTable)
                 .insert({
                     first_name: user.first_name,
                     last_name: user.last_name,
@@ -36,7 +36,7 @@ export class UserRepository implements IUserRepository {
     }
 
     public async editUser(user: User): Promise<User> {
-        await knex(user)
+        await knex(userTable)
                 .where({id: user.id})
                 .update({
                     first_name: user.first_name,

@@ -46,7 +46,7 @@ const AddBike = ({storageService, cancelAction, addedBikeAction}: AddBikeProps) 
                 name: nameValue,
                 weight: GetWeightInKilos(parseFloat(weightValue))
             }
-            const bikeResponse = await storageService.addBike(bikeForm);
+            const bikeResponse = (await storageService.addBike(bikeForm)).resource!;
             addedBikeAction({
                 bike: bikeResponse,
                 isEditing: false,

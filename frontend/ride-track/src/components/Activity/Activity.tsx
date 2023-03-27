@@ -43,10 +43,10 @@ const Activity = ({storageService}: ActivityProps) => {
         let bike: BikeResponse;
         let gpsPoints: GpsPointsResponse;
         const init = async () => {
-            activity = await storageService.getActivityById(id!);
+            activity = (await storageService.getActivityById(id!)).resource!;
             const bikeId = activity!.bike_id.toString();
-            bike = await storageService.getBikeById(bikeId);
-            gpsPoints = await storageService.getGpsPoints(activity.id);
+            bike = (await storageService.getBikeById(bikeId)).resource!;
+            gpsPoints = (await storageService.getGpsPoints(activity.id)).resource!;
             setDataFields();
         }
 

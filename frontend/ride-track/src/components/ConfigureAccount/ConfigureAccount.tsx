@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { Unit } from "../../model/user/Unit";
 import { ConvertPoundsToKilos } from "../../common/Calculations";
+import { Status } from "../../model/StorageResponse";
 
 interface ConfigureAccountProps {
     storageService: IStorageService;
@@ -40,13 +41,13 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
 
     useEffect(() => {
         const checkUserExists = async () => {
-            try {
-                const response = await storageService.getUserById();
-                localStorage.setItem('user', JSON.stringify(response));
+            const response = await storageService.getUserById();
+            if (response.status === Status.Ok) {
+                localStorage.setItem('user', JSON.stringify(response.resource!));
                 navigate('/dashboard/profile');
             }
-            catch (e) {
-                setLoading(false)
+            else if (response.status === Status.NotFound) {
+                setLoading(false);
             }
         }
 

@@ -30,7 +30,7 @@ const Bikes = ({storageService, onClose}: BikesProps) => {
     useEffect(() => {
         const getBikes = async () => {
             const response = await storageService.getBikes();
-            const bikeList = response.bikes.map((bike, index) => {
+            const bikeList = response.resource!.bikes.map((bike, index) => {
                 const item: BikeListItem = {
                     bike: bike,
                     isEditing: false,

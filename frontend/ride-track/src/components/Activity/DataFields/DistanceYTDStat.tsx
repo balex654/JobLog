@@ -1,4 +1,7 @@
+import { GetLengthValueByUnit } from "../../../common/Calculations";
 import { StatsResponse } from "../../../model/user/StatsResponse";
+import { Unit } from "../../../model/user/Unit";
+import { UserResponse } from "../../../model/user/UserResponse";
 import { DataField } from "./DataField";
 
 export class DistanceYTDStat implements DataField<StatsResponse> {
@@ -11,6 +14,9 @@ export class DistanceYTDStat implements DataField<StatsResponse> {
     }
 
     generateValue(): void {
-        this.setValueFunction(`${this.data.total_distance_year}`)
+        const totalKilometers = this.data.total_distance_year / 1000;
+        const distanceValue = GetLengthValueByUnit(totalKilometers);
+        const unitValue = (JSON.parse(localStorage.getItem('user')!) as UserResponse).unit;
+        this.setValueFunction(`${distanceValue.toFixed(2)} ${unitValue === Unit.Imperial ? "mi" : "km"}`);
     }
 }

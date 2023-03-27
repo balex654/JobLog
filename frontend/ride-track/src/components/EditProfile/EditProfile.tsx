@@ -27,7 +27,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
 
     useEffect(() => {
         const getUser = async () => {
-            const response = await storageService.getUserById();
+            const response = (await storageService.getUserById()).resource!;
             localStorage.setItem('user', JSON.stringify(response));
             const weightValue = GetWeightValueByUnit(response.weight);
             console.log(response);
@@ -94,7 +94,7 @@ const EditProfile = ({storageService, onClose}: EditProfileProps) => {
                 weight: unitValue === Unit.Imperial ? ConvertPoundsToKilos(weightValue) : weightValue,
                 unit: unitValue
             };
-            const response = await storageService.editUser(userForm);
+            const response = (await storageService.editUser(userForm)).resource!;
             localStorage.setItem('user', JSON.stringify(response));
             onClose();
         }

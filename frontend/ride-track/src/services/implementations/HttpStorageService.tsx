@@ -11,67 +11,105 @@ import { GpsPointsResponse } from "../../model/gps-point/GpsPointsResponse";
 import { BikesResponse } from "../../model/bike/BikesResponse";
 import { BikeForm } from "../../model/bike/BikeForm";
 import { StatsResponse } from "../../model/user/StatsResponse";
+import { StorageResponse } from "../../model/StorageResponse";
 
 @injectable()
 export class HttpStorageService implements IStorageService  {
     private baseUrl = process.env.REACT_APP_API_URL;
 
-    public async createUser(user: UserForm): Promise<UserResponse> {
-        const { data } = await axios.post(`${this.baseUrl}/user`, user);
-        return data;
+    public async createUser(user: UserForm): Promise<StorageResponse<UserResponse>> {
+        const { data, status } = await axios.post(`${this.baseUrl}/user`, user);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getUserById(): Promise<UserResponse> {
-        const { data } = await axios.get<UserResponse>(`${this.baseUrl}/user`);
-        return data;
+    public async getUserById(): Promise<StorageResponse<UserResponse>> {
+        const { data, status } = await axios.get<UserResponse>(`${this.baseUrl}/user`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async editUser(user: UserForm): Promise<UserResponse> {
-        const { data } = await axios.put(`${this.baseUrl}/user`, user);
-        return data;
+    public async editUser(user: UserForm): Promise<StorageResponse<UserResponse>> {
+        const { data, status } = await axios.put(`${this.baseUrl}/user`, user);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getUserStats(): Promise<StatsResponse> {
-        const { data } = await axios.get(`${this.baseUrl}/user/stats`);
-        return data;
+    public async getUserStats(): Promise<StorageResponse<StatsResponse>> {
+        const { data, status } = await axios.get(`${this.baseUrl}/user/stats`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getActivities(): Promise<ActivitiesResponse> {
-        const { data } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`);
-        return data;
+    public async getActivities(): Promise<StorageResponse<ActivitiesResponse>> {
+        const { data, status } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getActivityById(activityId: string): Promise<ActivityResponse> {
-        const { data } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`)
-        return data;
+    public async getActivityById(activityId: string): Promise<StorageResponse<ActivityResponse>> {
+        const { data, status } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`)
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getBikeById(bikeId: string): Promise<BikeResponse> {
-        const { data } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`);
-        return data;
+    public async getBikeById(bikeId: string): Promise<StorageResponse<BikeResponse>> {
+        const { data, status } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getBikes(): Promise<BikesResponse> {
-        const { data } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`);
-        return data;
+    public async getBikes(): Promise<StorageResponse<BikesResponse>> {
+        const { data, status } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async editBike(bikeId: number, bike: BikeForm): Promise<BikeResponse> {
-        const { data } = await axios.put<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, bike);
-        return data;
+    public async editBike(bikeId: number, bike: BikeForm): Promise<StorageResponse<BikeResponse>> {
+        const { data, status } = await axios.put<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, bike);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async deleteBike(bikeId: number): Promise<void> {
-        await axios.delete(`${this.baseUrl}/bike/${bikeId}`);
+    public async deleteBike(bikeId: number): Promise<StorageResponse<BikeResponse>> {
+        const { data, status } = await axios.delete(`${this.baseUrl}/bike/${bikeId}`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async addBike(bike: BikeForm): Promise<BikeResponse> {
-        const { data } = await axios.post(`${this.baseUrl}/bike`, bike);
-        return data;
+    public async addBike(bike: BikeForm): Promise<StorageResponse<BikeResponse>> {
+        const { data, status } = await axios.post(`${this.baseUrl}/bike`, bike);
+        return {
+            status: status,
+            resource: data
+        };
     }
 
-    public async getGpsPoints(activityId: number): Promise<GpsPointsResponse> {
-        const { data } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`);
-        return data;
+    public async getGpsPoints(activityId: number): Promise<StorageResponse<GpsPointsResponse>> {
+        const { data, status } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`);
+        return {
+            status: status,
+            resource: data
+        };
     }
 }
