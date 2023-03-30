@@ -9,6 +9,7 @@ import { GetHorizontalDistance, GetPowerForTwoPoints } from "../common/calculati
 import { activity, bike, gpsPoint, user as userTable } from "./table-names";
 import { LongestRideQuery } from "./sql-queries/longest-ride";
 import { DistanceYTD } from "./sql-queries/distance-ytd";
+import { DistanceMTD } from "./sql-queries/distance-mtd";
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -53,7 +54,7 @@ export class UserRepository implements IUserRepository {
         const longestRide = await this.getLongestRide(user);
         const topSpeed = await this.getTopSpeed(user);
         const distanceYTD = (await knex.raw(DistanceYTD, [user.id])).rows[0].distance_ytd;
-        const distanceMonth = await this.getTotalDistanceMonth(user);
+        const distanceMonth = (await knex.raw(DistanceMTD, [user.id])).rows[0].distance_mtd;
         const bikeStats = await this.getAllBikeStats(user);
         return new Stats(
             longestRide, 
@@ -109,36 +110,6 @@ export class UserRepository implements IUserRepository {
             ),
             speed: result.speed
         };
-    }
-
-    private async getTotalDistanceMonth(user: User): Promise<number> {
-        const start = new Date();
-        start.setDate(1);
-        start.setHours(0, 0, 0, 0);
-        const end = new Date();
-        return await this.getDistanceInDateRange(user, start, end);
-    }
-
-    private async getDistanceInDateRange(user: User, start: Date, end: Date): Promise<number> {
-        const activities = await knex(activity)
-                            .where({user_id: user.id})
-                            .where('start_date', '>', start.toISOString())
-                            .where('start_date', '<', end.toISOString());
-        let distance = 0;
-        let i = 0;
-        for (i = 0; i < activities.length; i++) {
-            const gpsPoints = await knex(gpsPoint)
-                                .where({activity_id: parseInt(activities[i].id!)})
-                                .orderBy('date') as GpsPoint[];
-            let j = 0;
-            for (j = 0; j < gpsPoints.length - 2; j++) {
-                const cur = gpsPoints[j];
-                const next = gpsPoints[j + 1];
-                distance += GetHorizontalDistance(cur, next);
-            }   
-        }
-
-        return distance;
     }
 
     private async getAllBikeStats(user: User): Promise<BikeStats[]> {
