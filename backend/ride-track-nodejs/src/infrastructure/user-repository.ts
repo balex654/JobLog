@@ -7,6 +7,7 @@ import { Activity } from "../domain/activity/activity";
 import { GpsPoint } from "../domain/gps-point/gps-point";
 import { GetHorizontalDistance, GetPowerForTwoPoints } from "../common/calculations";
 import { activity, bike, gpsPoint, user as userTable } from "./table-names";
+import { LongestRideQuery } from "./sql-queries/longest-ride";
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -62,39 +63,26 @@ export class UserRepository implements IUserRepository {
     }
 
     private async getLongestRide(user: User): Promise<LongestRide | undefined> {
-        const activities = await knex(activity)
-                            .where({user_id: user.id}) as any[];
-        if (activities.length === 0) {
+        const query = await knex.raw(LongestRideQuery, [user.id]);
+        if (query.rows.length !== 0) {
+            const result = query.rows[0];
+            return {
+                activity: new Activity(
+                    result.name,
+                    result.start_date,
+                    result.end_date,
+                    result.moving_time,
+                    parseInt(result.bike_id),
+                    result.user_id,
+                    result.total_mass,
+                    parseInt(result.id)
+                ),
+                distance: result.total_distance
+            };
+        }
+        else {
             return undefined;
         }
-
-        let longestDistance = 0;
-        let longestActivity: Activity;
-        let i = 0;
-        for (i = 0; i < activities.length; i++) {
-            const gpsPoints = await knex(gpsPoint)
-                                .where({activity_id: parseInt(activities[i].id!)})
-                                .orderBy('date') as GpsPoint[];
-            let distance = 0;
-            let j = 0;
-            for (j = 0; j < gpsPoints.length - 2; j++) {
-                const cur = gpsPoints[j];
-                const next = gpsPoints[j + 1];
-                distance += GetHorizontalDistance(cur, next);
-            }
-
-            if (distance > longestDistance) {
-                longestDistance = distance;
-                longestActivity = activities[i];
-            }
-        }
-
-        longestActivity!.id = parseInt(longestActivity!.id! as any);
-        longestActivity!.bike_id = parseInt(longestActivity!.bike_id as any);        
-        return {
-            activity: longestActivity!,
-            distance: longestDistance
-        };
     }
 
     private async getTopSpeed(user: User): Promise<TopSpeed | undefined> {

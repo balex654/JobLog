@@ -18,7 +18,7 @@ export class HttpStorageService implements IStorageService  {
     private baseUrl = process.env.REACT_APP_API_URL;
 
     public async createUser(user: UserForm): Promise<StorageResponse<UserResponse>> {
-        const { data, status } = await axios.post(`${this.baseUrl}/user`, user);
+        const { data, status } = await axios.post(`${this.baseUrl}/user`, user).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -26,7 +26,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getUserById(): Promise<StorageResponse<UserResponse>> {
-        const { data, status } = await axios.get<UserResponse>(`${this.baseUrl}/user`);
+        const { data, status } = await axios.get<UserResponse>(`${this.baseUrl}/user`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -34,7 +34,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async editUser(user: UserForm): Promise<StorageResponse<UserResponse>> {
-        const { data, status } = await axios.put(`${this.baseUrl}/user`, user);
+        const { data, status } = await axios.put(`${this.baseUrl}/user`, user).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -42,7 +42,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getUserStats(): Promise<StorageResponse<StatsResponse>> {
-        const { data, status } = await axios.get(`${this.baseUrl}/user/stats`);
+        const { data, status } = await axios.get(`${this.baseUrl}/user/stats`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -50,7 +50,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getActivities(): Promise<StorageResponse<ActivitiesResponse>> {
-        const { data, status } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`);
+        const { data, status } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -58,7 +58,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getActivityById(activityId: string): Promise<StorageResponse<ActivityResponse>> {
-        const { data, status } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`)
+        const { data, status } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`).catch(err => err.response)
         return {
             status: status,
             resource: data
@@ -66,7 +66,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getBikeById(bikeId: string): Promise<StorageResponse<BikeResponse>> {
-        const { data, status } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`);
+        const { data, status } = await axios.get<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -74,7 +74,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getBikes(): Promise<StorageResponse<BikesResponse>> {
-        const { data, status } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`);
+        const { data, status } = await axios.get<BikesResponse>(`${this.baseUrl}/bike`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -82,7 +82,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async editBike(bikeId: number, bike: BikeForm): Promise<StorageResponse<BikeResponse>> {
-        const { data, status } = await axios.put<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, bike);
+        const { data, status } = await axios.put<BikeResponse>(`${this.baseUrl}/bike/${bikeId}`, bike).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -90,7 +90,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async deleteBike(bikeId: number): Promise<StorageResponse<BikeResponse>> {
-        const { data, status } = await axios.delete(`${this.baseUrl}/bike/${bikeId}`);
+        const { data, status } = await axios.delete(`${this.baseUrl}/bike/${bikeId}`).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -98,7 +98,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async addBike(bike: BikeForm): Promise<StorageResponse<BikeResponse>> {
-        const { data, status } = await axios.post(`${this.baseUrl}/bike`, bike);
+        const { data, status } = await axios.post(`${this.baseUrl}/bike`, bike).catch(err => err.response);
         return {
             status: status,
             resource: data
@@ -106,7 +106,7 @@ export class HttpStorageService implements IStorageService  {
     }
 
     public async getGpsPoints(activityId: number): Promise<StorageResponse<GpsPointsResponse>> {
-        const { data, status } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`);
+        const { data, status } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`).catch(err => err.response);
         return {
             status: status,
             resource: data

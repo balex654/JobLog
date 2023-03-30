@@ -9,6 +9,7 @@ export const addActivityValidator = async (req: Request, res: Response, next: Ne
         "moving_time": "required|min:0",
         "bike_id": "required",
         "total_mass": "required|min:0",
+        "gps_points": "required|array|min:1",
         "gps_points.*.date": "required",
         "gps_points.*.speed": "required|min:0",
         "gps_points.*.latitude": "required|min:-90|max:90",
