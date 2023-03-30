@@ -8,6 +8,7 @@ import { GpsPoint } from "../domain/gps-point/gps-point";
 import { GetHorizontalDistance, GetPowerForTwoPoints } from "../common/calculations";
 import { activity, bike, gpsPoint, user as userTable } from "./table-names";
 import { LongestRideQuery } from "./sql-queries/longest-ride";
+import { DistanceYTD } from "./sql-queries/distance-ytd";
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -51,7 +52,7 @@ export class UserRepository implements IUserRepository {
     public async getUserStats(user: User): Promise<Stats> {
         const longestRide = await this.getLongestRide(user);
         const topSpeed = await this.getTopSpeed(user);
-        const distanceYTD = await this.getTotalDistanceYear(user);
+        const distanceYTD = (await knex.raw(DistanceYTD, [user.id])).rows[0].distance_ytd;
         const distanceMonth = await this.getTotalDistanceMonth(user);
         const bikeStats = await this.getAllBikeStats(user);
         return new Stats(
@@ -108,15 +109,6 @@ export class UserRepository implements IUserRepository {
             ),
             speed: result.speed
         };
-    }
-
-    private async getTotalDistanceYear(user: User): Promise<number> {
-        const start = new Date();
-        start.setMonth(0);
-        start.setDate(1);
-        start.setHours(0, 0, 0, 0);
-        const end = new Date();
-        return await this.getDistanceInDateRange(user, start, end);
     }
 
     private async getTotalDistanceMonth(user: User): Promise<number> {
