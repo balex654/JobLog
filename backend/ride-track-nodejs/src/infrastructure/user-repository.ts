@@ -133,7 +133,7 @@ export class UserRepository implements IUserRepository {
                 bike_name: bikeStatsDict.get(Power[i].bike_name)!.bike_name,
                 total_distance: bikeStatsDict.get(Power[i].bike_name)!.total_distance,
                 average_speed: bikeStatsDict.get(Power[i].bike_name)!.average_speed,
-                average_power: Power[i].average_power
+                average_power: parseInt(Power[i].average_power)
             });
         }
 
