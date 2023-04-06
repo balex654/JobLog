@@ -97,7 +97,7 @@ const ConfigureAccount = ({storageService}: ConfigureAccountProps) => {
                 unit: unitValue
             };
             const response = await storageService.createUser(userForm);
-            localStorage.setItem('user', JSON.stringify(response));
+            localStorage.setItem('user', JSON.stringify(response.resource));
             navigate('/dashboard/profile');
         }
     }
