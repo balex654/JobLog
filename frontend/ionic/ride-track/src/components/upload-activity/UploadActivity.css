@@ -22,3 +22,8 @@
     margin-bottom: 1rem;
     width: 100%;
 }
+
+.webapp-link {
+    padding-left: 1rem;
+    height: 3rem;
+}
