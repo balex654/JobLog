@@ -7,9 +7,6 @@ import { Unit } from "../../../model/user/Unit";
 import { HttpStorageService } from "../../../services/HttpStorageService"
 import { BikeNameField, BikeWeightField } from "../Bikes";
 import "./AddBike.css";
-import { Storage, Drivers } from "@ionic/storage";
-import { UserResponse } from "../../../model/user/UserResponse";
-import { useIonViewDidEnter } from "@ionic/react";
 
 interface AddBikeProps {
     storageService: HttpStorageService,

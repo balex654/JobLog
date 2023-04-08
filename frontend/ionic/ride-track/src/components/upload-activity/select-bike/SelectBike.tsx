@@ -35,7 +35,7 @@ const SelectBike = ({storageService, cancelAction, selectedAction}: SelectBikePr
 
         init();
         getBikes();
-    }, [storageService, getBikes]);
+    }, [storageService, getBikes, storage]);
 
     const handleCancel = () => {
         cancelAction();

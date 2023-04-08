@@ -1,5 +1,4 @@
 import { Unit } from "../model/user/Unit";
-import { Storage } from "@ionic/storage";
 
 export function ConvertPoundsToKilos(pounds: number): number {
     const kilos = pounds * 0.453592;

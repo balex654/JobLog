@@ -7,6 +7,11 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false,
   server: {
     iosScheme: 'https'
+  },
+  cordova: {
+    preferences: {
+      DisableDeploy: 'false'
+    }
   }
 };
 
