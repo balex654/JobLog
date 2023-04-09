@@ -6,6 +6,7 @@ import { BikesResponse } from "../model/bike/BikesResponse";
 import { StorageResponse } from "../model/StorageResponse";
 import { UserForm } from "../model/user/UserForm";
 import { UserResponse } from "../model/user/UserResponse";
+import { ActivitiesResponse } from "../model/activity/ActivitiesResponse";
 
 export class HttpStorageService {
     private baseUrl = process.env.REACT_APP_API_URL;
@@ -76,5 +77,13 @@ export class HttpStorageService {
             status: status,
             resource: data
         }
+    }
+
+    public async getActivities(): Promise<StorageResponse<ActivitiesResponse>> {
+        const { data, status } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`).catch(err => err.response);
+        return {
+            status: status,
+            resource: data
+        };
     }
 }
