@@ -48,7 +48,7 @@ const Activity = () => {
             const activity = (await storageService.getActivityById(id)).resource!;
             const bike = (await storageService.getBikeById(activity.bike_id.toString())).resource!;
             const gpsPoints = (await storageService.getGpsPoints(activity.id)).resource!;
-            const unit = ((JSON.parse(await storage.get("user"))) as UserResponse).unit as Unit;
+            const unit = (JSON.parse(await storage.get("user")) as UserResponse).unit;
             setActivityName(activity.name);
             dataFields.push(new StartDateField(activity, setStartDateValue));
             dataFields.push(new EndDateField(activity, setEndDateValue));
