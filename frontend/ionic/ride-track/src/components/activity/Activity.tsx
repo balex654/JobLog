@@ -15,7 +15,6 @@ import { TotalDistanceField } from "./data-fields/TotalDistanceField";
 import { AveragePowerField } from "./data-fields/AveragePowerField";
 import { Storage, Drivers } from "@ionic/storage";
 import { UserResponse } from "../../model/user/UserResponse";
-import { Unit } from "../../model/user/Unit";
 import Chart, { ChartProps } from "./chart/Chart";
 
 const Activity = () => {
