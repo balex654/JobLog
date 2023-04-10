@@ -40,6 +40,11 @@ const Activities = () => {
                         </IonTitle>
                     </IonToolbar>
                 </IonHeader>
+                <div className="webapp-link">
+                    <p className="text">
+                        Go to <a href="https://tinyurl.com/ridetrack">https://tinyurl.com/ridetrack</a> on a desktop to view more detailed analysis
+                    </p>
+                </div>
                 <div className="activity-list">
                     {activities.map(a => {
                         return (

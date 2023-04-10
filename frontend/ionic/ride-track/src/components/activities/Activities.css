@@ -2,3 +2,9 @@
     background-color: var(--white);
     color: black;
 }
+
+.webapp-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3rem;
+}
