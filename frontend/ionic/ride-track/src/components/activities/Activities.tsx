@@ -3,8 +3,10 @@ import "./Activities.css";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { useState } from "react";
 import { ActivityResponse } from "../../model/activity/ActivityResponse";
+import { useHistory } from "react-router";
 
 const Activities = () => {
+    const history = useHistory();
     const [storageService] = useState<HttpStorageService>(new HttpStorageService());
     const [activities, setActivities] = useState<ActivityResponse[]>([]);
 
@@ -15,7 +17,11 @@ const Activities = () => {
         }
 
         getActivities();
-    }, [storageService])
+    }, [storageService]);
+
+    const handleActivityClick = (id: number) => {
+        history.push(`/tab-view/activity/${id}`);
+    }
 
     return (
         <IonPage>
@@ -37,10 +43,10 @@ const Activities = () => {
                 <div className="activity-list">
                     {activities.map(a => {
                         return (
-                            <a className="activity activity-link">
+                            <button onClick={() => handleActivityClick(a.id)} className="activity activity-button">
                                 <p>{a.name}</p>
                                 <p>{(new Date(a.start_date)).toLocaleDateString()}</p>
-                            </a>
+                            </button>
                         )
                     })}
                 </div>

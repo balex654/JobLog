@@ -6,6 +6,7 @@ import Profile from "./profile/Profile"
 import TrackActivity from "./track-activity/TrackActivity"
 import UploadActivity from "./upload-activity/UploadActivity"
 import Activities from "./activities/Activities"
+import Activity from "./activity/Activity"
 
 const TabView = () => {
     return (
@@ -14,6 +15,7 @@ const TabView = () => {
                 <Route path="/tab-view/track-activity" component={TrackActivity}/>
                 <Route path="/tab-view/upload-activity" component={UploadActivity}/>
                 <Route path="/tab-view/activities" component={Activities}/>
+                <Route path="/tab-view/activity/:id" component={Activity}/>
                 <Route path="/tab-view/bikes" component={Bikes}/>
                 <Route path="/tab-view/profile" component={Profile}/>
                 <Route exact path="/tab-view">

@@ -31,7 +31,7 @@ const Profile = () => {
     const [storage] = useState<Storage>(new Storage({
         name: "storage",
         driverOrder: [Drivers.LocalStorage]
-    }))
+    }));
     storage.create();
 
     const getUser = async () => {

@@ -1,3 +1,4 @@
-.activity-link {
+.activity-button {
+    background-color: var(--white);
     color: black;
 }

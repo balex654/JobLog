@@ -7,6 +7,8 @@ import { StorageResponse } from "../model/StorageResponse";
 import { UserForm } from "../model/user/UserForm";
 import { UserResponse } from "../model/user/UserResponse";
 import { ActivitiesResponse } from "../model/activity/ActivitiesResponse";
+import { ActivityResponse } from "../model/activity/ActivityResponse";
+import { GpsPointsResponse } from "../model/gps-point/GpsPointsResponse";
 
 export class HttpStorageService {
     private baseUrl = process.env.REACT_APP_API_URL;
@@ -81,6 +83,22 @@ export class HttpStorageService {
 
     public async getActivities(): Promise<StorageResponse<ActivitiesResponse>> {
         const { data, status } = await axios.get<ActivitiesResponse>(`${this.baseUrl}/activity`).catch(err => err.response);
+        return {
+            status: status,
+            resource: data
+        };
+    }
+
+    public async getActivityById(activityId: number): Promise<StorageResponse<ActivityResponse>> {
+        const { data, status } = await axios.get<ActivityResponse>(`${this.baseUrl}/activity/${activityId}`).catch(err => err.response)
+        return {
+            status: status,
+            resource: data
+        };
+    }
+
+    public async getGpsPoints(activityId: number): Promise<StorageResponse<GpsPointsResponse>> {
+        const { data, status } = await axios.get<GpsPointsResponse>(`${this.baseUrl}/activity/${activityId}/gps-point`).catch(err => err.response);
         return {
             status: status,
             resource: data

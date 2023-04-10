@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { HttpStorageService } from "../../services/HttpStorageService";
 import { Status } from "../../model/StorageResponse";
 import { cacheAuthKey } from "../../common/Auth";
+import { Storage, Drivers } from "@ionic/storage";
 
 const Title = () => {
     const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
@@ -18,6 +19,12 @@ const Title = () => {
             if ((!isLoading && isAuthenticated && !history.location.pathname.includes('tab-view')) || process.env.REACT_APP_ENV === "dev") {
                 const response = await storageService.getUserById();
                 if (response.status === Status.Ok) {
+                    const storage = new Storage({
+                        name: "storage",
+                        driverOrder: [Drivers.LocalStorage]
+                    });
+                    storage.create();
+                    await storage.set('user', JSON.stringify(response.resource));
                     history.push('/tab-view');
                 }
                 else if (response.status === Status.NotFound){
