@@ -31,7 +31,7 @@ const Profile = () => {
     const [storage] = useState<Storage>(new Storage({
         name: "storage",
         driverOrder: [Drivers.LocalStorage]
-    }))
+    }));
     storage.create();
 
     const getUser = async () => {
@@ -161,7 +161,7 @@ const Profile = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <IonHeader collapse="condense">
-                    <IonToolbar size-="large">
+                    <IonToolbar>
                         <IonTitle size="large">
                             {`${firstNameValue === "" ? "" : firstNameValue + "'s "}Profile`}
                         </IonTitle>

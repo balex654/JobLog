@@ -81,7 +81,7 @@ const ConfigureAccount = () => {
                 unit: unitValue
             }
             const response = await storageService.createUser(userForm);
-            storage.set('user', JSON.stringify(response));
+            await storage.set('user', JSON.stringify(response));
             history.push('/tab-view');
         }
     }

@@ -15,6 +15,17 @@ button {
     padding-right: 1rem;
 }
 
+.back-button {
+    background-color: transparent;
+    color: black;
+    padding-left: 0;
+}
+
+.back-button-container {
+    display: flex;
+    align-items: center;
+}
+
 .button-grey {
     background-color: var(--light-grey);
     color: black;
