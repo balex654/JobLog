@@ -16,6 +16,7 @@ import { AveragePowerField } from "./data-fields/AveragePowerField";
 import { Storage, Drivers } from "@ionic/storage";
 import { UserResponse } from "../../model/user/UserResponse";
 import { Unit } from "../../model/user/Unit";
+import Chart, { ChartProps } from "./chart/Chart";
 
 const Activity = () => {
     const id = parseInt((useParams() as any).id);
@@ -37,6 +38,10 @@ const Activity = () => {
     const [totalDistanceValue, setTotalDistanceValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
+    const [chartData, setChartData] = useState<ChartProps>({
+        gpsPoints: [],
+        totalMass: 0
+    });
 
     useEffect(() => {
         const init = async () => {
@@ -57,6 +62,10 @@ const Activity = () => {
             }
             dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
             dataFields.forEach(f => f.generateValue());
+            setChartData({
+                gpsPoints: gpsPoints.gps_points,
+                totalMass: activity.total_mass
+            });
         }
 
         init();
@@ -118,6 +127,11 @@ const Activity = () => {
                             <p className="data">{totalDistanceValue}</p>
                         </div>
                     </div>
+                    <p>Rotate to landscape view to expand charts</p>
+                    <Chart
+                        gpsPoints={chartData.gpsPoints} 
+                        totalMass={chartData.totalMass}
+                    />
                 </div>
             </IonContent>
         </IonPage>

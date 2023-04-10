@@ -75,6 +75,14 @@ function GetTimeDifference(date1: Date, date2: Date): number {
     return seconds;
 }
 
+export function GetInclineAngle(cur: GpsPointResponse, next: GpsPointResponse): number {
+    const altitudeChange = next.altitude - cur.altitude;
+    const distanceChange = GetHorizontalDistance(cur, next);
+    const thetaRadians = Math.atan(altitudeChange / distanceChange);
+    const thetaDegrees = thetaRadians * (180 / Math.PI);
+    return thetaDegrees;
+}
+
 export function ConvertPoundsToKilos(pounds: number): number {
     const kilos = pounds * 0.453592;
     const rounded = Math.round(kilos * 10) / 10;
@@ -106,6 +114,11 @@ export function ConvertMStoKPH(ms: number): number {
     return kilometersPerHour;
 }
 
+export function ConvertMetersToFeet(meters: number): number {
+    const feet = meters * 3.28;
+    return feet;
+}
+
 export function GetWeightInKilos(weight: number, unit: Unit): number {
     if (unit === Unit.Imperial) {
         return ConvertPoundsToKilos(weight);
@@ -130,6 +143,15 @@ export function GetLengthValueByUnit(kilometers: number, unit: Unit): number {
     }
     else {
         return kilometers;
+    }
+}
+
+export function GetShortLengthValueByUnit(meters: number, unit: Unit): number {
+    if (unit === Unit.Imperial) {
+        return ConvertMetersToFeet(meters);
+    }
+    else {
+        return meters;
     }
 }
 
