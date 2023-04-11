@@ -15,6 +15,8 @@ import { AveragePowerField } from "./DataFields/AveragePowerField";
 import Chart, { ChartProps } from "./Chart/Chart";
 import { MaxSpeedField } from "./DataFields/MaxSpeedField";
 import { TotalDistanceField } from "./DataFields/TotalDistanceField";
+import { AverageSpeedField } from "./DataFields/AverageSpeedField";
+import { ElevationGainField } from "./DataFields/ElevationGainField";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -31,6 +33,8 @@ const Activity = ({storageService}: ActivityProps) => {
     const [averagePowerValue, setAveragePowerValue] = useState<string>('loading...');
     const [maxSpeedValue, setMaxSpeedValue] = useState<string>('loading...');
     const [totalDistanceValue, setTotalDistanceValue] = useState<string>('loading...');
+    const [averageSpeedValue, setAverageSpeedValue] = useState<string>('loading...');
+    const [elevationGainValue, setElevationGainValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
     const [chartData, setChartData] = useState<ChartProps>({
@@ -63,6 +67,8 @@ const Activity = ({storageService}: ActivityProps) => {
                 totalMass: activity.total_mass
             }
             dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
+            dataFields.push(new AverageSpeedField(gpsPoints.gps_points, setAverageSpeedValue));
+            dataFields.push(new ElevationGainField(gpsPoints.gps_points, setElevationGainValue));
             dataFields.forEach(f => f.generateValue());
             setChartData({
                 gpsPoints: gpsPoints.gps_points,
@@ -113,6 +119,16 @@ const Activity = ({storageService}: ActivityProps) => {
                     <div className="data-field">
                         <p>Total distance:</p>
                         <p className="data">{totalDistanceValue}</p>
+                    </div>
+                    <div className="data-field">
+                        <p>Average speed:</p>
+                        <p className="data">{averageSpeedValue}</p>
+                    </div>
+                </div>
+                <div className="data-field-group">
+                    <div className="data-field">
+                        <p>Elevation gain:</p>
+                        <p className="data">{elevationGainValue}</p>
                     </div>
                 </div>
             </div>

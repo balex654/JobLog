@@ -16,6 +16,8 @@ import { AveragePowerField } from "./data-fields/AveragePowerField";
 import { Storage, Drivers } from "@ionic/storage";
 import { UserResponse } from "../../model/user/UserResponse";
 import Chart, { ChartProps } from "./chart/Chart";
+import { AverageSpeedField } from "./data-fields/AverageSpeedField";
+import { ElevationGainField } from "./data-fields/ElevationGainField";
 
 const Activity = () => {
     const id = parseInt((useParams() as any).id);
@@ -35,6 +37,8 @@ const Activity = () => {
     const [averagePowerValue, setAveragePowerValue] = useState<string>('loading...');
     const [maxSpeedValue, setMaxSpeedValue] = useState<string>('loading...');
     const [totalDistanceValue, setTotalDistanceValue] = useState<string>('loading...');
+    const [averageSpeedValue, setAverageSpeedValue] = useState<string>('loading...');
+    const [elevationGainValue, setElevationGainValue] = useState<string>('loading...');
 
     let dataFields: DataField<FieldInput>[] = useMemo(() => [], []);
     const [chartData, setChartData] = useState<ChartProps>({
@@ -54,12 +58,14 @@ const Activity = () => {
             dataFields.push(new MovingTimeField(activity, setMovingTimeValue));
             dataFields.push(new BikeUsedField(bike, setBikeUsedValue));
             dataFields.push(new MaxSpeedField(gpsPoints.gps_points, setMaxSpeedValue, unit));
-            dataFields.push(new TotalDistanceField(gpsPoints.gps_points, setTotalDistanceValue, unit))
+            dataFields.push(new TotalDistanceField(gpsPoints.gps_points, setTotalDistanceValue, unit));
             const avgPowerFieldData = {
                 gpsPoints: gpsPoints.gps_points,
                 totalMass: activity.total_mass
-            }
+            };
             dataFields.push(new AveragePowerField(avgPowerFieldData, setAveragePowerValue));
+            dataFields.push(new AverageSpeedField(gpsPoints.gps_points, setAverageSpeedValue, unit));
+            dataFields.push(new ElevationGainField(gpsPoints.gps_points, setElevationGainValue, unit));
             dataFields.forEach(f => f.generateValue());
             setChartData({
                 gpsPoints: gpsPoints.gps_points,
@@ -124,6 +130,14 @@ const Activity = () => {
                         <div className="data-field">
                             <p>Total distance:</p>
                             <p className="data">{totalDistanceValue}</p>
+                        </div>
+                        <div className="data-field">
+                            <p>Average speed:</p>
+                            <p className="data">{averageSpeedValue}</p>
+                        </div>
+                        <div className="data-field">
+                            <p>Elevation gain:</p>
+                            <p className="data">{elevationGainValue}</p>
                         </div>
                     </div>
                     <p>Rotate to landscape view to expand charts</p>
