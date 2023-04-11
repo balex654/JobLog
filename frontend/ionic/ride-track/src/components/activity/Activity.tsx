@@ -18,6 +18,8 @@ import { UserResponse } from "../../model/user/UserResponse";
 import Chart, { ChartProps } from "./chart/Chart";
 import { AverageSpeedField } from "./data-fields/AverageSpeedField";
 import { ElevationGainField } from "./data-fields/ElevationGainField";
+import Map from "./map/Map";
+import { GpsPointResponse } from "../../model/gps-point/GpsPointResponse";
 
 const Activity = () => {
     const id = parseInt((useParams() as any).id);
@@ -45,13 +47,22 @@ const Activity = () => {
         gpsPoints: [],
         totalMass: 0
     });
+    const [mapGpsPoints, setMapGpsPoints] = useState<number[][]>([]);
 
     useEffect(() => {
+        const createMapPoints = (gpsPoints: GpsPointResponse[]) => {
+            const points = gpsPoints.map(g => {
+                return [g.longitude, g.latitude];
+            });
+            setMapGpsPoints(points);
+        }
+
         const init = async () => {
             const activity = (await storageService.getActivityById(id)).resource!;
             const bike = (await storageService.getBikeById(activity.bike_id.toString())).resource!;
             const gpsPoints = (await storageService.getGpsPoints(activity.id)).resource!;
             const unit = (JSON.parse(await storage.get("user")) as UserResponse).unit;
+            createMapPoints(gpsPoints.gps_points);
             setActivityName(activity.name);
             dataFields.push(new StartDateField(activity, setStartDateValue));
             dataFields.push(new EndDateField(activity, setEndDateValue));
@@ -140,6 +151,7 @@ const Activity = () => {
                             <p className="data">{elevationGainValue}</p>
                         </div>
                     </div>
+                    {mapGpsPoints.length > 0 && <Map gpsPoints={mapGpsPoints}/>}
                     <p>Rotate to landscape view to expand charts</p>
                     <Chart
                         gpsPoints={chartData.gpsPoints} 
