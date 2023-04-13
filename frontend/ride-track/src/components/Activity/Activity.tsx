@@ -17,6 +17,8 @@ import { MaxSpeedField } from "./DataFields/MaxSpeedField";
 import { TotalDistanceField } from "./DataFields/TotalDistanceField";
 import { AverageSpeedField } from "./DataFields/AverageSpeedField";
 import { ElevationGainField } from "./DataFields/ElevationGainField";
+import { GpsPointResponse } from "../../model/gps-point/GpsPointResponse";
+import Map from "./Map/Map";
 
 interface ActivityProps {
     storageService: IStorageService;
@@ -41,6 +43,7 @@ const Activity = ({storageService}: ActivityProps) => {
         gpsPoints: [],
         totalMass: 0
     });
+    const [mapGpsPoints, setMapGpsPoints] = useState<number[][]>([]);
 
     useEffect(() => {
         let activity: ActivityResponse;
@@ -51,7 +54,15 @@ const Activity = ({storageService}: ActivityProps) => {
             const bikeId = activity!.bike_id.toString();
             bike = (await storageService.getBikeById(bikeId)).resource!;
             gpsPoints = (await storageService.getGpsPoints(activity.id)).resource!;
+            createMapPoints(gpsPoints.gps_points);
             setDataFields();
+        }
+
+        const createMapPoints = (gpsPoints: GpsPointResponse[]) => {
+            const points = gpsPoints.map(g => {
+                return [g.longitude, g.latitude];
+            });
+            setMapGpsPoints(points);
         }
 
         const setDataFields = () => {
@@ -132,6 +143,7 @@ const Activity = ({storageService}: ActivityProps) => {
                     </div>
                 </div>
             </div>
+            {mapGpsPoints.length > 0 && <Map gpsPoints={mapGpsPoints}/>}
             <Chart 
                 gpsPoints={chartData.gpsPoints} 
                 totalMass={chartData.totalMass}
