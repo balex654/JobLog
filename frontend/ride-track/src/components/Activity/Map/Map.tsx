@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import "./Map.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN!;
+console.log(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN)
 
 interface MapProps {
     gpsPoints: number[][];
