@@ -2,65 +2,17 @@ import mapboxgl from "mapbox-gl";
 import { useEffect, useRef } from "react";
 import "./Map.css";
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN!;
-console.log(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN)
-
 interface MapProps {
     gpsPoints: number[][];
+    accessToken: string;
 }
 
-const Map = ({gpsPoints}: MapProps) => {
+const Map = ({gpsPoints, accessToken}: MapProps) => {
+    mapboxgl.accessToken = accessToken;
     const mapContainer = useRef<HTMLDivElement>(null);
     const map = useRef<mapboxgl.Map | null>(null);
 
     useEffect(() => {
-        if (map.current) return;
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current!,
-            style: 'mapbox://styles/mapbox/streets-v12',
-            center: [-104.9971, 39.7521],
-            zoom: 10,
-            attributionControl: false
-        });
-
-        map.current.on('style.load', () => {
-            if (map.current!.getSource('path')) {
-                map.current!.removeSource('path');
-            }
-            
-            map.current!.addSource('path', {
-                type: 'geojson',
-                data: {
-                    properties: {},
-                    type: 'Feature',
-                    geometry: {
-                        type: 'LineString',
-                        coordinates: gpsPoints
-                    },
-                },
-            });
-
-
-            if (map.current!.getLayer('path')) {
-                map.current!.removeLayer('path');
-            }
-            map.current!.addLayer({
-                id: 'path',
-                type: 'line',
-                source: 'path',
-                layout: {
-                    'line-join': 'round',
-                    'line-cap': 'round',
-                },
-                paint: {
-                    'line-color': '#00478a',
-                    'line-width': 4,
-                },
-            });
-
-            map.current!.fitBounds(getBoundingCoordinates())
-        });
-
         const getBoundingCoordinates = (): mapboxgl.LngLatBounds => {
             let west = 180;
             let east = -180;
@@ -86,6 +38,60 @@ const Map = ({gpsPoints}: MapProps) => {
                 new mapboxgl.LngLat(east, north)
             );
         }
+
+        const addPath = () => {
+            if (map.current!.getLayer('path')) {
+                map.current!.removeLayer('path');
+            }
+            if (map.current!.getSource('path')) {
+                map.current!.removeSource('path');
+            }
+            
+            map.current!.addSource('path', {
+                type: 'geojson',
+                data: {
+                    properties: {},
+                    type: 'Feature',
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: gpsPoints
+                    },
+                },
+            });
+            
+            map.current!.addLayer({
+                id: 'path',
+                type: 'line',
+                source: 'path',
+                layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round',
+                },
+                paint: {
+                    'line-color': '#00478a',
+                    'line-width': 4,
+                },
+            });
+
+            map.current!.fitBounds(getBoundingCoordinates())
+        }
+
+        if (map.current) {
+            addPath();
+            return;
+        };
+
+        map.current = new mapboxgl.Map({
+            container: mapContainer.current!,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [-104.9971, 39.7521],
+            zoom: 10,
+            attributionControl: false
+        });
+
+        map.current.on('style.load', () => {
+            addPath();
+        });
     }, [gpsPoints]);
 
     return (

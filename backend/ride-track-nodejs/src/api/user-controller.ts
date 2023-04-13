@@ -5,6 +5,7 @@ import { UserForm } from "../contract/user/user-form";
 import { AddUserCommand } from "../application/user/add-user";
 import { EditUserCommand } from "../application/user/edit-user";
 import { GetUserStatsQuery } from "../application/user/get-user-stats";
+import { Status } from "../application/application-response";
 
 const addUser = async (req: Request, res: Response, next: NextFunction) => {
     const userForm = req.body as UserForm;
@@ -36,4 +37,8 @@ const getUserStats = async (req: Request, res: Response, next: NextFunction) => 
     return res.status(response.status).json(response.resource);
 }
 
-export default { addUser, getUserById, editUser, getUserStats };
+const getMapboxAccessToken = async (req: Request, res: Response, next: NextFunction) => {
+    return res.status(Status.Ok).json(process.env.MAPBOX_ACCESS_TOKEN);
+}
+
+export default { addUser, getUserById, editUser, getUserStats, getMapboxAccessToken };
