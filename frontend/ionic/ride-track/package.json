@@ -37,6 +37,7 @@
     "ionicons": "^6.0.3",
     "jeep-sqlite": "^2.0.0",
     "jwt-decode": "^3.1.2",
+    "mapbox-gl": "^2.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.2.0",
@@ -87,7 +88,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.6.3"
+    "@capacitor/cli": "4.6.3",
+    "@types/mapbox-gl": "^2.7.10"
   },
   "description": "An Ionic project"
 }
