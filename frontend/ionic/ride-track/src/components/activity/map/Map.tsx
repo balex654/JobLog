@@ -2,7 +2,7 @@ import mapboxgl from "mapbox-gl";
 import { useEffect, useRef } from "react";
 import "./Map.css";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYmFsZXg2NTQiLCJhIjoiY2xnY2pxeHp0MDQ2NTNlcGp0YjdxbjB5cyJ9.P_eghI28kqte636JfngFlQ';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN!;
 
 interface MapProps {
     gpsPoints: number[][];
@@ -52,20 +52,40 @@ const Map = ({gpsPoints}: MapProps) => {
                     'line-cap': 'round',
                 },
                 paint: {
-                    'line-color': '#888',
-                    'line-width': 8,
+                    'line-color': '#00478a',
+                    'line-width': 4,
                 },
             });
-        });
-    }, []);
 
-    useEffect(() => {
-        console.log(map.current!.isStyleLoaded());
-        if (map.current && map.current!.isStyleLoaded()) {
-            
+            map.current!.fitBounds(getBoundingCoordinates())
+        });
+
+        const getBoundingCoordinates = (): mapboxgl.LngLatBounds => {
+            let west = 180;
+            let east = -180;
+            let south = 90;
+            let north = -90;
+            gpsPoints.forEach(g => {
+                if (g[0] < west) {
+                    west = g[0];
+                }
+                if (g[0] > east) {
+                    east = g[0];
+                }
+                if (g[1] < south) {
+                    south = g[1];
+                }
+                if (g[1] > north) {
+                    north = g[1];
+                }
+            });
+    
+            return new mapboxgl.LngLatBounds(
+                new mapboxgl.LngLat(west, south),
+                new mapboxgl.LngLat(east, north)
+            );
         }
-        
-    }, [map]);
+    }, [gpsPoints]);
 
     return (
         <div className="map" ref={mapContainer}/>
