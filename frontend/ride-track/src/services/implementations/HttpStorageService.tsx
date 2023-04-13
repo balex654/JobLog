@@ -112,4 +112,9 @@ export class HttpStorageService implements IStorageService  {
             resource: data
         };
     }
+
+    public async getMapboxAccessToken(): Promise<string> {
+        const { data } = await axios.get<string>(`${this.baseUrl}/mapbox-access-token`).catch(err => err.response);
+        return data;
+    }
 }

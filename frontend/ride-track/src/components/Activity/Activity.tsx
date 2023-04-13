@@ -44,6 +44,7 @@ const Activity = ({storageService}: ActivityProps) => {
         totalMass: 0
     });
     const [mapGpsPoints, setMapGpsPoints] = useState<number[][]>([]);
+    const [mapboxAccessToken, setMapboxAccessToken] = useState<string>('');
 
     useEffect(() => {
         let activity: ActivityResponse;
@@ -54,6 +55,7 @@ const Activity = ({storageService}: ActivityProps) => {
             const bikeId = activity!.bike_id.toString();
             bike = (await storageService.getBikeById(bikeId)).resource!;
             gpsPoints = (await storageService.getGpsPoints(activity.id)).resource!;
+            setMapboxAccessToken(await storageService.getMapboxAccessToken());
             createMapPoints(gpsPoints.gps_points);
             setDataFields();
         }
@@ -143,7 +145,10 @@ const Activity = ({storageService}: ActivityProps) => {
                     </div>
                 </div>
             </div>
-            {mapGpsPoints.length > 0 && <Map gpsPoints={mapGpsPoints}/>}
+            {mapGpsPoints.length > 0 && 
+                <Map 
+                    gpsPoints={mapGpsPoints} 
+                    accessToken={mapboxAccessToken}/>}
             <Chart 
                 gpsPoints={chartData.gpsPoints} 
                 totalMass={chartData.totalMass}

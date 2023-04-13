@@ -22,4 +22,5 @@ export interface IStorageService {
     editBike(bikeId: number, bike: BikeForm): Promise<StorageResponse<BikeResponse>>;
     addBike(bike: BikeForm): Promise<StorageResponse<BikeResponse>>;
     getGpsPoints(activityId: number): Promise<StorageResponse<GpsPointsResponse>>;
+    getMapboxAccessToken(): Promise<string>;
 }
